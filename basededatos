@@ -1,0 +1,63 @@
+--Puedes ejecutar la consulta en php para generar la database o bien cambiar 
+--el nombre de este archivo y importarlo en phpmyadmin
+-- Crea la base de datos
+CREATE DATABASE agenda_actividades;
+
+-- Usa la base de datos
+USE agenda_actividades;
+
+-- Crea la tabla dias_semana
+CREATE TABLE dias_semana (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nombre_dia VARCHAR(255) NOT NULL
+);
+
+-- Agrega 10 registros en la tabla dias_semana
+INSERT INTO dias_semana (nombre_dia) VALUES
+    ('Lunes'),
+    ('Martes'),
+    ('Miércoles'),
+    ('Jueves'),
+    ('Viernes'),
+    ('Sábado'),
+    ('Domingo');
+
+-- Crea la tabla actividades
+CREATE TABLE actividades (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nombre_actividad VARCHAR(255) NOT NULL
+);
+
+-- Agrega 10 registros en la tabla actividades
+INSERT INTO actividades (nombre_actividad) VALUES
+    ('Actividad 1'),
+    ('Actividad 2'),
+    ('Actividad 3'),
+    ('Actividad 4'),
+    ('Actividad 5'),
+    ('Actividad 6'),
+    ('Actividad 7'),
+    ('Actividad 8'),
+    ('Actividad 9'),
+    ('Actividad 10');
+
+-- Crea la tabla agenda_agente
+CREATE TABLE agenda_agente (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    dia_semana_id INT UNSIGNED NOT NULL,
+    momento_dia VARCHAR(255) NOT NULL,
+    actividad_id INT UNSIGNED NOT NULL
+);
+
+-- Agrega 10 registros en la tabla agenda_agente
+INSERT INTO agenda_agente (dia_semana_id, momento_dia, actividad_id) VALUES
+    (1, 'Mañana', 1),
+    (2, 'Tarde', 2),
+    (3, 'Noche', 3),
+    (4, 'Mañana', 4),
+    (5, 'Tarde', 5),
+    (6, 'Noche', 6),
+    (7, 'Mañana', 7),
+    (8, 'Tarde', 8),
+    (9, 'Noche', 9),
+    (10, 'Mañana', 10);
