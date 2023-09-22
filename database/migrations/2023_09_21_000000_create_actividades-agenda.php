@@ -79,7 +79,7 @@ class CreateAgendaAgenteTable extends Migration
      * @return void
      */
     public function up()
-    
+    {
         Schema::create('agenda_agente', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('dia_semana_id');
@@ -100,4 +100,5 @@ class CreateAgendaAgenteTable extends Migration
             ['dia_semana_id' => 6, 'momento_dia' => 'Noche', 'actividad_id' => 6],
             ['dia_semana_id' => 7, 'momento_dia' => 'Mañana', 'actividad_id' => 7]
         ]
+    }
 }
