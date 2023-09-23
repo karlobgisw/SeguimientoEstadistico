@@ -14,6 +14,8 @@ class Agenda extends Model
         'actividad_id',
     ];
 
+    public $timestamps = false; // Desactiva las marcas de tiempo
+
     public function actividad()
     {
         return $this->belongsTo(Actividad::class);

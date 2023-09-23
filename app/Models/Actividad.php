@@ -10,8 +10,12 @@ class Actividad extends Model
 
     protected $fillable = [
         'nombre_actividad',
-    ];
 
+        
+    ];
+    
+    public $timestamps = false; // Desactiva las marcas de tiempo
+    
     /**
      * Obtiene el día de la semana de la actividad.
      *
