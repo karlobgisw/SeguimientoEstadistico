@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Agenda;
@@ -72,5 +71,5 @@ class AgendaController extends Controller
         $agenda->delete();
 
         return redirect()->route('agenda.index');
-    }
+    }
 }

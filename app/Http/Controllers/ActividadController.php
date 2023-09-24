@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Actividad;
@@ -63,5 +62,5 @@ class ActividadController extends Controller
         $actividad->delete();
 
         return redirect()->route('actividades.index');
-    }
+    }
 }
