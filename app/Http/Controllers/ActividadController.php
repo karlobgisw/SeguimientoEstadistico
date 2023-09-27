@@ -11,7 +11,7 @@ class ActividadController extends Controller
     {
         $actividades = Actividad::all();
 
-        return view('actividades.index', [
+        return view('agenda', [
             'actividades' => $actividades,
         ]);
     }
@@ -32,7 +32,7 @@ class ActividadController extends Controller
 
         $actividad->save();
 
-        return redirect()->route('actividades.index');
+        return redirect('/actividades');
     }
 
     public function edit($id)
@@ -53,7 +53,7 @@ class ActividadController extends Controller
 
         $actividad->save();
 
-        return redirect()->route('actividades.index');
+        return redirect('/actividades');
     }
 
     public function destroy($id)
@@ -61,6 +61,6 @@ class ActividadController extends Controller
         $actividad = Actividad::find($id);
         $actividad->delete();
 
-        return redirect()->route('actividades.index');
+        return redirect('/actividades');
     }
 }

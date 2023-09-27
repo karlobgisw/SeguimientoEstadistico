@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.custom {
+    background-color: #0B2742; 
+}
+.nav-link.letras {
+    color: white;
+    text-decoration: underline;
+}
+.navbar-toggler.color {
+    color: rgb(255 255 255 / 65%);
+    border: var(--bs-border-width) solid rgba(255, 255, 255, 0.15);
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    height: 100vh;
+    overflow: visible;
+    background-image: linear-gradient(rgba(5, 7, 12, 0.5), rgba(5, 7, 12, 0.5)),
+    url('../images/remaxf.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    background-position: left top;
+}
+.cartas{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.carta{
+    position: relative;
+    background: #0B2742;
+    width: 20%;
+    height: 69vh;
+    margin:3%;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+    cursor: default;
+    transition: all 400ms ease;
+    color: white;
+    text-align: center;
+
+}
+
+.carta img{
+    position: absolute;
+    top: 41%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+}
+.carta h1{
+    position: absolute;
+    bottom: 30%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 140%
+}
+
+
+.carta:hover{
+    box-shadow: 5px 5px 20px rgba(0,0,0,1);
+    transform: translateY(-3%);
+}
+
+@media (max-width: 700px) {
+    .cartas{
+        display: block;
+    }
+    .carta{
+        margin: 3% auto;
+        width: 50%;
+        height: 57vh;
+    }
+  }

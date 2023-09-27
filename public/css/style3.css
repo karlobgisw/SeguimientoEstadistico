@@ -1,0 +1,189 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.custom {
+    background-color: #0B2742; 
+}
+.nav-link.letras {
+    color: white;
+    text-decoration: underline;
+}
+.navbar-toggler.color {
+    color: rgb(255 255 255 / 65%);
+    border: var(--bs-border-width) solid rgba(255, 255, 255, 0.15);
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    height: 100vh;
+    overflow: visible;
+    background-image:url('../images/back2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left top;
+}
+
+.todo{    
+    width: 100%;
+    height: 100vh;
+}
+
+.agenda{
+    margin: 3% auto;
+    width: 81%;
+    height: 67vh;
+    background-color: white;
+    border-radius: 44px;
+    cursor: default;
+}
+
+.linea{
+    display: flex;
+}
+
+.reloj{
+    width: 12%;
+    height: 10vh;
+    margin-top: 5%;
+    margin-left: 5%;
+    background-color: #0B2742;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.reloj img{
+    width: 34%;
+}
+
+.dias{
+    width: 11%;
+    height: 10vh;
+    margin-top: 5%;
+    margin-left: 2%;
+    background-color: #0B2742;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.tiempo{
+    width: 12%;
+    height: 10vh;
+    margin-top: 2%;
+    margin-left: 5%;
+    background-color: #0B2742;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.cuadros{
+    width: 11%;
+    height: 10vh;
+    margin-top: 2%;
+    margin-left: 2%;
+    background-color: #255A8D;
+}
+
+.act-y-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.carousel.slide.actividades{
+    width: 60%;
+    height: 13vh;
+    margin-top: -1%;
+    margin-right: 2%;
+    background-color: #87A7B9;
+    border-radius: 19px;
+}
+
+.btn.btn-info.custom{
+    height: 7vh;
+    width: 12%;
+    border-radius: 0;
+    margin-top: 0.5%;
+    background: #255A8D;
+    margin-right: 6%;
+    color: white;
+    font-weight: bold;
+    border: 0;
+}
+
+.cuads-act{
+    width: 78%;
+    height: 13vh;
+    margin-left: 11%;
+    display: flex;
+}
+
+.cuad-act{
+    width: 22.5%;
+    height: 10vh;
+    margin-top: 1.4%;
+    margin-left: 2%;
+    background-color: #4A7AA9;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 262%;
+    cursor: grab;
+    font-size: 71%;
+}
+
+.cuad-actt{
+    width: 22.5%;
+    height: 10vh;
+    margin-top: 1.4%;
+    margin-left: 2%;
+    background-color: #368042;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 262%;
+    cursor: pointer;
+}
+
+.agregar{
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.btn.btn-primary{
+    background-color: #368042;
+    font-weight: bold;
+    --bs-btn-hover-bg: #023712;
+    --bs-btn-hover-border-color: #034d1a;
+}
+
+.nactividad{
+    margin: 0;
+}
+
+.nid{
+    margin: 0;
+    visibility: hidden;
+}
+
+.actividadDetalle{
+    color: black;
+}
+
+.modal-title.fs-5{
+    color: black;
+}
