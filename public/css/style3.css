@@ -194,3 +194,11 @@ body {
     background-color: #61A2E0;
     font-size: 70%;
 }
+
+.modal.fade.show{
+    --bs-modal-bg: #ffffff;
+}
+
+#actividadInput{
+    background-color: #c3c5c5;
+}
