@@ -62,7 +62,7 @@
                               <p class="nactividad" id="nactividad">{{ $actividad->nombre_actividad }}</p>
                               <p class="nid">{{ $actividad->id }}</p>
                               <button class="btn btn-primary open-modal" data-bs-target="#actividadModal-{{ $actividad->id }}" data-bs-toggle="modal">
-                                  Ver Detalles
+                                {{ $actividad->nombre_actividad }}
                               </button>
                               <div class="modal fade" id="actividadModal-{{ $actividad->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
                                 <div class="modal-dialog">
