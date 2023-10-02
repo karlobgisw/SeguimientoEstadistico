@@ -3,10 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActividadController; // Importa el controlador
 use App\Http\Controllers\AgendaController; // Importa el controlador
+use App\Http\Controllers\AuthController; // Importa el controlador
+use App\Http\Controllers\MenuController; // Importa el controlador
 
 //RUTAS_ActividadController
 
-Route::get('/actividades', [ActividadController::class, 'index']);
+Route::get('/actividades', [ActividadController::class, 'index'])->middleware('auth');
 
 // Mostrar el formulario de creación (puedes omitir esta ruta si no es necesaria sin vistas)
 //Route::get('/actividades/create', [ActividadController::class, 'create']);
@@ -49,4 +51,17 @@ Route::put('/agendas/{id}', [AgendaController::class, 'update'])->withoutMiddlew
 
 // Ruta para eliminar una agenda sin protección CSRF
 Route::delete('/agendas/{id}', [AgendaController::class, 'destroy'])->withoutMiddleware(['web']);
+
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
+Route::get('/menu', function () {
+    return view('menu');
+})->name('menu');
+
+Route::get('/menu', [MenuController::class, 'renderMenu'])->name('menu')->middleware('auth');
+
+
+Route::post('/login', [AuthController::class, 'store'])->name('login');
 
