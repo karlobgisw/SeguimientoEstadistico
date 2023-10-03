@@ -2,7 +2,7 @@
 CREATE DATABASE IF NOT EXISTS scheduleRMV DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 -- Usar la base de datos
-USE scheduleRM;
+USE scheduleRMV;
 
 -- Estructura de tabla para la tabla dias_semana
 CREATE TABLE IF NOT EXISTS dias_semana (
@@ -52,10 +52,15 @@ INSERT IGNORE INTO actividades (nombre_actividad) VALUES
 -- Estructura de tabla para la tabla users
 CREATE TABLE IF NOT EXISTS users (
   id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  name varchar(255) NOT NULL,
+  nombre varchar(255) NOT NULL,
+  nombre_archivo_foto varchar(255),
+  correo_institucional varchar(255),
+  celular varchar(20),
+  sir varchar(255),
   password varchar(255) NOT NULL,
-  type enum('agent','staff') NOT NULL DEFAULT 'agent',
-  PRIMARY KEY (id)
+  permisos_id bigint(20) UNSIGNED,
+  PRIMARY KEY (id),
+  FOREIGN KEY (permisos_id) REFERENCES permissions(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Estructura de tabla para la tabla agenda_agente
