@@ -52,16 +52,24 @@ Route::put('/agendas/{id}', [AgendaController::class, 'update'])->withoutMiddlew
 // Ruta para eliminar una agenda sin protección CSRF
 Route::delete('/agendas/{id}', [AgendaController::class, 'destroy'])->withoutMiddleware(['web']);
 
+// Rutas de AuthController
 Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::get('/menu', function () {
-    return view('menu');
-})->name('menu');
-
-Route::get('/menu', [MenuController::class, 'renderMenu'])->name('menu')->middleware('auth');
-
-
 Route::post('/login', [AuthController::class, 'store'])->name('login');
 
+// Ruta principal
+Route::get('/', function () {
+    // Verificar si el usuario está autenticado
+    if (auth()->check()) {
+        // Si está autenticado, redirigir a la página de menú
+        return redirect('/menu');
+    } else {
+        // Si no está autenticado, redirigir a la página de login
+        return redirect('/login');
+    }
+});
+
+// Ruta de MenuController
+Route::get('/menu', [MenuController::class, 'renderMenu'])->name('menu')->middleware('auth');
