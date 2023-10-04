@@ -1,4 +1,0 @@
-$user = new User();
-$user->name = 'User';
-$user->password = Hash::make('Prueba$1234');
-$user->save();

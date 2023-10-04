@@ -1,0 +1,119 @@
+$user = new User();
+$user->nombre_archivo_foto = 'RGA_8134.jpg';
+$user->nombre = 'Denise Vázquez';
+$user->correo_institucional = 'denise.vazquez@remaxvictoria.mx';
+$user->celular = '6181449104';
+$user->sir = 'denisevazquez';
+$user->password = Hash::make('remax.victoria_001!');
+$user->permisos_id = 2;
+$user->save();
+
+$user = new User();
+$user->nombre_archivo_foto = 'RGA_8150.jpg';
+$user->nombre = 'Angelica Gomez';
+$user->correo_institucional = 'angelica.gomez@remaxvictoria.mx';
+$user->celular = '6181132264';
+$user->sir = 'angelicagomez';
+$user->password = Hash::make('remax.victoria_002!');
+$user->permisos_id = 2;
+$user->save();
+
+$user = new User();
+$user->nombre_archivo_foto = 'RGA_8171.jpg';
+$user->nombre = 'Merith Ortiz';
+$user->correo_institucional = 'merith.ortiz@remaxvictoria.mx';
+$user->celular = '6181069203';
+$user->sir = 'merithortiz';
+$user->password = Hash::make('remax.victoria_003!');
+$user->permisos_id = 2;
+$user->save();
+
+$user = new User();
+$user->nombre_archivo_foto = 'RGA_8374.jpg';
+$user->nombre = 'Tomas Campos';
+$user->correo_institucional = 'tomas.campos@remaxvictoria.mx';
+$user->celular = '6181594001';
+$user->sir = 'tomascampos';
+$user->password = Hash::make('remax.victoria_004!');
+$user->permisos_id = 2;
+$user->save();
+
+$user = new User();
+$user->nombre_archivo_foto = 'RGA_8657.jpg';
+$user->nombre = 'Fatima Sánchez';
+$user->correo_institucional = 'fatima.sanchez@remaxvictoria.mx';
+$user->celular = '6182660905';
+$user->sir = 'fatimasanchez';
+$user->password = Hash::make('remax.victoria_005!');
+$user->permisos_id = 2;
+$user->save();
+
+$user = new User();
+$user->nombre_archivo_foto = 'RGA_7964.jpg';
+$user->nombre = 'Alfonso Cano';
+$user->correo_institucional = 'alfonso.cano@remaxvictoria.mx';
+$user->celular = '6188049916';
+$user->sir = 'alfonsocano';
+$user->password = Hash::make('remax.victoria_006!');
+$user->permisos_id = 2;
+$user->save();
+
+$user = new User();
+$user->nombre_archivo_foto = 'RGA_8248.jpg';
+$user->nombre = 'Teresa Zuñiga';
+$user->correo_institucional = 'teresa.zuñiga@remaxvictoria.mx';
+$user->celular = '6181494417';
+$user->sir = 'terezuvictoria';
+$user->password = Hash::make('remax.victoria_008!');
+$user->permisos_id = 2;
+$user->save();
+
+$user = new User();
+$user->nombre_archivo_foto = 'RGA_8386.jpg';
+$user->nombre = 'Eduardo del Rio';
+$user->correo_institucional = 'eduardo.delrio@remaxvictoria.mx';
+$user->celular = '6181177361';
+$user->sir = 'eduardodlrio';
+$user->password = Hash::make('remax.victoria_0010!');
+$user->permisos_id = 2;
+$user->save();
+
+$user = new User();
+$user->nombre_archivo_foto = 'RGA_8408.jpg';
+$user->nombre = 'Jorge Molina';
+$user->correo_institucional = 'jorge.molina@remaxvictoria.mx';
+$user->celular = '6182306416';
+$user->sir = 'jorgemolina';
+$user->password = Hash::make('remax.victoria_011!');
+$user->permisos_id = 2;
+$user->save();
+
+$user = new User();
+$user->nombre_archivo_foto = 'RGA_8191.jpg';
+$user->nombre = 'Gladis Sánchez';
+$user->correo_institucional = 'gladis.sanchez@remaxvictoria.mx';
+$user->celular = '6188383073';
+$user->sir = 'gladissanchez';
+$user->password = Hash::make('remax.victoria_012!');
+$user->permisos_id = 2;
+$user->save();
+
+$user = new User();
+$user->nombre_archivo_foto = 'RGA_8123.jpg';
+$user->nombre = 'Susana Rocha';
+$user->correo_institucional = 'susana.rocha@remaxvictoria.mx';
+$user->celular = '6181709790';
+$user->sir = 'erwinguerrero';
+$user->password = Hash::make('remax.victoria_0013!');
+$user->permisos_id = 2;
+$user->save();
+
+$user = new User();
+$user->nombre_archivo_foto = 'RGA_8321.jpg';
+$user->nombre = 'Estefano Rivera';
+$user->correo_institucional = 'estefano.rivera@remaxvictoria.mx';
+$user->celular = '6182192276';
+$user->sir = 'estefanorivera';
+$user->password = Hash::make('admin.remax.victoria_001!');
+$user->permisos_id = 1;
+$user->save();

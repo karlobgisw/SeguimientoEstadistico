@@ -17,6 +17,8 @@ class User extends Authenticatable
         'password',
         'type',
     ];
+    
+    public $timestamps = false;
 
     public function permissions()
     {

@@ -5,6 +5,7 @@ use App\Http\Controllers\ActividadController; // Importa el controlador
 use App\Http\Controllers\AgendaController; // Importa el controlador
 use App\Http\Controllers\AuthController; // Importa el controlador
 use App\Http\Controllers\MenuController; // Importa el controlador
+use App\Http\Controllers\LogoutController; // Importa el controlador
 
 //RUTAS_ActividadController
 
@@ -73,3 +74,6 @@ Route::get('/', function () {
 
 // Ruta de MenuController
 Route::get('/menu', [MenuController::class, 'renderMenu'])->name('menu')->middleware('auth');
+
+Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+

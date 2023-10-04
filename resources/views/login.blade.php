@@ -10,7 +10,7 @@
 </head>
 <body>
   <header>
-    @include('nav')
+    @include('navLogin')
   </header>
   <div class="center">
     <div class="imagen">
@@ -19,7 +19,7 @@
     <form method="post" action="{{ route('login') }}">
       @csrf
       <div class="txt_field">
-        <input type="text" name="name" required>
+        <input type="text" name="sir" required>
         <label>Nombre de usuario</label>
       </div>
       <div class="txt_field">
@@ -28,6 +28,15 @@
       </div>
       <div class="pass">¿Olvido su contraseña?</div>
       <input type="submit" value="Iniciar Sesion">
+      <div class="card-body">
+        @if ($errors->any())
+          <div class="alert alert-danger">
+              @foreach ($errors->all() as $error)
+                <center><p>{{ $error }}</p></center>
+                  @endforeach
+          </div>
+                    @endif
+                    
     </form>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
