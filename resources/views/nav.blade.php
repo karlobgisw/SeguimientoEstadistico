@@ -12,7 +12,7 @@
             <a class="nav-link letras" aria-current="page" href="#">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link letras" href="#">Acciones</a>
+            <a class="nav-link letras" href="{{ route('menu') }}">Acciones</a>
           </li>
         </ul>
         <div class="d-flex">

@@ -13,102 +13,148 @@
         @include('nav')
     </header>
     <div class="todo">
-        <div class="agenda">
-            <div class="linea">
-                <div class="reloj"><img src="{{ asset('images\reloj.png') }}"></div>
-                <div class="dias">Lunes</div>
-                <div class="dias">Martes</div>
-                <div class="dias">Miercoles</div>
-                <div class="dias">Jueves</div>
-                <div class="dias">Viernes</div>
-                <div class="dias">Sabado</div>
-            </div>
-            <div class="linea">
-                <div class="tiempo">Matutina</div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-            </div>
-            <div class="linea">
-                <div class="tiempo">Media dia</div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-            </div>
-            <div class="linea">
-                <div class="tiempo">Vespertina</div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-                <div class="cuadros" id="contenedor" draggable="true"></div>
-            </div>
-        </div>
-        <div class="act-y-btn">
-            <div id="carouselExample" class="carousel slide actividades">
-              <div class="carousel-inner">
-                @foreach($actividades->chunk(4) as $chunk)
-                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                        <div class="cuads-act" id="cuads-act">
-                          @foreach($chunk as $actividad)
-                          <div class="cuad-act" id="caja" data-actividad-id="{{ $actividad->id }}">
-                              <p class="nactividad" id="nactividad">{{ $actividad->nombre_actividad }}</p>
-                              <p class="nid">{{ $actividad->id }}</p>
-                              <button class="btn btn-primary open-modal" data-bs-target="#actividadModal-{{ $actividad->id }}" data-bs-toggle="modal">
-                                {{ $actividad->nombre_actividad }}
-                              </button>
-                              <div class="modal fade" id="actividadModal-{{ $actividad->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
-                                <div class="modal-dialog">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Detalles de la actividad</h1>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <h5 id="numeroact"></h5>
-                                      <form action="{{ url('actividades/'.$actividad->id) }}" method="POST" id="editform">
-                                      <textarea name="nombre_actividad" id="actividadDetalle-{{ $actividad->id }}" cols="86" rows="10" class="actividadDetalle" ></textarea>
-                                    </div>
-                                    <div class="modal-footer">
-                                        {{ method_field('PUT') }}
-                                        <button type="text" class="btn btn-warning" id="edit_mostrar">Editar</button>
-                                      </form>
-                                      <form action="{{ url('actividades/'.$actividad->id) }}" method="POST" id="deleteform">
-                                        {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger" id="delete_btn">Eliminar</button>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                          </div>
-                          @endforeach
-                        </div>
-                    </div>
-                @endforeach
+      <div class="botonson" id="toggleButton2">
+        >
+      </div>
+      <div id="toggleButton"></div>
+      <div class="listas">
+        <div id="dashboard" class="closed">
+          <div id="hideButton"><</div>
+          <hr>
+          <h3>ACTIVIDADES</h3>
+          <hr>
+          <div class="actcuad">
+            @foreach($actividades as $actividad)
+              <div class="cuad-act" id="caja" data-actividad-id="{{ $actividad->id }}">
+                <button class="btn btn-primary open-modal" data-bs-target="#actividadModal-{{ $actividad->id }}" data-bs-toggle="modal" id="nactividad">
+                  {{ $actividad->nombre_actividad }}
+                </button>
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-            <button type="button" class="btn btn-info custom">Agendar</button>
+              <div class="modal fade" id="actividadModal-{{ $actividad->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Detalles de la actividad</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <h5 id="numeroact"></h5>
+                      <form action="{{ url('actividades/'.$actividad->id) }}" method="POST" id="editform">
+                      <textarea name="nombre_actividad" id="actividadDetalle-{{ $actividad->id }}" cols="60" rows="10" class="actividadDetalle" ></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        {{ method_field('PUT') }}
+                        <button type="text" class="btn btn-warning" id="edit_mostrar">Editar</button>
+                      </form>
+                      <form action="{{ url('actividades/'.$actividad->id) }}" method="POST" id="deleteform">
+                        {{ method_field('DELETE') }}
+                        <button type="submit" class="btn btn-danger" id="delete_btn">Eliminar</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+          </div>
+          <button type="button" class="btn btn-primary ag" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Agregar Tarea
+        </button>
         </div>
+        <div id="content">
+          <!-- Contenido principal -->
+        </div> 
+        <div class="dia">
+          <div class="titulo">Lunes</div>
+          <div class="Matutina">
+            <div class="tit">Matutina</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+          <div class="Medio_Dia">
+            <div class="tit">Medio Dia</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+          <div class="Vespertina">
+            <div class="tit">Vespertina</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+        </div>
+        <div class="dia">
+          <div class="titulo">Martes</div>
+          <div class="Matutina">
+            <div class="tit">Matutina</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+          <div class="Medio_Dia">
+            <div class="tit">Medio dia</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+          <div class="Vespertina">
+            <div class="tit">Vespertina</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+        </div>
+        <div class="dia">
+          <div class="titulo">Miercoles</div>
+          <div class="Matutina">
+            <div class="tit">Matutina</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+          <div class="Medio_Dia">
+            <div class="tit">Medio dia</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+          <div class="Vespertina">
+            <div class="tit">Vespertina</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+        </div>
+        <div class="dia">
+          <div class="titulo">Jueves</div>
+          <div class="Matutina">
+            <div class="tit">Matutina</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+          <div class="Medio_Dia">
+            <div class="tit">Medio dia</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+          <div class="Vespertina">
+            <div class="tit">Vespertina</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+        </div>
+        <div class="dia">
+          <div class="titulo">Viernes</div>
+          <div class="Matutina">
+            <div class="tit">Matutina</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+          <div class="Medio_Dia">
+            <div class="tit">Medio dia</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+          <div class="Vespertina">
+            <div class="tit">Vespertina</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+        </div>
+        <div class="diaf">
+          <div class="titulo">Sabado</div>
+          <div class="Matutina">
+            <div class="tit">Matutina</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+          <div class="Medio_Dia">
+            <div class="tit">Medio dia</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+          <div class="Vespertina">
+            <div class="tit">Vespertina</div>
+            <div class="dropc" id="contenedor"></div>
+          </div>
+        </div>
+      </div>
         <div class="agregar">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              Agregar Tarea
-          </button>
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -132,7 +178,6 @@
               </div>
             </div>
          </div>
-
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

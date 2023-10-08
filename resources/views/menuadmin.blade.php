@@ -13,25 +13,20 @@
         @include('nav')
     </header>
     <div class="cartas">
-        <div class="carta" id="agenda">
+        <div class="carta">
             <img src="{{ asset('images\Group2.svg') }}" alt="">
             <h1 class="agenda">Agenda</h1>
         </div>
-        <div class="carta" id="circulo">
+        <div class="carta">
             <img src="{{ asset('images\Group3.svg') }}" alt="">
             <h1 class="circulo">Circulo</h1>
+        </div>
+        <div class="carta">
+            <img src="{{ asset('images\Group4.svg') }}" alt="">
+            <h1 class="graficas">Graficas</h1>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
-    <script>
-        document.getElementById("agenda").addEventListener("click", function() {
-            window.location.href = "{{ route('actividades') }}";
-        });
-
-        document.getElementById("circulo").addEventListener("click", function() {
-            window.location.href = "{{ route('agendas') }}";
-        });
-        </script>
 </body>
 </html>

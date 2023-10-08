@@ -9,7 +9,7 @@ use App\Http\Controllers\LogoutController; // Importa el controlador
 
 //RUTAS_ActividadController
 
-Route::get('/actividades', [ActividadController::class, 'index'])->middleware('auth');
+Route::get('/actividades', [ActividadController::class, 'index'])->name('actividades')->middleware('auth');
 
 // Mostrar el formulario de creación (puedes omitir esta ruta si no es necesaria sin vistas)
 //Route::get('/actividades/create', [ActividadController::class, 'create']);
@@ -37,7 +37,7 @@ Route::delete('/actividades/{id}', [ActividadController::class, 'destroy'])->wit
 
 
 // Ruta para listar todas las agendas
-Route::get('/agendas', [AgendaController::class, 'index']);
+Route::get('/agendas', [AgendaController::class, 'index'])->name('agendas');
 
 // Ruta para mostrar el formulario de creación de agenda (no es necesario para una API sin vistas)
 
