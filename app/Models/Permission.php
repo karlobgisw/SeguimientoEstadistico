@@ -16,4 +16,9 @@ class Permission extends Model
         'description',
         'type',
     ];
+
+    public function usuarios()
+    {
+        return $this->hasMany(User::class, 'permisos_id');
+    }
 }

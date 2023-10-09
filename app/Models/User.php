@@ -8,20 +8,21 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $table = 'users';
 
     protected $fillable = [
         'name',
         'password',
-        'type',
+        'permisos_id', // Asegúrate de tener este campo en tu tabla users
     ];
     
     public $timestamps = false;
 
-    public function permissions()
+   
+    public function permisos()
     {
-        return $this->belongsToMany(\App\Models\Permission::class);
+        return $this->belongsTo(Permission::class, 'permisos_id');
     }
 }

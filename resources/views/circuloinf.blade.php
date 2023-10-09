@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CirculoInfluencia</title>
+    <title>Circulo Influencia</title>
     <link rel="stylesheet" href="{{ asset('css/style4.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
@@ -376,53 +376,56 @@
           </div>
         </div>
       </div>
+     
     <div class="contenedor">
-        <table>
-            <thead>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Posible</th>
+                <th>Clasificación</th>
+                <th>Llamada</th>
+                <th>Contestada</th>
+                <th>Interesado</th>
+                <th>Cita</th>
+                <th>Clave SIR</th>
+                <th>Fovissste</th>
+                <th>Infonavit</th>
+                <th>Bancario</th>
+                <th>Comentario</th>
+                <th>Valor</th>
+                <th>Semana</th>
+                <th>Mes</th>
+                <th>Fuente de contacto</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach($contactos as $contacto)
                 <tr>
-                    <th>Nombre Completo</th>
-                    <th>Telefono</th>
-                    <th>Correo</th>
-                    <th>Fuente de Contacto</th>
-                    <th>Posible</th>
-                    <th>Clasificacion</th>
-                    <th>LLamada</th>
-                    <th>Contestada</th>
-                    <th>Interesado</th>
-                    <th>Cita</th>
-                    <th>CLAVE SIR</th>
-                    <th>FOVISSSTE</th>
-                    <th>INFONAVIT</th>
-                    <th>BANCARIO</th>
-                    <th>Comentario</th>
-                    <th>Valor</th>
-                    <th>Semana</th>
-                    <th>Mes</th>
+                    <td>{{ $contacto->nombre }}</td>
+                    <td>{{ $contacto->telefono }}</td>
+                    <td>{{ $contacto->correo }}</td>
+                    <td>{{ $contacto->posible }}</td>
+                    <td>{{ $contacto->clasificacion }}</td>
+                    <td>{{ $contacto->llamada }}</td>
+                    <td>{{ $contacto->contestada }}</td>
+                    <td>{{ $contacto->interesado }}</td>
+                    <td>{{ $contacto->cita }}</td>
+                    <td>{{ $contacto->clave_sir }}</td>
+                    <td>{{ $contacto->fovissste }}</td>
+                    <td>{{ $contacto->infonavit }}</td>
+                    <td>{{ $contacto->bancario }}</td>
+                    <td>{{ $contacto->comentario }}</td>
+                    <td>{{ $contacto->valor }}</td>
+                    <td>{{ $contacto->semana }}</td>
+                    <td>{{ $contacto->mes }}</td>
+                    <td>{{ $contacto->fuenteContacto['nombre_fuente'] }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr id="registro">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+            @endforeach
+        </tbody>
+    </table>
     </div>
     <script src="{{ asset('js/app2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

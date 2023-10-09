@@ -6,6 +6,9 @@ use App\Http\Controllers\AgendaController; // Importa el controlador
 use App\Http\Controllers\AuthController; // Importa el controlador
 use App\Http\Controllers\MenuController; // Importa el controlador
 use App\Http\Controllers\LogoutController; // Importa el controlador
+use App\Http\Controllers\ContactoController; // Importa el controlador
+use App\Http\Controllers\FuenteContactoController; // Importa el controlador
+use App\Http\Controllers\InicioAdminController; // Importa el controlador
 
 //RUTAS_ActividadController
 
@@ -77,3 +80,8 @@ Route::get('/menu', [MenuController::class, 'renderMenu'])->name('menu')->middle
 
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
+Route::get('/contactos', [ContactoController::class, 'mostrarContactosCirculoInfluencia'])->name('contactos');
+
+Route::get('/fuentescontactos', [FuenteContactoController::class, 'index'])->name('fuentescontactos');
+
+Route::get('/inicioadmin', [InicioAdminController::class, 'index'])->name('inicioadmin');

@@ -30,7 +30,7 @@
         });
 
         document.getElementById("circulo").addEventListener("click", function() {
-            window.location.href = "{{ route('agendas') }}";
+            window.location.href = "{{ route('contactos') }}";
         });
         </script>
 </body>
