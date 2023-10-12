@@ -24,14 +24,13 @@ body {
     background-position: left top;
 }
 .center{
-    position: absolute;
-    top: 50%;
+    position: relative;
+    top: 46%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 31%;
     background: #0B2742;
     border-radius: 10px;
-    margin-top: 3%;
 }
 
 .imagen{
@@ -126,4 +125,11 @@ input[type="submit"]:hover{
     .center{
         width: 90%;
     }
+}
+
+#mi-toast{
+    position: absolute;
+    bottom: 0;
+    left: 120%;
+    transform: none;
 }

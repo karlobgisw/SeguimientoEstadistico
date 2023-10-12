@@ -12,7 +12,7 @@ class AgendaController extends Controller
     {
         $agendas = Agenda::all();
 
-        return view('circuloinf', [
+        return view('agenda', [
             'agendas' => $agendas,
         ]);
     }

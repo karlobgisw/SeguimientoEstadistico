@@ -11,7 +11,7 @@ class ActividadController extends Controller
     {
         $actividades = Actividad::all();
 
-        return view('agenda', [
+        return view('agendaadmincrear', [
             'actividades' => $actividades,
         ]);
     }

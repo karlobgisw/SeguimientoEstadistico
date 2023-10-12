@@ -2,9 +2,84 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
 }
+
+.btn.btn-danger.logout {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #061320;
+    --bs-btn-border-color: #061320;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #bb2d3b;
+    --bs-btn-hover-border-color: #b02a37;
+    --bs-btn-focus-shadow-rgb: 225,83,97;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #b02a37;
+    --bs-btn-active-border-color: #a52834;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #dc3545;
+    --bs-btn-disabled-border-color: #dc3545;
+    border-radius: 0px;
+}
+
+.perfil{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    height: 8vh;
+    width: 100%;
+}
+
+.imagenperfil{
+    width: 20%;
+    height: 6vh;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-radius: 100px;
+    background-color: gray;
+    position: relative;
+    overflow: hidden;
+}
+
+.imagenperfil img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.d-flex{
+    margin-right: 4%;
+    width: 16%;
+    cursor: pointer;
+    border-radius: 11px;
+    background-color: #061320;
+}
+
+.po{
+    margin-bottom: 0%;
+    margin-right: 2%;
+}
+
+.dropdown {
+    position: relative;
+    width: 100%;
+    display: inline-block;
+}
+
+.d-flex:hover{
+    background-color: #1d61a0;
+}
+
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    margin-left: 30%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
 
 .custom {
     background-color: #0B2742; 
@@ -34,128 +109,170 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-h2{
-    text-align: center;
-    font-size: 18px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: white;
-    padding: 30px 0;
-}
-
-/* Table Styles */
-
-.table-wrapper{
-    margin: 10px 70px 70px;
-    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
-}
-
-.fl-table {
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: normal;
-    border: none;
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 100%;
-    white-space: nowrap;
+.contenedor{
+    width: 97%;
+    height: 84vh;
     background-color: white;
+    margin-left: 1.5%;
+    margin-top: 1.5%;
+    border-radius: 7px;
 }
 
-.fl-table td, .fl-table th {
+.cabecera{
+    width: 100%;
+    height: 11vh;
+    border-bottom: solid 1px rgb(0 0 0 / 20%);
+    background-color: #0c2f50;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+}
+
+#input{
+    width: 33%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#inputt{
+    background-color: #0B2742;
+    border-color: #ffffff5e;
+    color: white;
+}
+
+#addon-wrapping{
+    background-color: #0B2742;
+    border-color: #ffffff5e;
+}
+
+#inputt::placeholder {
+    color: #999; /* Cambia el color a gris o cualquier otro color deseado */
+  
+}
+
+#search{
+    fill: #999;
+}
+
+.titulos{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-top: 2%;
+    color: #1f299e;;
+    border-bottom: solid 3px rgb(15 34 179 / 34%)
+}
+
+.datos{
+    min-width: 48%;
+    height: 18vh;
+    margin-left: 2%;
+    margin-top: 1%;
+    display: flex;
+}
+
+.acciones{
+    margin-right: 32%;
+}
+
+
+.accioness{
+    margin-right: 32%;
+    display: flex;
+    position: relative;
+    margin-left: 7%;
+}
+
+.imagen{
+    width: 21%;
+    height: 18vh;
+    background-color: gray;
+    border-radius: 100px;
+}
+
+.info{
+    width: 60%;
+    height: 15vh;
+    margin-left: 2%;
+}
+
+.info h6{
+    color: #1f299e;
+}
+
+.agenteinfo{
+    margin-bottom: 0;
+    margin-left: 2%;
+    color: gray;
+}
+
+.logos{
+    display: flex;
+}
+
+#logo{
+    margin-top: 1.2%;
+    fill: gray;
+}
+
+.ti{
+    margin-bottom: 0;
+}
+
+.tabla{
+    display: flex;
+    margin-left: 8%;
+    width: 84.5%;
+    height: 21vh;
+    border-bottom: solid 1px rgb(15 34 179 / 34%)
+}
+
+#logotipo{
+    margin-bottom: 10%;
+    width: 103%;
+    height: 5vh;
+    fill: gray;
+}
+.accion{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: grid;
     text-align: center;
-    padding: 8px;
-}
-
-.fl-table td {
-    border-right: 1px solid #0b274285;
-    font-size: 12px;
-}
-
-.fl-table thead th {
-    color: #ffffff;
-    background: #61A2E0;
-}
-
-tbody tr {
+    justify-items: center;
+    margin-right: 2%;
+    color: gray;
+    min-width: 28%;
+    border-radius: 10px;
+    padding-top: 3%;
+    padding-bottom: 3%;
     cursor: pointer;
-    border-bottom: solid 1px #0b274285;
-    height: 14vh;
 }
 
-tbody tr:hover {
-    background: rgba(103, 168, 243, 0.4);
+.accion:hover{
+    background-color: #0B2742;
+    color: white;
 }
 
-
-.fl-table thead th:nth-child(odd) {
-    color: #ffffff;
-    background: #0B2742;
+.accion:hover #logotipo{
+    fill: white;
 }
 
+#acciond:hover{
+    background-color: #b02a37;
+    color: white;
+}
 
-/* Responsive */
+#acciond:hover #logotipo{
+    fill: white;
+}
 
-@media (max-width: 767px) {
-    .fl-table td {
-        border-right: 1px solid #0b274285;
-        border-bottom: 1px solid #0b274285;
-        font-size: 12px;
-    }
+#accione:hover{
+    background-color: #a88008;
+    color: white;
+}
 
-    tbody tr {
-        cursor: pointer;
-        border-bottom: solid 1px #0b274285;
-    }
-    .fl-table {
-        display: block;
-        width: 100%;
-    }
-    .table-wrapper:before{
-        display: block;
-        text-align: right;
-        font-size: 11px;
-        color: white;
-        padding: 0 0 10px;
-    }
-    .fl-table thead, .fl-table tbody, .fl-table thead th {
-        display: block;
-    }
-    .fl-table thead th:last-child{
-        border-bottom: none;
-    }
-    .fl-table thead {
-        float: left;
-    }
-    .fl-table tbody {
-        width: auto;
-        position: relative;
-        overflow-x: auto;
-    }
-    .fl-table td, .fl-table th {
-        padding: 20px .625em .625em .625em;
-        height: 60px;
-        vertical-align: middle;
-        box-sizing: border-box;
-        overflow-x: hidden;
-        overflow-y: auto;
-        width: 120px;
-        font-size: 13px;
-        text-overflow: ellipsis;
-    }
-    .fl-table thead th {
-        text-align: left;
-        border-bottom: 1px solid #0b274285;
-    }
-    .fl-table tbody tr {
-        display: table-cell;
-    }
-    .fl-table tbody td {
-        display: block;
-        text-align: center;
-    }
-
-    tbody tr:hover {
-        background: rgba(103, 168, 243, 0.4);
-    }
+#accione:hover #logotipo{
+    fill: white;
 }

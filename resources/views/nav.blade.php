@@ -12,13 +12,25 @@
             <a class="nav-link letras" aria-current="page" href="#">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link letras" href="{{ route('/') }}">Acciones</a>
+            <a class="nav-link letras" href="{{ route('menu') }}">Acciones</a>
           </li>
         </ul>
         <div class="d-flex">
-          <button class="btn btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#logoutModal">Cerrar Sesion</button>
+          <div class="dropdown" id="menu-dropdown">
+            <div class="perfil" onclick="toggleMenu()">
+              <div class="imagenperfil">
+                <img src="" alt="">
+              </div>
+              <p class="po">Nombre_Perfil</p>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+              </svg>
+            </div>
+            <div class="dropdown-content" id="menu-content">
+              <button class="btn btn-danger logout" type="button" data-bs-toggle="modal" data-bs-target="#logoutModal">Cerrar Sesion</button>
+            </div>
+          </div>
         </div>
-
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

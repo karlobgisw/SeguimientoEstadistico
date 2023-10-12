@@ -27,7 +27,8 @@ class AuthController extends Controller
         $user = User::where('sir', $request->input('sir'))->first();
 
         if (!$user || !Hash::check($request->input('password'), $user->password)) {
-            return response()->json(['error' => 'Credenciales no válidas'], 401);
+            $request->session()->flash('error', 'Credenciales no válidas');
+            return back()->withInput();
         }
 
         Auth::login($user);
