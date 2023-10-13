@@ -85,3 +85,18 @@ Route::get('/contactos', [ContactoController::class, 'mostrarContactosCirculoInf
 Route::get('/fuentescontactos', [FuenteContactoController::class, 'index'])->name('fuentescontactos');
 
 Route::get('/inicioadmin', [InicioAdminController::class, 'index'])->name('inicioadmin');
+
+Route::post('/contactos/store', [ContactoController::class, 'store'])->name('/contactos/store');
+
+
+Route::patch('/contacto/{id}', [ContactoController::class, 'update'])->name('contacto.update');
+Route::patch('/contacto/nombre/{id}', [ContactoController::class, 'updateNombre'])->name('contacto.updateNombre');
+
+
+Route::get('/contacto/{id}', 'ContactoController@show')->name('contacto.show');
+
+//Route::delete('/contacto/{id}', [ContactoController::class, 'destroy'])->name('contacto.destroy');
+
+//Route::get('/contacto/{id}/eliminar', 'ContactoController@destroy')->name('contacto.destroy');
+
+Route::get('/contacto/{id}/eliminar', [ContactoController::class, 'destroy'])->name('contacto.destroy');

@@ -7,10 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contacto extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
+        'user_id',
         'nombre',
         'telefono',
         'correo',
+        'fuente_contacto_id',
         'posible',
         'clasificacion',
         'llamada',
@@ -25,52 +29,49 @@ class Contacto extends Model
         'valor',
         'semana',
         'mes',
-        'user_id',
-        'fuente_contacto_id',
+        
+        
     ];
+
     public function fuenteContacto()
     {
-        return $this->belongsTo('App\Models\FuenteContacto', 'fuente_contacto_id');
+        return $this->belongsTo(FuenteContacto::class, 'fuente_contacto_id');
     }
+
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public static function getContactos()
     {
-        return Contacto::all();
+        return self::with(['fuenteContacto', 'user'])->get();
     }
 
     public static function getContactoById($id)
     {
-        return Contacto::findOrFail($id);
+        return self::with(['fuenteContacto', 'user'])->findOrFail($id);
     }
 
     public function createContacto($data)
     {
-        $contacto = new Contacto();
-        $contacto->fill($data);
-        $contacto->save();
-
-        return $contacto;
+        return self::create($data);
     }
 
     public function updateContacto($id, $data)
-    {
-        $contacto = Contacto::findOrFail($id);
-        $contacto->fill($data);
-        $contacto->save();
+{
+    $contacto = self::findOrFail($id);
+    $contacto->update($data);
 
-        return $contacto;
-    }
+    return $contacto;
+}
+
 
     public function deleteContacto($id)
     {
-        $contacto = Contacto::findOrFail($id);
+        $contacto = self::findOrFail($id);
         $contacto->delete();
 
         return $contacto;
     }
 }
-

@@ -15,187 +15,6 @@
     <button type="button" class="btn btn-success" id="btn_agregar" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <img src="{{ asset('images\agregar.png') }}" alt="" id="suma">
     </button>
-    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content" id="modal">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Registro</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="bloque1">
-                    <div class="a">
-                        <label for="Nombre">Nombre Completo:</label>
-                        <br>
-                        <input type="text" name="Nombre">
-                        <br>
-                        <br>
-                        <label for="Telefono">Telefono:</label>
-                        <br>
-                        <input type="text" name="Telefono">
-                        <br>
-                        <br>
-                        <label for="Correo">Correo:</label>
-                        <br>
-                        <input type="text" name="Correo">
-                        <br>
-                        <br>
-                        <label for="fuente-de-contacto">Fuente de contacto:</label>
-                        <br>
-                        <select id="fuente-de-contacto" name="fuente-de-contacto" class="selector">
-                            <option value="opcion1">Opción 1</option>
-                            <option value="opcion2">Opción 2</option>
-                            <option value="opcion3">Opción 3</option>
-                        </select>
-                        <br>
-                        <br>
-                        <label for="posible">Posible:</label>
-                        <br>
-                        <select id="posible" name="posible" class="selector">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Comprador</option>
-                            <option value="opcion2">Vendedor</option>
-                            <option value="opcion3">Arrendador</option>
-                            <option value="opcion3">Arrendatario</option>
-                            <option value="opcion3">Referido</option>
-                        </select>
-                        <br>
-                        <br>
-                        <label for="clasificacion">Clasificacion:</label>  
-                        <br>
-                        <select id="clasificacion" name="clasificacion" class="selector">
-                            <option value="opcion1">---</option>
-                            <option value="opcion2">A</option>
-                            <option value="opcion3">B</option>
-                        </select>
-                        <br>
-                        <br>
-                        <label for="llamada">LLamada</label>
-                        <br>
-                        <select id="llamada" name="llamada" class="selector">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Verdadero</option> 
-                            <option value="opcion2">Falso</option>
-                        </select>
-                        <br>
-                        <br>
-                        <label for="Contestada">Contestada</label>
-                        <br>
-                        <select id="contestada" name="contestada" class="selector">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Contestada</option> 
-                            <option value="opcion2">Rechazada</option>
-                        </select>
-                        <br>
-                        <br>
-                        <label for="interesado">Interesado</label>
-                        <br>
-                        <select id="interesado" name="interesado" class="selector">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Interesado</option> 
-                            <option value="opcion2">No interesado</option>
-                        </select>
-                        <br>
-                        <br>
-                        <label for="interesado">Interesado</label>
-                        <br>
-                        <select id="interesado" name="interesado" class="selector">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Interesado</option> 
-                            <option value="opcion2">No interesado</option>
-                        </select>
-                        <br>
-                        <br>
-                        <label for="cita">Cita</label>
-                        <br>
-                        <select id="cita" name="cita" class="selector">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Citado</option> 
-                            <option value="opcion2">No citado</option>
-                        </select>
-                        <br>
-                        <br>
-                    </div>
-                    <div class="b"> 
-                        <label for="CLAVE_SIR">CLAVE SIR</label>
-                        <br>
-                        <select id="CLAVE_SIR" name="CLAVE_SIR" class="selector2">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Tiene</option> 
-                            <option value="opcion2">No tiene</option>
-                        </select>
-                        <br>
-                        <br>
-                        <label for="FOVISSSTE">FOVISSSTE</label>
-                        <br>
-                        <select id="FOVISSSTE" name="FOVISSSTE" class="selector2">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Tiene</option> 
-                            <option value="opcion2">No tiene</option>
-                        </select>
-                        <br>
-                        <br>
-                        <label for="INFONAVIT">INFONAVIT</label>
-                        <br>
-                        <select id="INFONAVIT" name="INFONAVIT" class="selector2">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Tiene</option> 
-                            <option value="opcion2">No tiene</option>
-                        </select>
-                        <br>
-                        <br>
-                        <label for="BANCARIO">Interesado</label>
-                        <br>
-                        <select id="interesado" name="interesado" class="selector2">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Interesado</option> 
-                            <option value="opcion2">No interesado</option>
-                        </select>
-                        <br>
-                        <br>
-                        <label for="Comentario">Comentario:</label>
-                        <br>
-                        <input type="text" name="Comentario">
-                        <br>
-                        <br>
-                        <label for="Valor">Valor:</label>
-                        <br>
-                        <input type="text" name="Valor">
-                        <br>
-                        <br>
-                        <label for="Semana">Semana:</label>
-                        <br>
-                        <input type="text" name="Semana">
-                        <br>
-                        <br>
-                        <label for="Mes">Mes</label>
-                        <br>
-                        <select id="Mes" name="Mes" class="selector2">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Enero</option> 
-                            <option value="opcion2">Febrero</option>
-                            <option value="opcion1">Marzo</option> 
-                            <option value="opcion2">Abril</option>
-                            <option value="opcion1">Mayo</option> 
-                            <option value="opcion2">Junio</option>
-                            <option value="opcion1">Julio</option> 
-                            <option value="opcion2">Agosto</option>
-                            <option value="opcion1">Septiembre</option> 
-                            <option value="opcion2">Octubre</option>
-                            <option value="opcion1">Noviembre</option> 
-                            <option value="opcion2">Diciembre</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-danger">Eliminar</button>
-              <button type="button" class="btn btn-warning">Guardar Cambios</button>
-            </div>
-          </div>
-        </div>
-      </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content" id="modal">
@@ -204,186 +23,159 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+            
+                <form action="{{ url('contactos/store') }}" method="POST">
+                @csrf
                 <div class="bloque1">
                     <div class="a">
                         <label for="Nombre">Nombre Completo:</label>
                         <br>
-                        <input type="text" name="Nombre">
+                        <input type="text" name="nombre" placeholder="" required>
                         <br>
                         <br>
                         <label for="Telefono">Telefono:</label>
                         <br>
-                        <input type="text" name="Telefono">
+                        <input type="text" name="telefono" placeholder="" nullable>
                         <br>
                         <br>
                         <label for="Correo">Correo:</label>
                         <br>
-                        <input type="text" name="Correo">
+                        <input type="email" name="correo" placeholder="" nullable>
                         <br>
                         <br>
-                        <label for="fuente-de-contacto">Fuente de contacto:</label>
+                        @php
+                        use App\Models\FuenteContacto;
+                        $fuentes_contacto = FuenteContacto::all();
+                        @endphp
+                        <label for="posible">Fuente de Contacto:</label>
                         <br>
-                        <select id="fuente-de-contacto" name="fuente-de-contacto" class="selector">
-                            <option value="opcion1">Opción 1</option>
-                            <option value="opcion2">Opción 2</option>
-                            <option value="opcion3">Opción 3</option>
+                        <select name="fuente_contacto_id">
+                            @foreach ($fuentes_contacto as $fuente_contacto)
+                                <option value="{{ $fuente_contacto->id }}">{{ $fuente_contacto->nombre_fuente }}</option>
+                            @endforeach
                         </select>
                         <br>
                         <br>
                         <label for="posible">Posible:</label>
                         <br>
-                        <select id="posible" name="posible" class="selector">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Comprador</option>
-                            <option value="opcion2">Vendedor</option>
-                            <option value="opcion3">Arrendador</option>
-                            <option value="opcion3">Arrendatario</option>
-                            <option value="opcion3">Referido</option>
+                        <select id="posible" name="posible" class="selector" nullable>
+                            <option text="opcion3">---</option>
+                            <option text="Comprador">Comprador</option>
+                            <option text="Vendedor">Vendedor</option>
+                            <option text="Arrendador">Arrendador</option>
+                            <option text="Arrendatario">Arrendatario</option>
+                            <option text="Referido">Referido</option>
                         </select>
                         <br>
                         <br>
                         <label for="clasificacion">Clasificacion:</label>  
                         <br>
-                        <select id="clasificacion" name="clasificacion" class="selector">
+                        <select id="clasificacion" name="clasificacion" class="selector" nullable>
                             <option value="opcion1">---</option>
-                            <option value="opcion2">A</option>
-                            <option value="opcion3">B</option>
+                            <option text="A">A</option>
+                            <option text="B">B</option>
                         </select>
                         <br>
                         <br>
                         <label for="llamada">LLamada</label>
                         <br>
-                        <select id="llamada" name="llamada" class="selector">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Verdadero</option> 
-                            <option value="opcion2">Falso</option>
-                        </select>
+                        <input type="checkbox" name="llamada" value="1" placeholder="">
                         <br>
                         <br>
                         <label for="Contestada">Contestada</label>
                         <br>
-                        <select id="contestada" name="contestada" class="selector">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Contestada</option> 
-                            <option value="opcion2">Rechazada</option>
-                        </select>
+                        <input type="checkbox" name="contestada" value="1" placeholder="">
                         <br>
                         <br>
                         <label for="interesado">Interesado</label>
                         <br>
-                        <select id="interesado" name="interesado" class="selector">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Interesado</option> 
-                            <option value="opcion2">No interesado</option>
-                        </select>
-                        <br>
-                        <br>
-                        <label for="interesado">Interesado</label>
-                        <br>
-                        <select id="interesado" name="interesado" class="selector">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Interesado</option> 
-                            <option value="opcion2">No interesado</option>
-                        </select>
+                        <input type="checkbox" name="interesado" value="1" placeholder="">
                         <br>
                         <br>
                         <label for="cita">Cita</label>
                         <br>
-                        <select id="cita" name="cita" class="selector">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Citado</option> 
-                            <option value="opcion2">No citado</option>
-                        </select>
+                        <input type="checkbox" name="cita" value="1" placeholder="">
                         <br>
                         <br>
                     </div>
                     <div class="b"> 
                         <label for="CLAVE_SIR">CLAVE SIR</label>
                         <br>
-                        <select id="CLAVE_SIR" name="CLAVE_SIR" class="selector2">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Tiene</option> 
-                            <option value="opcion2">No tiene</option>
-                        </select>
+                        <input type="checkbox" name="clave_sir" value="1" placeholder=" ">
                         <br>
                         <br>
                         <label for="FOVISSSTE">FOVISSSTE</label>
                         <br>
-                        <select id="FOVISSSTE" name="FOVISSSTE" class="selector2">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Tiene</option> 
-                            <option value="opcion2">No tiene</option>
-                        </select>
+                        <input type="checkbox" name="fovissste" value="1" placeholder="">
                         <br>
                         <br>
                         <label for="INFONAVIT">INFONAVIT</label>
                         <br>
-                        <select id="INFONAVIT" name="INFONAVIT" class="selector2">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Tiene</option> 
-                            <option value="opcion2">No tiene</option>
-                        </select>
+                        <input type="checkbox" name="infonavit" value="1" placeholder="">
                         <br>
                         <br>
-                        <label for="BANCARIO">Interesado</label>
+                        <label for="INFONAVIT">BANCARIO</label>
                         <br>
-                        <select id="interesado" name="interesado" class="selector2">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Interesado</option> 
-                            <option value="opcion2">No interesado</option>
-                        </select>
+                        <input type="checkbox" name="bancario" value="1" placeholder="">
                         <br>
                         <br>
                         <label for="Comentario">Comentario:</label>
                         <br>
-                        <input type="text" name="Comentario">
+                        <input type="text" name="comentario" placeholder="" nullable>
                         <br>
                         <br>
                         <label for="Valor">Valor:</label>
                         <br>
-                        <input type="text" name="Valor">
+                        <input type="text" name="valor" placeholder="Valor" nullable>
                         <br>
                         <br>
                         <label for="Semana">Semana:</label>
                         <br>
-                        <input type="text" name="Semana">
+                        <input type="number" name="semana" placeholder="Semana" nullable>
                         <br>
                         <br>
-                        <label for="Mes">Mes</label>
+                        <label for="mes">Mes</label>
                         <br>
-                        <select id="Mes" name="Mes" class="selector2">
-                            <option value="opcion3">---</option>
-                            <option value="opcion1">Enero</option> 
-                            <option value="opcion2">Febrero</option>
-                            <option value="opcion1">Marzo</option> 
-                            <option value="opcion2">Abril</option>
-                            <option value="opcion1">Mayo</option> 
-                            <option value="opcion2">Junio</option>
-                            <option value="opcion1">Julio</option> 
-                            <option value="opcion2">Agosto</option>
-                            <option value="opcion1">Septiembre</option> 
-                            <option value="opcion2">Octubre</option>
-                            <option value="opcion1">Noviembre</option> 
-                            <option value="opcion2">Diciembre</option>
+                        <select id="mes" name="mes" class="selector2">
+                            <option text="opcion3">---</option>
+                            <option text="Enero">Enero</option> 
+                            <option text="Febrero">Febrero</option>
+                            <option text="Marzo">Marzo</option> 
+                            <option text="Abril">Abril</option>
+                            <option text="Mayo">Mayo</option> 
+                            <option text="Junio">Junio</option>
+                            <option text="Julio">Julio</option> 
+                            <option text="Agosto">Agosto</option>
+                            <option text="Septiembre">Septiembre</option> 
+                            <option text="Octubre">Octubre</option>
+                            <option text="Noviembre">Noviembre</option> 
+                            <option text="Diciembre">Diciembre</option>
                         </select>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Guardar</button>
+              <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
+            </form>
           </div>
+            
+
         </div>
       </div>
-     
+      
+    
+
     <div class="contenedor">
     <table>
         <thead>
             <tr>
+                <th></th>
                 <th>Nombre</th>
                 <th>Teléfono</th>
                 <th>Correo</th>
+                <th>Fuente de contacto</th>
                 <th>Posible</th>
                 <th>Clasificación</th>
                 <th>Llamada</th>
@@ -398,38 +190,318 @@
                 <th>Valor</th>
                 <th>Semana</th>
                 <th>Mes</th>
-                <th>Fuente de contacto</th>
             </tr>
         </thead>
         <tbody>
         @foreach($contactos as $contacto)
-                <tr>
-                    <td>{{ $contacto->nombre }}</td>
-                    <td>{{ $contacto->telefono }}</td>
-                    <td>{{ $contacto->correo }}</td>
-                    <td>{{ $contacto->posible }}</td>
-                    <td>{{ $contacto->clasificacion }}</td>
-                    <td>{{ $contacto->llamada }}</td>
-                    <td>{{ $contacto->contestada }}</td>
-                    <td>{{ $contacto->interesado }}</td>
-                    <td>{{ $contacto->cita }}</td>
-                    <td>{{ $contacto->clave_sir }}</td>
-                    <td>{{ $contacto->fovissste }}</td>
-                    <td>{{ $contacto->infonavit }}</td>
-                    <td>{{ $contacto->bancario }}</td>
-                    <td>{{ $contacto->comentario }}</td>
-                    <td>{{ $contacto->valor }}</td>
-                    <td>{{ $contacto->semana }}</td>
-                    <td>{{ $contacto->mes }}</td>
-                    <td>{{ $contacto->fuenteContacto['nombre_fuente'] }}</td>
-                </tr>
+                <tr data-contacto="{{ json_encode($contacto) }}" class="editar-contacto">
+                    <td>
+                    <button type="button" class="btn btn-primary btn-editar-contacto">Editar</button>
+                    </td>
+                    <td class="text-center">{{ $contacto->nombre }}</td>
+                    <td class="text-center">{{ $contacto->telefono }}</td>
+                    <td class="text-center">{{ $contacto->correo }}</td>
+                    <td class="text-center">{{ $contacto->fuenteContacto['nombre_fuente'] }}</td>
+                    <td class="text-center">{{ $contacto->posible }}</td>
+                    <td class="text-center">{{ $contacto->clasificacion }}</td>
+                    <td class="text-center">{{ $contacto->llamada ? 'Verdadero' : 'Falso' }}</td>
+                    <td class="text-center">{{ $contacto->contestada ? 'Verdadero' : 'Falso' }}</td>
+                    <td class="text-center">{{ $contacto->interesado ? 'Verdadero' : 'Falso' }}</td>
+                    <td class="text-center">{{ $contacto->cita ? 'Verdadero' : 'Falso' }}</td>
+                    <td class="text-center">{{ $contacto->clave_sir ? 'Verdadero' : 'Falso' }}</td>
+                    <td class="text-center">{{ $contacto->fovissste ? 'Verdadero' : 'Falso' }}</td>
+                    <td class="text-center">{{ $contacto->infonavit ? 'Verdadero' : 'Falso' }}</td>
+                    <td class="text-center">{{ $contacto->bancario ? 'Verdadero' : 'Falso' }}</td>
+                    <td class="text-center">{{ $contacto->comentario }}</td>
+                    <td class="text-center">{{ $contacto->valor }}</td>
+                    <td class="text-center">{{ $contacto->semana }}</td>
+                    <td class="text-center">{{ $contacto->mes }}</td>
+                    
+                  <!-- Botón para abrir el modal de edición -->
+                    <td>
+                    <button type="button" class="btn btn-primary btn-editar-contacto">Editar</button>
+
+                    </td>
+</tr>
             @endforeach
         </tbody>
     </table>
     </div>
-    <script src="{{ asset('js/app2.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/nav.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                
+
+   
+<<!-- Modal para editar el teléfono y correo -->
+<div class="modal fade" id="modalEditarContacto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Contacto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formEditarContacto" method="POST" action="{{ route('contacto.update', ['id' => '__ID__']) }}">
+                    @method('PATCH')
+                    @csrf
+                    <input type="hidden" id="edit_user_id" name="user_id" value="{{ Auth::user()->id }}">
+                    <input type="hidden" id="edit_contacto_id" name="id">
+                    <div class="mb-3">
+                        <label for="edit_nombre" class="form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="edit_nombre" name="nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_telefono" class="form-label">Teléfono:</label>
+                        <input type="text" class="form-control" id="edit_telefono" name="telefono">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_correo" class="form-label">Correo:</label>
+                        <input type="email" class="form-control" id="edit_correo" name="correo">
+                    </div>
+                    <div class="mb-3">
+                         <label for="edit_fuente_contacto" class="form-label">Fuente de Contacto:</label>
+                            <select class="form-select" id="edit_fuente_contacto" name="fuente_contacto_id">
+                            @foreach ($fuentes_contacto as $fuente)
+                            <option value="{{ $fuente->id }}">{{ $fuente->nombre_fuente}}</option>
+                            @endforeach
+                        </select>
+                    <div class="mb-3">
+                        <label for="edit_posible" class="form-label">Posible:</label>
+                        <select class="form-select" id="edit_posible" name="posible">
+                            <option value="Comprador">Comprador</option>
+                            <option value="Vendedor">Vendedor</option>
+                            <option value="Arrendador">Arrendador</option>
+                            <option value="Arrendatario">Arrendatario</option>
+                            <option value="Referido">Referido</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_clasificacion" class="form-label">Clasificación:</label>
+                        <select class="form-select" id="edit_clasificacion" name="clasificacion">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                        </select>
+                    </div> <div class="mb-3">
+                        <label for="edit_llamada" class="form-label">Llamada:</label>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="llamada" id="edit_llamada_si" value="1">
+                        <label class="form-check-label" for="edit_llamada_si">Verdadero</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="llamada" id="edit_llamada_no" value="0">
+                        <label class="form-check-label" for="edit_llamada_no">Falso</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_contestada" class="form-label">Contestada:</label>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="contestada" id="edit_contestada_si" value="1">
+                        <label class="form-check-label" for="edit_contestada_si">Verdadero</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="contestada" id="edit_contestada_no" value="0">
+                        <label class="form-check-label" for="edit_contestada_no">Falso</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_interesado" class="form-label">Interesado:</label>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="interesado" id="edit_interesado_si" value="1">
+                        <label class="form-check-label" for="edit_interesado_si">Verdadero</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="interesado" id="edit_interesado_no" value="0">
+                        <label class="form-check-label" for="edit_interesado_no">Falso</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_cita" class="form-label">Cita:</label>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="cita" id="edit_cita_si" value="1">
+                        <label class="form-check-label" for="edit_cita_si">Verdadero</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="cita" id="edit_cita_no" value="0">
+                        <label class="form-check-label" for="edit_cita_no">Falso</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_clave_sir" class="form-label">Clave SIR:</label>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="clave_sir" id="edit_clave_sir_si" value="1">
+                        <label class="form-check-label" for="edit_clave_sir_si">Verdadero</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="clave_sir" id="edit_clave_sir_no" value="0">
+                        <label class="form-check-label" for="edit_clave_sir_no">Falso</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_fovissste" class="form-label">Fovissste:</label>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="fovissste" id="edit_fovissste_si" value="1">
+                        <label class="form-check-label" for="edit_fovissste_si">Verdadero</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="fovissste" id="edit_fovissste_no" value="0">
+                        <label class="form-check-label" for="edit_fovissste_no">Falso</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_infonavit" class="form-label">Infonavit:</label>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="infonavit" id="edit_infonavit_si" value="1">
+                        <label class="form-check-label" for="edit_infonavit_si">Verdadero</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="infonavit" id="edit_infonavit_no" value="0">
+                        <label class="form-check-label" for="edit_infonavit_no">Falso</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_bancario" class="form-label">Bancario:</label>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="bancario" id="edit_bancario_si" value="1">
+                        <label class="form-check-label" for="edit_bancario_si">Verdadero</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="bancario" id="edit_bancario_no" value="0">
+                        <label class="form-check-label" for="edit_bancario_no">Falso</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_comentario" class="form-label">Comentario:</label>
+                        <textarea class="form-control" id="edit_comentario" name="comentario" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_valor" class="form-label">Valor:</label>
+                        <input type="text" class="form-control" id="edit_valor" name="valor">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_semana" class="form-label">Semana:</label>
+                        <select class="form-select" id="edit_semana" name="semana">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_mes" class="form-label">Mes:</label>
+                        <select class="form-select" id="edit_mes" name="mes">
+                            <option value="Enero">Enero</option>
+                            <option value="Febrero">Febrero</option>
+                            <option value="Marzo">Marzo</option>
+                            <option value="Abril">Abril</option>
+                            <option value="Mayo">Mayo</option>
+                            <option value="Junio">Junio</option>
+                            <option value="Julio">Julio</option>
+                            <option value="Agosto">Agosto</option>
+                            <option value="Septiembre">Septiembre</option>
+                            <option value="Octubre">Octubre</option>
+                            <option value="Noviembre">Noviembre</option>
+                            <option value="Diciembre">Diciembre</option>
+                        </select>
+                    </div>
+                     </div>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <button type="button" class="btn btn-danger" id="btnEliminarContacto">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+                    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var botonesEditarContacto = document.querySelectorAll('.btn-editar-contacto');
+
+        botonesEditarContacto.forEach(function (boton) {
+            boton.addEventListener('click', function () {
+                var contacto = JSON.parse(boton.closest('.editar-contacto').getAttribute('data-contacto'));
+
+                // Llenar los campos en el formulario con los datos del contacto
+                document.getElementById('edit_contacto_id').value = contacto.id;
+                document.getElementById('edit_nombre').value = contacto.nombre;
+                document.getElementById('edit_telefono').value = contacto.telefono;
+                document.getElementById('edit_correo').value = contacto.correo;
+
+
+                // Seleccionar la fuente de contacto actual
+                var fuenteContactoSelect = document.getElementById('edit_fuente_contacto');
+                for (var i = 0; i < fuenteContactoSelect.options.length; i++) {
+                    if (fuenteContactoSelect.options[i].value == contacto.fuente_contacto_id) {
+                        fuenteContactoSelect.options[i].selected = true;
+                    }
+                }
+
+                // Seleccionar la opción de "posible" actual
+                document.getElementById('edit_posible').value = contacto.posible;
+
+                // Seleccionar la opción de "clasificación" actual
+                document.getElementById('edit_clasificacion').value = contacto.clasificacion;
+
+                // Seleccionar la opción de "contestada" actual
+                document.getElementById('edit_llamada_si').checked = contacto.llamada == 1;
+                document.getElementById('edit_llamada_no').checked = contacto.llamada == 0;
+                document.getElementById('edit_contestada_si').checked = contacto.contestada == 1;
+                document.getElementById('edit_contestada_no').checked = contacto.contestada == 0;
+                document.getElementById('edit_interesado_si').checked = contacto.interesado == 1;
+                document.getElementById('edit_interesado_no').checked = contacto.interesado == 0;
+                document.getElementById('edit_cita_si').checked = contacto.cita == 1;
+                document.getElementById('edit_cita_no').checked = contacto.cita == 0;
+                document.getElementById('edit_clave_sir_si').checked = contacto.clave_sir == 1;
+                document.getElementById('edit_clave_sir_no').checked = contacto.clave_sir == 0;
+                document.getElementById('edit_fovissste_si').checked = contacto.fovissste == 1;
+                document.getElementById('edit_fovissste_no').checked = contacto.fovissste == 0;
+                document.getElementById('edit_infonavit_si').checked = contacto.infonavit == 1;
+                document.getElementById('edit_infonavit_no').checked = contacto.infonavit == 0;
+                document.getElementById('edit_bancario_si').checked = contacto.bancario == 1;
+                document.getElementById('edit_bancario_no').checked = contacto.bancario == 0;
+               
+                // Llenar el área de texto con el comentario actual
+                document.getElementById('edit_comentario').value = contacto.comentario;
+
+                // Llenar el campo "valor" con el valor actual
+                document.getElementById('edit_valor').value = contacto.valor;
+
+                 // Seleccionar la opción de "semana" actual
+                document.getElementById('edit_semana').value = contacto.semana;
+
+                 // Seleccionar la opción de "mes" actual
+                 document.getElementById('edit_mes').value = contacto.mes;
+
+                // Actualizar la acción del formulario con el ID del contacto
+                document.getElementById('formEditarContacto').action = '{{ url('contacto') }}/' + contacto.id;
+
+                // Abrir el modal de edición
+                var modalEditarContacto = new bootstrap.Modal(document.getElementById('modalEditarContacto'));
+                modalEditarContacto.show();
+            });
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var btnEliminarContacto = document.getElementById('btnEliminarContacto');
+
+        btnEliminarContacto.addEventListener('click', function () {
+            // Mostrar confirmación antes de eliminar
+            var confirmacion = confirm('¿Estás seguro de que deseas eliminar este contacto?');
+            
+            if (confirmacion) {
+                // Obtener el ID del contacto a eliminar
+                var contactoId = document.getElementById('edit_contacto_id').value;
+
+                // Enviar la solicitud de eliminación al controlador
+                window.location.href = '{{ url('contacto') }}/' + contactoId + '/eliminar';
+            }
+        });
+    });
+</script>
+<script src="{{ asset('js/nav.js') }}"></script>
+   
+
 </body>
 </html>

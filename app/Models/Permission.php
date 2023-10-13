@@ -21,4 +21,9 @@ class Permission extends Model
     {
         return $this->hasMany(User::class, 'permisos_id');
     }
+    public function addPermission($permission)
+{
+    // ...
+}
+
 }
