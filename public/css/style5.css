@@ -235,6 +235,62 @@ body {
     height: 5vh;
     fill: gray;
 }
+
+#btn_agregar {
+    position: absolute;
+    bottom: 2%;
+    right: 2%;
+    box-shadow: 8px 8px 11px rgba(0, 0, 0, 0.7);
+}
+
+#modal{
+    max-height: 61vh;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+#modal::-webkit-scrollbar{
+    width: 7px;
+    background-color: #fff;
+}
+
+
+#modal::-webkit-scrollbar-thumb{
+    background: #61A2E0;
+    border-radius: 10px;
+}
+
+#modal input{
+    background-color: rgb(245, 245, 245);
+}
+
+#modal select{
+    background-color: rgb(245, 245, 245);
+}
+
+#modal textarea{
+    background-color: rgb(245, 245, 245);
+}
+
+.cuerpo{
+    min-height: 71vh;
+    max-height: 71vh;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.cuerpo::-webkit-scrollbar{
+    width: 7px;
+    background-color: #fff;
+}
+
+
+.cuerpo::-webkit-scrollbar-thumb{
+    background: #61A2E0;
+    border-radius: 10px;
+}
+
+
 .accion{
     margin-top: 2%;
     margin-bottom: 2%;

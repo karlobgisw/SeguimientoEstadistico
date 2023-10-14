@@ -12,6 +12,141 @@
     <header>
         @include('nav')
     </header>
+    <button type="button" class="btn btn-success" id="btn_agregar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <img src="{{ asset('images\agregar.png') }}" alt="" id="suma">
+    </button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content" id="modal">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Usuario</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url('') }}" method="POST">
+                @csrf
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" name="nombre" placeholder="" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nombre_archivo_foto" class="form-label">Foto de perfil:</label>
+                            <input type="file" name="nombre_archivo_foto" class="form-control" placeholder="" nullable>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="correo_institucional" class="form-label">Correo Institucional:</label>
+                            <input type="email" name="correo_institucional" class="form-control" placeholder="" nullable>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="celular" class="form-label">Celular:</label>
+                            <input type="text" name="celular" class="form-control" placeholder="" nullable>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="sir" class="form-label">Sir:</label>
+                            <input type="text" name="sir" class="form-control" placeholder="" nullable>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña:</label>
+                            <input type="text" name="password" class="form-control" placeholder="" nullable>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="permisos_id" class="form-label">Permisos:</label>
+                            <select id="permisos_id" name="permisos_id" class="form-select" nullable>
+                                <option text="opcion1">---</option>
+                                <option text="2">Agente</option>
+                                <option text="1">Staff</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="activo" class="form-label">Activo:</label>  
+                            <select id="activo" name="activo" class="form-select" nullable>
+                                <option value="opcion1">---</option>
+                                <option text="1">Activo</option>
+                                <option text="0">Suspendido</option>
+                            </select>
+                        </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+            </form>
+          </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModaledit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content" id="modal">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Usuario</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url('') }}" method="POST">
+                @csrf
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" name="nombre" placeholder="" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nombre_archivo_foto" class="form-label">Foto de perfil:</label>
+                            <input type="file" name="nombre_archivo_foto" class="form-control" placeholder="" nullable>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="correo_institucional" class="form-label">Correo Institucional:</label>
+                            <input type="email" name="correo_institucional" class="form-control" placeholder="" nullable>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="celular" class="form-label">Celular:</label>
+                            <input type="text" name="celular" class="form-control" placeholder="" nullable>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="sir" class="form-label">Sir:</label>
+                            <input type="text" name="sir" class="form-control" placeholder="" nullable>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña:</label>
+                            <input type="text" name="password" class="form-control" placeholder="" nullable>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="permisos_id" class="form-label">Permisos:</label>
+                            <select id="permisos_id" name="permisos_id" class="form-select" nullable>
+                                <option text="opcion1">---</option>
+                                <option text="2">Agente</option>
+                                <option text="1">Staff</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="activo" class="form-label">Activo:</label>  
+                            <select id="activo" name="activo" class="form-select" nullable>
+                                <option value="opcion1">---</option>
+                                <option text="1">Activo</option>
+                                <option text="0">Suspendido</option>
+                            </select>
+                        </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
     <div class="contenedor">
         <div class="cabecera">
             <h1></h1>
@@ -29,28 +164,30 @@
                 <h4>AGENTES</h4>
                 <h4 class="acciones">ACCIONES</h4>
             </div>
+            @foreach ($agentes as $agente)
             <div class="tabla">
                 <div class="datos">
                     <div class="imagen"></div>
                     <div class="info">
-                        <h6>CARLOS SALAZAR</h6>
+                        <h6>{{$agente->nombre}}</h6>
                         <div class="logos">
                             <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
                                 <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
                             </svg>
-                            <p class="agenteinfo">asdaksjdhajksdh@hotmail.com</p>
+                            <p class="agenteinfo">{{$agente->correo_institucional}}</p>
                         </div>
                         <div class="logos">
                             <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
                             </svg>
-                            <p class="agenteinfo">6181827391</p>
+                            <p class="agenteinfo">{{$agente->celular}}</p>
                         </div>
                         <div class="logos">
-                            <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-fill" viewBox="0 0 16 16">
-                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5h16V4H0V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5z"/>
-                            </svg>
-                            <p class="agenteinfo">198u-23123-4</p>
+                            <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                              </svg>
+                            <p class="agenteinfo">{{$agente->sir}}</p>
                         </div>
                     </div>
                 </div>
@@ -93,11 +230,15 @@
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="{{ asset('js/nav.js') }}"></script>
+    <script src="{{ asset('js/app3.js') }}"></script>
 </body>
 </html>
 

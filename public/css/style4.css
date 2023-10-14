@@ -95,6 +95,10 @@
 
 body {
     min-height: 100vh;
+    --bs-body-bg: #bae6f7;
+}
+
+tbody{
     background: linear-gradient(#134a7f, #3e709f);
 }
 
@@ -107,6 +111,11 @@ body {
     margin-left: 5%;
     margin-right: 5%;
     margin-top: 2%;
+    background: linear-gradient(#134a7f, #3e709f);
+}
+
+.modal.fade.show{
+    --bs-modal-bg: #ffffff;
 }
 
 
@@ -164,19 +173,61 @@ tbody tr:hover {
 }
 
 .selector{
-    width: 101%;
-    height: 3.5%;
+    width: 100%;
+    height: 4.5%;
 }
 
 .selector2{
-    width: 101%;
-    height: 3.5%;
+    width: 100%;
+    height: 4.5%;
 }
 
 #modal{
     max-height: 61vh;
     overflow-x: auto;
     white-space: nowrap;
+}
+
+#modalEditarContacto1{
+    max-height: 61vh;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+#modalEditarContacto input{
+    background-color: rgb(245, 245, 245);
+}
+
+#modalEditarContacto select{
+    background-color: rgb(245, 245, 245);
+}
+
+#modalEditarContacto textarea{
+    background-color: rgb(245, 245, 245);
+}
+
+#modal input{
+    background-color: rgb(245, 245, 245);
+}
+
+#modal select{
+    background-color: rgb(245, 245, 245);
+}
+
+#modal textarea{
+    background-color: rgb(245, 245, 245);
+}
+
+
+#modalEditarContacto1::-webkit-scrollbar{
+    width: 7px;
+    background-color: #fff;
+}
+
+
+#modalEditarContacto1::-webkit-scrollbar-thumb{
+    background: #61A2E0;
+    border-radius: 10px;
 }
 
 #modal::-webkit-scrollbar{
