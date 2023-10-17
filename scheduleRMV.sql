@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-10-2023 a las 14:54:06
+-- Tiempo de generación: 17-10-2023 a las 23:37:56
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 7.4.33
 
@@ -84,7 +84,8 @@ INSERT INTO `agenda_agente` (`id`, `dia_semana_id`, `momento_dia`, `actividad_id
 (8, 1, 'Tarde', 8, 8),
 (9, 2, 'Noche', 9, 9),
 (10, 3, 'Mañana', 10, 10),
-(11, 4, 'Tarde', 11, 11);
+(11, 4, 'Tarde', 11, 11),
+(12, 1, 'Mañana', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -112,22 +113,26 @@ CREATE TABLE `contactos` (
   `comentario` varchar(255) DEFAULT NULL,
   `valor` varchar(255) DEFAULT NULL,
   `semana` int(10) DEFAULT NULL,
-  `mes` varchar(255) DEFAULT NULL
+  `mes` varchar(255) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `contactos`
 --
 
-INSERT INTO `contactos` (`id`, `user_id`, `fuente_contacto_id`, `nombre`, `telefono`, `correo`, `posible`, `clasificacion`, `llamada`, `contestada`, `interesado`, `cita`, `clave_sir`, `fovissste`, `infonavit`, `bancario`, `comentario`, `valor`, `semana`, `mes`) VALUES
-(1, 1, 3, 'Cesar Gaytan', '6181649517', NULL, 'Comprador', 'A', 1, 1, 1, 0, 0, 0, 0, 0, 'En proceso de Precali', NULL, 3, 'Junio'),
-(2, 2, 10, 'Maria del Carmen Garza', '6181343291', NULL, 'Vendedor', 'A', 1, 1, 1, 1, 0, 0, 0, 0, 'Ingreso de Bodega', '$5,205,000.00', 3, 'Junio'),
-(3, 3, 10, 'Azael corral', '6181007741', NULL, 'Comprador', 'A', 1, 1, 1, 1, 0, 0, 0, 0, 'Terreno Rio Grande', NULL, 3, 'Junio'),
-(4, 4, 10, 'jonathan Lonas', '6181127699', NULL, 'Comprador', 'B', 1, 1, 0, 0, 0, 0, 0, 0, 'interesado casa Nuevo Durango', NULL, 3, 'Junio'),
-(5, 5, 10, 'Zahira Moncisvais', '6181515196', NULL, 'Comprador', 'A', 1, 1, 1, 0, 0, 0, 0, 0, 'Zona de Coca Cola', NULL, 3, 'Junio'),
-(6, 6, 3, 'Indira Nevarez', '6181681509', NULL, 'Comprador', 'A', 1, 1, 1, 0, 0, 0, 0, 0, 'Casa Fracc Roma', '$1,450,000.00', 3, 'Junio'),
-(7, 7, 9, 'Alan Luna', '6182562013', NULL, 'Comprador', 'A', 1, 1, 1, 0, 0, 0, 0, 0, 'Compra de Oportunidad', NULL, 3, 'Junio'),
-(8, 8, 9, 'Lupita Leautaud', '6181331536', NULL, 'Comprador', 'A', 1, 1, 1, 0, 0, 0, 0, 0, 'Vendedor', NULL, 3, 'Junio');
+INSERT INTO `contactos` (`id`, `user_id`, `fuente_contacto_id`, `nombre`, `telefono`, `correo`, `posible`, `clasificacion`, `llamada`, `contestada`, `interesado`, `cita`, `clave_sir`, `fovissste`, `infonavit`, `bancario`, `comentario`, `valor`, `semana`, `mes`, `updated_at`, `created_at`) VALUES
+(1, 1, 3, 'Cesar Gaytan', '6181649517', NULL, 'Comprador', 'A', 1, 1, 1, 1, 1, 1, 1, 1, 'En proceso de Precali', NULL, 4, 'Diciembre', '2023-10-15 09:44:14', '2023-10-12 02:41:02'),
+(2, 2, 10, 'Maria del Carmen Garza', '6181343291', NULL, 'Vendedor', 'A', 1, 1, 1, 1, 0, 0, 0, 0, 'Ingreso de Bodega', '$5,205,000.00', 3, 'Junio', '2023-10-12 02:36:37', '2023-10-12 02:41:02'),
+(3, 3, 10, 'Azael corral', '6181007741', NULL, 'Comprador', 'A', 1, 1, 1, 1, 0, 0, 0, 0, 'Terreno Rio Grande', NULL, 3, 'Junio', '2023-10-12 02:36:37', '2023-10-12 02:41:02'),
+(4, 4, 10, 'jonathan Lonas', '6181127699', NULL, 'Comprador', 'B', 1, 1, 0, 0, 0, 0, 0, 0, 'interesado casa Nuevo Durango', NULL, 3, 'Junio', '2023-10-12 02:36:37', '2023-10-12 02:41:02'),
+(5, 5, 10, 'Zahira Moncisvais', '6181515196', NULL, 'Comprador', 'A', 1, 1, 1, 0, 0, 0, 0, 1, 'Zona de Coca Cola', NULL, 3, 'Junio', '2023-10-14 01:43:23', '2023-10-12 02:41:02'),
+(6, 6, 3, 'Indira Nevarez', '6181681509', NULL, 'Comprador', 'A', 1, 1, 1, 0, 0, 0, 0, 0, 'Casa Fracc Roma', '$1,450,000.00', 3, 'Junio', '2023-10-12 02:36:37', '2023-10-12 02:41:02'),
+(7, 7, 9, 'Alan Luna', '6182562013', NULL, 'Comprador', 'A', 1, 1, 1, 0, 0, 0, 0, 0, 'Compra de Oportunidad', NULL, 3, 'Junio', '2023-10-12 02:36:37', '2023-10-12 02:41:02'),
+(8, 8, 9, 'Lupita Leautaud', '6181331536', NULL, 'Comprador', 'A', 1, 1, 1, 0, 0, 0, 0, 0, 'Vendedor', NULL, 3, 'Junio', '2023-10-12 02:36:37', '2023-10-12 02:41:02'),
+(16, 13, 10, 'Jorge Noriega Rivera', '6182575023', 'jorge@gmail.com', 'Referido', 'A', 1, 1, 1, 1, 1, 1, 1, 1, 'En proceso de Precali', '$1,500,000', 3, 'Agosto', '2023-10-15 14:03:28', '2023-10-15 14:03:28'),
+(18, 11, 2, 'Jorge Noriega Rivera', '6182575023', 'jorge@gmail.com', 'Vendedor', 'A', 1, 1, 1, 1, 1, 1, 1, 1, 'afaacas', '$1,500,000', 3, 'Noviembre', '2023-10-17 18:45:29', '2023-10-17 18:41:11');
 
 -- --------------------------------------------------------
 
@@ -225,7 +230,7 @@ CREATE TABLE `users` (
   `correo_institucional` varchar(255) DEFAULT NULL,
   `celular` varchar(20) DEFAULT NULL,
   `sir` varchar(255) DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `permisos_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -234,7 +239,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nombre`, `nombre_archivo_foto`, `correo_institucional`, `celular`, `sir`, `password`, `permisos_id`) VALUES
-(1, 'Denise Vázquez', 'RGA_8134.jpg', 'denise.vazquez@remaxvictoria.mx', '6181449104', 'denisevazquez', '$2y$10$Ba5IVUDGy0mBAqxpf1TbHeNISQ0mesNDh3mQ9s.JWFjt51VwSd5T6', 2),
+(1, 'Denise Vázquez', 'http://remaxvictoria.mx/wp-content/uploads/2023/09/4-525x328.png', 'denise.vazquez@remaxvictoria.mx', '6181449104', 'denisevazquez', '$2y$10$Q.wPaVC2tPDnVryKHLO/2.9gNDi/yw9a3BR8W/xHNb9r29tODsEI6', 2),
 (2, 'Angelica Gomez', 'RGA_8150.jpg', 'angelica.gomez@remaxvictoria.mx', '6181132264', 'angelicagomez', '$2y$10$k3oE2JHkQD4FBsvlfjXBhu3lW99cQqEyLk.gsaoPA/eDPCnPh2r.i', 2),
 (3, 'Merith Ortiz', 'RGA_8171.jpg', 'merith.ortiz@remaxvictoria.mx', '6181069203', 'merithortiz', '$2y$10$KG8kQeMF48tuf36Ij/E6G.RMdk26.5BZC2nuyhjIPIFgyQkQTVeuW', 2),
 (4, 'Tomas Campos', 'RGA_8374.jpg', 'tomas.campos@remaxvictoria.mx', '6181594001', 'tomascampos', '$2y$10$wqJ/LylYECwF.TGNjp2DS.zqIuMj1tUgv8F2IrZa/mB4LWQcRK6HC', 2),
@@ -244,7 +249,11 @@ INSERT INTO `users` (`id`, `nombre`, `nombre_archivo_foto`, `correo_instituciona
 (8, 'Eduardo del Rio', 'RGA_8386.jpg', 'eduardo.delrio@remaxvictoria.mx', '6181177361', 'eduardodlrio', '$2y$10$qV/s5gplF0Kb8CKX3N20R.fcC12YHzOVmvTU5e34BjdZ74/dQCl9K', 2),
 (9, 'Jorge Molina', 'RGA_8408.jpg', 'jorge.molina@remaxvictoria.mx', '6182306416', 'jorgemolina', '$2y$10$/3v2xU23KeHme5b1HNtEyOsyBgVPPMN.xNybdl4zO0YxlfcIshbsO', 2),
 (10, 'Gladis Sánchez', 'RGA_8191.jpg', 'gladis.sanchez@remaxvictoria.mx', '6188383073', 'gladissanchez', '$2y$10$0M9iunL7itch/hj8E6DaguOkAM2wYIC.3Oyz3su5fh3AAn5HxPECq', 2),
-(11, 'Estefano Rivera', 'RGA_8321.jpg', 'estefano.rivera@remaxvictoria.mx', '6182192276', 'estefanorivera', '$2y$10$uI2GB32aOEZlpSR9cOa4b.Kcsz7uNjr2rDA3lJShpSh0sx1A56ZsS', 1);
+(11, 'Estefano Rivera', 'RGA_8321.jpg', 'estefano.rivera@remaxvictoria.mx', '6182192276', 'estefanorivera', '$2y$10$aPbArfzvbaM6YLHZ3CTrPuZa9FjbA2kw2SvjABbfcAaOkhiyruB16', 1),
+(13, 'Jorge Noriega', NULL, 'jorgenoriegarivera@gmail.com', '6182575023', 'jorgenr', '$2y$10$.N0scrMrVGiqYeYgp9LKBeQGi7Q/O6PAQEJuJXTbYRSGJO2b9YAu.', 2),
+(14, 'Manuel Ramírez1', 'https://www.citymax-la.com/wp-content/uploads/2019/04/franquicia-inmobiliaria.jpg', 'ramirez@gmail.com1', '6182575023', 'manuelramirez', '$2y$10$rf9jWG5bC6.y1O6eDzMviul8Rdm2.reO6HTjQMsHQFG8SRAv3uB5i', 2),
+(15, 'Francisco N', NULL, 'jorgenoriegarivera@gmail.com', '6182575023', 'frank', '$2y$10$ScW3ZgWtpAK23SbF6J/MIO06CedEtgty5yWBlg0eQFDTqeW2lwkX6', 2),
+(16, 'SuperAdmin', 'foto.jpg', 'admin@gmail.com', '6186666666', 'admin777', '$2y$10$o/7i2qfElxzL4sc1dKtaB.vY42JN54vuMblb6wY4raXt2JAht.aiC', 1);
 
 --
 -- Índices para tablas volcadas
@@ -313,13 +322,13 @@ ALTER TABLE `actividades`
 -- AUTO_INCREMENT de la tabla `agenda_agente`
 --
 ALTER TABLE `agenda_agente`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `contactos`
 --
 ALTER TABLE `contactos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `dias_semana`
@@ -343,7 +352,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restricciones para tablas volcadas
