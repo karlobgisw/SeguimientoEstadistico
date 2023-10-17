@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -13,9 +14,13 @@ class User extends Authenticatable
     protected $table = 'users';
 
     protected $fillable = [
-        'name',
+        'nombre',
         'password',
-        'permisos_id', // Asegúrate de tener este campo en tu tabla users
+        'permisos_id',
+        'correo_institucional',
+        'celular',
+        'sir', 
+        'nombre_archivo_foto',
     ];
     
     public $timestamps = false;
@@ -25,4 +30,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Permission::class, 'permisos_id');
     }
+     public function setPasswordAttribute($password)
+     {
+         // Cifra la contraseña solo si se proporciona una nueva
+         if (!empty($password)) {
+             $this->attributes['password'] = bcrypt($password);
+         }
+     }
 }

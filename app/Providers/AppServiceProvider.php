@@ -2,27 +2,18 @@
 
 namespace App\Providers;
 
+// app/Providers/AppServiceProvider.php
+
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
-
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
     public function boot()
     {
-        //
+        // Compartir el usuario autenticado con todas las vistas
+        View::composer('*', function ($view) {
+            $view->with('usuario', auth()->user());
+        });
     }
 }

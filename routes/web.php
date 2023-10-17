@@ -99,4 +99,25 @@ Route::get('/contacto/{id}', 'ContactoController@show')->name('contacto.show');
 
 //Route::get('/contacto/{id}/eliminar', 'ContactoController@destroy')->name('contacto.destroy');
 
-Route::get('/contacto/{id}/eliminar', [ContactoController::class, 'destroy'])->name('contacto.destroy');
+
+
+
+
+
+// web.php
+Route::post('/inicioadmin/create', [InicioAdminController::class, 'create'])->name('inicioadmin/create');
+
+
+
+Route::get('/inicioadmin/{id}/edit', [InicioAdminController::class, 'edit'])->name('agente.edit');
+Route::patch('/inicioadmin/{id}', [InicioAdminController::class, 'update'])->name('agente.update');
+
+
+
+Route::get('/inicioadmin/editar-usuario-staff/{id}', [InicioAdminController::class, 'editarUsuarioStaff'])->name('editarUsuarioStaff');
+Route::patch('/inicioadmin/actualizar-usuario-staff/{id}', [InicioAdminController::class, 'actualizarUsuarioStaff'])->name('actualizarUsuarioStaff');
+
+Route::get('/ver-contactos/{id}', [InicioAdminController::class, 'verContactos'])->name('ver-contactos');
+
+Route::get('/eliminar-usuario/{id}', [InicioAdminController::class, 'eliminar'])->name('eliminar-usuario');
+

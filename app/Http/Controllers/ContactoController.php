@@ -78,6 +78,9 @@ public function store(Request $request)
     $contacto->semana = $request->input('semana');
     $contacto->mes = $request->input('mes');
 
+
+    $contacto->user_id = $contacto->user_id; // Asociar el nuevo contacto con el mismo usuario
+
     // Guardamos el contacto
     $contacto->save();
 
@@ -124,9 +127,7 @@ public function destroy($id)
 }
 
 
-
-
-
     
 
 }
+

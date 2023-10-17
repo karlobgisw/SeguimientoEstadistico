@@ -6,3 +6,6 @@ function toggleMenu() {
       menuContent.style.display = "block";
     }
 }
+function actualizarNombreDeUsuario(nuevoNombre) {
+  document.getElementById('nombreUsuario').innerText = nuevoNombre;
+}
