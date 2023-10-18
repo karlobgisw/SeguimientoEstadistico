@@ -125,14 +125,13 @@ body {
     background-color: #0c2f50;
     border-top-right-radius: 7px;
     border-top-left-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #input{
     width: 33%;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 #inputt{
@@ -166,7 +165,7 @@ body {
 }
 
 .datos{
-    min-width: 48%;
+    min-width: 54%;
     height: 18vh;
     margin-left: 2%;
     margin-top: 1%;
@@ -179,21 +178,20 @@ body {
 
 
 .accioness{
-    margin-right: 32%;
     display: flex;
     position: relative;
-    margin-left: 7%;
+    width: 30%;
 }
 
 .imagen{
-    width: 21%;
-    height: 18vh;
+    width: 104px;
+    height: 104px;
     background-color: gray;
     border-radius: 100px;
 }
 
 .info{
-    width: 60%;
+    width: 74%;
     height: 15vh;
     margin-left: 2%;
 }
@@ -219,6 +217,7 @@ body {
 
 .ti{
     margin-bottom: 0;
+    font-size: 100%;
 }
 
 .tabla{
@@ -241,6 +240,7 @@ body {
     bottom: 2%;
     right: 2%;
     box-shadow: 8px 8px 11px rgba(0, 0, 0, 0.7);
+    z-index: 2;
 }
 
 #modal{
@@ -271,6 +271,69 @@ body {
 #modal textarea{
     background-color: rgb(245, 245, 245);
 }
+
+
+#editarUsuarioM{
+    max-height: 61vh;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+#editarUsuarioM::-webkit-scrollbar{
+    width: 7px;
+    background-color: #fff;
+}
+
+
+#editarUsuarioM::-webkit-scrollbar-thumb{
+    background: #61A2E0;
+    border-radius: 10px;
+}
+
+#editarUsuarioM input{
+    background-color: rgb(245, 245, 245);
+}
+
+#editarUsuarioM select{
+    background-color: rgb(245, 245, 245);
+}
+
+#editarUsuarioM textarea{
+    background-color: rgb(245, 245, 245);
+}
+
+
+
+
+#modalEditarA{
+    max-height: 61vh;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+#modalEditarA::-webkit-scrollbar{
+    width: 7px;
+    background-color: #fff;
+}
+
+
+#modalEditarA::-webkit-scrollbar-thumb{
+    background: #61A2E0;
+    border-radius: 10px;
+}
+
+#modalEditarA input{
+    background-color: rgb(245, 245, 245);
+}
+
+#modalEditarA select{
+    background-color: rgb(245, 245, 245);
+}
+
+#modalEditarA textarea{
+    background-color: rgb(245, 245, 245);
+}
+
 
 .cuerpo{
     min-height: 71vh;
@@ -306,6 +369,15 @@ body {
     cursor: pointer;
 }
 
+#ver-contactos a{
+    text-decoration: none;
+    color: gray; 
+}
+
+#ver-contactos:hover a{
+    color: white; 
+}
+
 .accion:hover{
     background-color: #0B2742;
     color: white;
@@ -331,4 +403,93 @@ body {
 
 #accione:hover #logotipo{
     fill: white;
+}
+
+#accionES:hover{
+    background-color: #a88008;
+    color: white;
+}
+
+#accionES:hover #logotipo{
+    fill: white;
+}
+
+@media (max-width:1061px){
+    .ti{
+        font-size: 70%;
+    }
+
+}
+
+@media (max-width:888px){
+    .titulos{
+        width: 90.5%;
+        margin-right: 0;
+    }
+
+    .tabla{
+        width: 90.5%;
+    }
+
+}
+
+@media (max-width:833px){
+    .tabla{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 32vh;
+    }
+    .accioness{
+        margin-left: 0;
+        width: 42%;
+    }
+    .acciones{
+        display: none;
+    }
+
+    .titulos{
+        justify-content: center;
+    }
+
+    .datos{
+        min-width: 100%
+    }
+
+    #logotipo{
+        height: 3vh;
+    }
+}
+
+@media (max-width:608px){
+    .accion{
+        font-size: 69%;
+    }
+    .datos{
+        font-size: 72%;
+    }
+}
+
+@media screen and (max-height: 1000px) and (min-height: 667px) {
+    .datos{
+        height: 16vh;
+    }
+    .tabla{
+        height: 27vh;
+    }
+}
+
+@media (max-height:400px){
+    .tabla{
+        height: 45vh;
+    }
+    .datos{
+        height: 25vh;
+    }
+}
+
+@media screen and (min-height:390px) and (max-height: 601px){
+    .tabla{
+        height: 29vh;
+    }
 }

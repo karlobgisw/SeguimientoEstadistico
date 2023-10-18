@@ -87,9 +87,9 @@
 
 
 
-    <div class="modal fade" id="modalEditarAgente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalEditarAgente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" id="modalEditarA">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Editar Agente</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -204,7 +204,7 @@
                         <p class="ti">Ver</p>
                         <p class="ti">Agenda</p>
                     </div>
-                    <div class="accion">
+                    <div class="accion" id="ver-contactos" data-id="{{ $agente->id }}">
                         <a href="{{ route('ver-contactos', ['id' => $agente->id]) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-vcard-fill" viewBox="0 0 16 16" id="logotipo">
                                 <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5ZM9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8Zm1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5Zm-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96c.026-.163.04-.33.04-.5ZM7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z"/>
@@ -239,67 +239,72 @@
                 </div>
             </div>
             @endforeach
-
-
-            
-   <!-- Sección de usuarios con permisos staff -->
-    <div class="contenedor">
-        
-    <div class="cuerpo">
-    <div class="titulos">
-        <h4>USUARIOS STAFF</h4>
-        <h4 class="acciones">ACCIONES</h4>
-    </div>
-    @foreach ($usuariosStaff as $usuarioStaff)
-        <div class="tabla">
-        <div class="imagen"></div>
-                <div class="info">
-                    <h6>{{ $usuarioStaff->nombre }}</h6>
-                    <div class="logos">
-                        <!-- Icono de correo electrónico y dirección de correo -->
-                        <!-- Debes adaptar este código según tus campos de la base de datos -->
-                        <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-                            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
-                        </svg>
-                        <p class="agenteinfo">{{ $usuarioStaff->correo_institucional }}</p>
+ <!-- Sección de usuarios con permisos full -->
+            <div class="titulos">
+                <h4>USUARIO STAFF</h4>
+                <h4 class="acciones">ACCIONES</h4>
+            </div>
+            @foreach ($usuariosStaff as $usuarioStaff)
+            <div class="tabla">
+                <div class="datos">
+                    <div class="imagen">
                     </div>
-                    <div class="logos">
-                        <!-- Icono de teléfono y número de teléfono -->
-                        <!-- Debes adaptar este código según tus campos de la base de datos -->
-                        <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
-                        </svg>
-                        <p class="agenteinfo">{{ $usuarioStaff->celular }}</p>
-                    </div>
-                    <div class="logos">
-                        <!-- Icono de persona y SIR -->
-                        <!-- Debes adaptar este código según tus campos de la base de datos -->
-                        <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                        </svg>
-                        <p class="agenteinfo">{{ $usuarioStaff->sir }}</p>
+                    <div class="info">
+                        <h6>{{$usuarioStaff->nombre}}</h6>
+                        <div class="logos">
+                            <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                            </svg>
+                            <p class="agenteinfo">{{$usuarioStaff->correo_institucional}}</p>
                         </div>
+                        <div class="logos">
+                            <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                            </svg>
+                            <p class="agenteinfo">{{$usuarioStaff->celular}}</p>
+                        </div>
+                        <div class="logos">
+                            <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                              </svg>
+                            <p class="agenteinfo">{{$usuarioStaff->sir}}</p>
+                        </div>
+                        <td>
                     </div>
                 </div>
                 <div class="accioness">
-                    <!-- Botón "Editar" -->
-                <div class="accionST" id="accioneST" data-toggle="modal" data-target="#editarUsuarioModal"
-                    data-usuario-id="{{ $usuarioStaff->id }}"
-                    data-usuario-nombre="{{ $usuarioStaff->nombre }}"
-                    data-usuario-celular="{{ $usuarioStaff->celular }}"
-                    data-usuario-foto="{{ $usuarioStaff->nombre_archivo_foto }}"
-                    data-usuario-correo="{{ $usuarioStaff->correo_institucional }}"
-                    data-usuario-sir="{{ $usuarioStaff->sir }}"  
-                    data-usuario-permiso="{{ $usuarioStaff->permisos_id }}">
-                    <!-- Contenido del botón -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16" id="logotipo">
-                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                    </svg>
-                    <p class="ti">Editar</p>
-                    <p class="ti">Staff</p>
-                </div>
+                    <div class="accion">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check-fill" viewBox="0 0 16 16" id="logotipo">
+                            <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5.146-5.146-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                        </svg>
+                        <p class="ti">Ver</p>
+                        <p class="ti">Agenda</p>
+                    </div>
+                    <div class="accion" id="ver-contactos" data-id="{{ $agente->id }}">
+                        <a href="{{ route('ver-contactos', ['id' => $agente->id]) }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-vcard-fill" viewBox="0 0 16 16" id="logotipo">
+                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5ZM9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8Zm1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5Zm-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96c.026-.163.04-.33.04-.5ZM7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z"/>
+                            </svg>
+                            <p class="ti">Ver</p>
+                            <p class="ti">Contactos</p>
+                        </a>
+                    </div>
+                    <div class="accion">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16" id="logotipo">
+                            <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z"/>
+                        </svg>
+                        <p class="ti">Ver</p>
+                        <p class="ti">Estadisticas</p>
+                    </div>
+                    <div class="accion" id="accionES" data-toggle="modal" data-target="#modalEditarAgente"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16" id="logotipo">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        </svg>
+                        <p class="ti">Editar</p>
+                        <p class="ti">Staff</p>
+                    </div>
                     <div class="accion" id="acciond">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16" id="logotipo">
                             <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
@@ -309,13 +314,12 @@
                     </div>
                 </div>
             </div>
-
-      
-            </div>
+            @endforeach
+        </div>
 <!-- Modal de Edición -->
 <div class="modal fade" id="editarUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="editarUsuarioModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content" id="editarUsuarioM">
             <div class="modal-header">
                 <h5 class="modal-title" id="editarUsuarioModalLabel">Editar Usuario Staff</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -333,7 +337,7 @@
                     <!-- Ejemplo: -->
                     <div class="mb-3">
                      <label for="nombre_archivo_foto">Nombre Archivo Foto:</label>
-                    <input type="text" id="nombre_archivo_foto" name="nombre_archivo_foto" class="form-control" value="{{ $usuarioStaff->nombre_archivo_foto }}" required>
+                     <input type="text" id="nombre_archivo_foto" name="nombre_archivo_foto" class="form-control" value="{{ $usuarioStaff->nombre_archivo_foto }}" required>
                     </div>
 
                     <div class="mb-3">
@@ -355,12 +359,12 @@
                     </div>
 
                     <div class="mb-3">
-                <label for="permisos_id">Permisos:</label>
-                <select id="permisos_id" name="permisos_id" class="form-control">
-                    @foreach ($permisos as $permiso)
-                        <option value="{{ $permiso->id }}">{{ $permiso->name }}</option>
-                    @endforeach
-                </select>
+                        <label for="permisos_id">Permisos:</label>
+                        <select id="permisos_id" name="permisos_id" class="form-select">
+                            @foreach ($permisos as $permiso)
+                                <option value="{{ $permiso->id }}">{{ $permiso->name }}</option>
+                            @endforeach
+                        </select>
             </div>
 
                 <!-- Campo "Contraseña" solo si se está creando una nueva contraseña -->
@@ -386,7 +390,6 @@
     </div>
 </div>
 
-            @endforeach
    
             
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -433,7 +436,7 @@
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var botonesEditarStaff = document.querySelectorAll('.accionST#accioneST');
+        var botonesEditarStaff = document.querySelectorAll('#accionES');
 
         botonesEditarStaff.forEach(function (boton) {
             boton.addEventListener('click', function () {
