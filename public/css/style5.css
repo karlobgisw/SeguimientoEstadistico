@@ -405,12 +405,12 @@ body {
     fill: white;
 }
 
-#accionES:hover{
+#accioneST:hover{
     background-color: #a88008;
     color: white;
 }
 
-#accionES:hover #logotipo{
+#accioneST:hover #logotipo{
     fill: white;
 }
 
