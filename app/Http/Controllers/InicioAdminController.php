@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Models\Permission;
 use App\Models\User; // Asegúrate de importar el modelo User
 use App\Models\Contacto; // Asegúrate de importar el modelo Contacto
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
@@ -12,6 +13,14 @@ class InicioAdminController extends Controller
 {
     public function index()
 {
+    $user = Auth::guard('web')->user();
+    if ($user->permisos->type === 'limited') {
+        // Usuario agente
+        $permiso = 'limited';
+    } elseif ($user->permisos->type === 'full') {
+        // Usuario staff
+        $permiso = 'full';
+    }
     // Obtener todos los permisos
     $permisos = Permission::all();
 
@@ -29,7 +38,7 @@ class InicioAdminController extends Controller
             ->where('type', 'full');
     })->get();
 
-    return view('inicioadmin', compact('agentes', 'usuariosStaff','permisos'));
+    return view('inicioadmin', compact('agentes', 'usuariosStaff','permisos'), ['permiso' => $permiso]);
 }
 
 
@@ -134,9 +143,18 @@ public function actualizarUsuarioStaff(Request $request, $id)
 // Controlador
 public function verContactos($id)
 {
+    $user = Auth::guard('web')->user();
+    if ($user->permisos->type === 'limited') {
+        // Usuario agente
+        $permiso = 'limited';
+    } elseif ($user->permisos->type === 'full') {
+        // Usuario staff
+        $permiso = 'full';
+    }
+
     $contactos = Contacto::where('user_id', $id)->get();
 
-    return view('circuloinf', compact('contactos'));
+    return view('circuloinf', compact('contactos'), ['permiso' => $permiso]);
     // o
     // return view('circuloinf')->with('contactos', $contactos);
 }

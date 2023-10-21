@@ -159,7 +159,7 @@
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                     </svg>
                 </span>
-                <input type="text" class="form-control" placeholder="Buscar agente" aria-label="Username" aria-describedby="addon-wrapping" id="inputt">
+                <input type="text" class="form-control" placeholder="Buscar agente" aria-label="Buscar agente" aria-describedby="addon-wrapping" id="inputt">
             </div>
         </div>
         <div class="cuerpo">
@@ -168,9 +168,13 @@
                 <h4 class="acciones">ACCIONES</h4>
             </div>
             @foreach ($agentes as $agente)
+            <div class="agente-item">
+
+
             <div class="tabla editar-agente" data-agente="{{ json_encode($agente) }}">
                 <div class="datos">
                     <div class="imagen">
+                        <img src="{{ $agente->nombre_archivo_foto }}" alt="Foto del agente">
                     </div>
                     <div class="info">
                         <h6>{{$agente->nombre}}</h6>
@@ -205,7 +209,7 @@
                         <p class="ti">Agenda</p>
                     </div>
                     <div class="accion" id="ver-contactos" data-id="{{ $agente->id }}">
-                        <a href="{{ route('ver-contactos', ['id' => $agente->id]) }}">
+                        <a href="{{ route('ver-contactos', ['id' => $agente->id, $permiso]) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-vcard-fill" viewBox="0 0 16 16" id="logotipo">
                                 <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5ZM9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8Zm1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5Zm-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96c.026-.163.04-.33.04-.5ZM7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z"/>
                             </svg>
@@ -238,6 +242,7 @@
                     </div>
                 </div>
             </div>
+        </div>
             @endforeach
  <!-- Sección de usuarios con permisos full -->
             <div class="titulos">
@@ -245,6 +250,7 @@
                 <h4 class="acciones">ACCIONES</h4>
             </div>
             @foreach ($usuariosStaff as $usuarioStaff)
+        <div class="agente-item">
             <div class="tabla">
                 <div class="datos">
                     <div class="imagen">
@@ -298,6 +304,7 @@
                     </div>
                 </div>
             </div>
+        </div>
             @endforeach
         </div>
 <!-- Modal de Edición -->
@@ -450,6 +457,21 @@
                 var modalEditarUsuario = new bootstrap.Modal(document.getElementById('editarUsuarioModal'));
                 modalEditarUsuario.show();
             });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#inputt').on('keyup', function() {
+            let searchTerm = $(this).val().toLowerCase();
+
+            // Oculta todos los agentes
+            $('.agente-item').hide();
+
+            // Muestra solo los agentes que coinciden con la búsqueda
+            $('.agente-item').filter(function() {
+                return $(this).text().toLowerCase().includes(searchTerm);
+            }).show();
         });
     });
 </script>

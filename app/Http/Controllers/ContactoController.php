@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Contacto;
 use App\Models\FuenteContacto;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,6 +14,16 @@ class ContactoController extends Controller
 
 public function mostrarContactosCirculoInfluencia()
 {
+    $user = Auth::guard('web')->user();
+    if ($user->permisos->type === 'limited') {
+        // Usuario agente
+        $permiso = 'limited';
+    } elseif ($user->permisos->type === 'full') {
+        // Usuario staff
+        $permiso = 'full';
+    }
+
+
     // Obtener el user_id del usuario autenticado
     $user_id = auth()->user()->id;
 
@@ -21,7 +31,7 @@ public function mostrarContactosCirculoInfluencia()
     $contactos = Contacto::where('user_id', $user_id)->get();
 
     // Pasa los contactos a la vista
-    return view('circuloinf', ['contactos' => $contactos]);
+    return view('circuloinf', ['contactos' => $contactos, 'permiso' => $permiso]);
 }
 
 public function store(Request $request)

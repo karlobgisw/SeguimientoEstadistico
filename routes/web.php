@@ -97,7 +97,7 @@ Route::get('/contacto/{id}', 'ContactoController@show')->name('contacto.show');
 
 //Route::delete('/contacto/{id}', [ContactoController::class, 'destroy'])->name('contacto.destroy');
 
-//Route::get('/contacto/{id}/eliminar', 'ContactoController@destroy')->name('contacto.destroy');
+Route::get('/contacto/{id}/eliminar', [ContactoController::class, 'destroy'])->name('contacto.destroy');
 
 
 

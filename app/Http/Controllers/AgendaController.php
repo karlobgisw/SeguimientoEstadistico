@@ -5,15 +5,27 @@ use App\Models\Agenda;
 use App\Models\Actividad;
 use App\Models\DiaSemana;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AgendaController extends Controller
 {
     public function index()
     {
+
+        $user = Auth::guard('web')->user();
+        if ($user->permisos->type === 'limited') {
+            // Usuario agente
+            $permiso = 'limited';
+        } elseif ($user->permisos->type === 'full') {
+            // Usuario staff
+            $permiso = 'full';
+        }
         $agendas = Agenda::all();
 
         return view('agenda', [
             'agendas' => $agendas,
+            'permiso' => $permiso,
         ]);
     }
 

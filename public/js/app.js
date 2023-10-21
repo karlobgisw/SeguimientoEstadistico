@@ -13,6 +13,7 @@ document.addEventListener("dragstart", function(event) {
   var claseDelElementoArrastrado = elementoArrastrado.className; // obtiene la clase del elemento arrastradro
   if(claseDelElementoArrastrado == 'cho'){  //comparativa para saber si se estan arrastrando tareas DENTRO DE LA MISMA AGENDA, es decir no arrastrar una actividad desde fuera
     event.dataTransfer.setData("texto2", event.target.textContent);//obtengo el texto del objeto arrastrado
+    event.dataTransfer.setData("text/plain4", event.target.getAttribute("data-actividad-id"));
   }
   if(claseDelElementoArrastrado == 'cuad-act'){
     event.dataTransfer.setData("text/plain3", event.target.getAttribute("data-actividad-id"));
@@ -32,6 +33,7 @@ contenedores.forEach(contenedor => {
     console.log('Drop');
     event.preventDefault();
     var actid = event.dataTransfer.getData("text/plain3");
+    var actid2 = event.dataTransfer.getData("text/plain4");
     var texto = event.dataTransfer.getData("texto");
     var elementoArrastrado = event.dataTransfer.getData("text/plain"); //obtenemos la clase del elemento del evento drag
     var idArrastrado = event.dataTransfer.getData("id"); //obtenemos la id del elemento del evento drag
@@ -51,6 +53,7 @@ contenedores.forEach(contenedor => {
       const actividadarrastrada = document.createElement('div'); // crea un elemento div
       actividadarrastrada.textContent = texto; // crea texto para ese elemento
       actividadarrastrada.classList.add('cho');
+      actividadarrastrada.setAttribute('data-actividad-id', actid);
       actividadarrastrada.id = identificador;
       identificador = identificador + 1;
       actividadarrastrada.setAttribute("draggable", "true");
@@ -61,6 +64,7 @@ contenedores.forEach(contenedor => {
       const actividadarrastrada = document.createElement('div'); // crea un elemento div
       actividadarrastrada.textContent = texto2; // crea texto para ese elemento
       actividadarrastrada.classList.add('cho');
+      actividadarrastrada.setAttribute('data-actividad-id', actid2);
       actividadarrastrada.id = identificador;
       identificador = identificador + 1;
       actividadarrastrada.setAttribute("draggable", "true");

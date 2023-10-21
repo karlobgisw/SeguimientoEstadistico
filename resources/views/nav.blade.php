@@ -8,12 +8,19 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          @if($permiso == 'full')
           <li class="nav-item">
-            <a class="nav-link letras" aria-current="page" href="#">Inicio</a>
+            <a class="nav-link letras" id="nav-item" aria-current="page" href="{{ route('inicioadmin') }}">Agentes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link letras" href="{{ route('menu') }}">Acciones</a>
+            <a class="nav-link letras" id="nav-item" href="#">Estadisticas</a>
           </li>
+          @endif
+          @if($permiso == 'limited')
+          <li class="nav-item">
+            <a class="nav-link letras" id="nav-item" aria-current="page" href="{{ route('menu') }}">Menu</a>
+          </li>
+          @endif
         </ul>
         <div class="d-flex">
           <div class="dropdown" id="menu-dropdown">

@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Actividad;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use App\Models\DiaSemana;
 use Illuminate\Http\Request;
 
@@ -9,10 +11,22 @@ class ActividadController extends Controller
 {
     public function index()
     {
-        $actividades = Actividad::all();
+        $user = Auth::guard('web')->user();
+        if ($user->permisos->type === 'limited') {
+            // Usuario agente
+            $permiso = 'limited';
+        } elseif ($user->permisos->type === 'full') {
+            // Usuario staff
+            $permiso = 'full';
+        }
 
-        return view('agendaadmincrear', [
+        $actividades = Actividad::all();
+        $diasSemana = DiaSemana::all();
+
+        return view('agendacrear', [
             'actividades' => $actividades,
+            'diasSemana' => $diasSemana,
+            'permiso' => $permiso,
         ]);
     }
 

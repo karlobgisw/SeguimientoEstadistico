@@ -22,6 +22,14 @@
     border-radius: 0px;
 }
 
+#nav-item{
+    text-decoration: none;
+}
+
+#nav-item:hover{
+    color: #2691d9;
+}
+
 .perfil{
     display: flex;
     align-items: center;
@@ -204,8 +212,8 @@ body {
     background-color: #194B7B;
     border-radius: 7px;
     padding-top: 1%;
-    overflow-x: auto; /* Agrega una barra de desplazamiento horizontal cuando sea necesario */
-    white-space: nowrap; /* Evita que los elementos dentro del contenedor se envuelvan a la siguiente línea */
+    overflow-x: auto;
+    white-space: nowrap;
     padding-bottom: 4%;
 }
 
@@ -298,7 +306,7 @@ body {
 
 .actividadDetalle{
     color: black;
-    background-color: #c3c5c5;
+    background-color: rgb(245, 245, 245);
 }
 
 .modal-title.fs-5{
@@ -321,7 +329,7 @@ body {
 }
 
 #actividadInput{
-    background-color: #c3c5c5;
+    background-color: rgb(245, 245, 245);
 }
 
 .modal-backdrop.fade.show{
@@ -339,6 +347,22 @@ body {
     word-wrap: break-word;
     white-space: normal;
 }
+
+.cha{
+    text-align: center;
+    width: 95%;
+    margin-left: 3%;
+    background-color: #029923;
+    border-radius: 10px;
+    color: #ffffff;
+    margin-bottom: 4%;
+    word-wrap: break-word;
+    white-space: normal;
+    text-decoration: line-through;
+}
+
+
+
 
 .listas::-webkit-scrollbar{
     width: 7px;
@@ -362,6 +386,31 @@ body {
     border-radius: 10px;
 }
 
+.dia::-webkit-scrollbar{
+    width: 7px;
+    background-color: #fff;
+}
+
+
+.dia::-webkit-scrollbar-thumb{
+    background: #61A2E0;
+    border-radius: 10px;
+}
+
+#modal::-webkit-scrollbar{
+    width: 7px;
+    background-color: #fff;
+}
+
+
+#modal::-webkit-scrollbar-thumb{
+    background: #61A2E0;
+    border-radius: 10px;
+}
+
+
+
+
 .btn.btn-primaryr {
     --bs-btn-color: #04213f;
     --bs-btn-bg: #61A2E0;
@@ -379,16 +428,6 @@ body {
     --bs-btn-disabled-border-color: #0d6efd;
 }
 
-.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
-    color: var(--bs-btn-active-color);
-    background-color: var(--bs-btn-active-bg);
-    border-color: white;
-}
-
-.btn-group-vertical{
-    margin-top: 7%;
-    width: 89%;
-}
 
 .editdelete{
     display: flex;
@@ -396,5 +435,50 @@ body {
 
 .espacio{
     width: 2%;
+}
+
+#accordion-body {
+    padding: 0;
+}
+
+#boton-acordion {
+    font-weight: 900;
+    color: #4d7da9;
+    background-color: #b3d1ff;
+}
+
+#boton-acordion-2{
+    color: #4d7da9;
+    height: 6vh;
+}
+
+#boton-semana{
+    padding: 0;
+    background-color: white;
+    font-weight: lighter;
+}
+
+#boton-semana:hover{
+    background-color: #0B2742;
+    color: white;
+    
+}
+
+#modal{
+    max-height: 61vh;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+#modal input{
+    background-color: rgb(245, 245, 245);
+}
+
+#modal select{
+    background-color: rgb(245, 245, 245);
+}
+
+#modal textarea{
+    background-color: rgb(245, 245, 245);
 }
 

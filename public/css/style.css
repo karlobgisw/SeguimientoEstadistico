@@ -9,6 +9,9 @@
     color: rgb(255 255 255 / 65%);
     border: var(--bs-border-width) solid rgba(255, 255, 255, 0.15);
 }
+.nav-item:hover{
+    color: #2691d9;
+}
 body {
     margin: 0;
     padding: 0;

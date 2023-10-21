@@ -13,7 +13,52 @@
         @include('nav')
     </header>
     <div class="todo">
+      <div class="botonson" id="toggleButton2">
+        >
+      </div>
+      <div id="toggleButton"></div>
       <div class="listas">
+        <div id="dashboard" class="closed">
+          <div id="hideButton"><</div>
+          <hr>
+          <h3>AGENDAS</h3>
+          <hr>
+          <div class="actcuad">
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" id="boton-acordion" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    AÑO
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body" id="accordion-body">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                      <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" id="boton-acordion-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            MES
+                          </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                          <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action" id="boton-semana">SEMANA 1</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary ag" id="new">
+            Nueva agenda
+        </button>
+        </div>
+        <div id="content">
+          <!-- Contenido principal -->
+        </div> 
         <div class="dia">
           <div class="titulo">Lunes</div>
           <div class="Matutina">
@@ -110,5 +155,10 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/nav.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.getElementById("new").addEventListener("click", function() {
+            window.location.href = "{{ route('actividades') }}";
+        });
+    </script>
 </body>
 </html>
