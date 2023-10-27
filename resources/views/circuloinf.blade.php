@@ -457,8 +457,10 @@ $fuentes_contacto = FuenteContacto::all();
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                @if ($permiso == "limited")
                 <button type="submit" class="btn btn-primary">Actualizar</button>
                 <button type="button" class="btn btn-danger" id="btnEliminarContacto">Eliminar</button>
+                @endif
             </div>
         </form>
         </div>

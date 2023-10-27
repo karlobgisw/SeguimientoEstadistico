@@ -40,7 +40,7 @@ Route::delete('/actividades/{id}', [ActividadController::class, 'destroy'])->wit
 
 
 // Ruta para listar todas las agendas
-Route::get('/agendas', [AgendaController::class, 'index'])->name('agendas');
+Route::get('/agendas', [AgendaController::class, 'index'])->name('agendas')->middleware('auth.redirect', 'auth','limited');
 
 // Ruta para mostrar una agenda
 Route::get('/agenda/{ano}/{mes}/{semana}', [AgendaController::class, 'ver_agenda'])->name('agenda');
@@ -58,7 +58,7 @@ Route::put('/agendau', [AgendaController::class, 'update'])->withoutMiddleware([
 Route::put('/agendaue', [AgendaController::class, 'updateEstado'])->withoutMiddleware(['web'])->name('agendaue');
 
 
-Route::get('/ver-agenda/{id}', [AgendaController::class, 'veragenda'])->name('ver-agenda');
+Route::get('/ver-agenda/{id}', [AgendaController::class, 'veragenda'])->name('ver-agenda')->middleware('auth.redirect', 'auth','staff');
 
 // Ruta para eliminar una agenda sin protección CSRF
 Route::delete('/agendas/{id}', [AgendaController::class, 'destroy'])->withoutMiddleware(['web']);
@@ -83,15 +83,15 @@ Route::get('/', function () {
 });
 
 // Ruta de MenuController
-Route::get('/menu', [MenuController::class, 'renderMenu'])->name('menu')->middleware('auth');
+Route::get('/menu', [MenuController::class, 'renderMenu'])->name('menu')->middleware('auth', 'limited');
 
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-Route::get('/contactos', [ContactoController::class, 'mostrarContactosCirculoInfluencia'])->name('contactos');
+Route::get('/contactos', [ContactoController::class, 'mostrarContactosCirculoInfluencia'])->name('contactos')->middleware('auth.redirect', 'auth','limited');
 
-Route::get('/fuentescontactos', [FuenteContactoController::class, 'index'])->name('fuentescontactos');
+Route::get('/fuentescontactos', [FuenteContactoController::class, 'index'])->name('fuentescontactos')->middleware('auth.redirect', 'auth');
 
-Route::get('/inicioadmin', [InicioAdminController::class, 'index'])->name('inicioadmin');
+Route::get('/inicioadmin', [InicioAdminController::class, 'index'])->name('inicioadmin')->middleware('auth.redirect', 'auth', 'staff');
 
 Route::post('/contactos/store', [ContactoController::class, 'store'])->name('/contactos/store');
 
@@ -124,7 +124,7 @@ Route::patch('/inicioadmin/{id}', [InicioAdminController::class, 'update'])->nam
 Route::get('/inicioadmin/editar-usuario-staff/{id}', [InicioAdminController::class, 'editarUsuarioStaff'])->name('editarUsuarioStaff');
 Route::patch('/inicioadmin/actualizar-usuario-staff/{id}', [InicioAdminController::class, 'actualizarUsuarioStaff'])->name('actualizarUsuarioStaff');
 
-Route::get('/ver-contactos/{id}', [InicioAdminController::class, 'verContactos'])->name('ver-contactos');
+Route::get('/ver-contactos/{id}', [InicioAdminController::class, 'verContactos'])->name('ver-contactos')->middleware('auth.redirect', 'auth', 'staff');
 
 Route::get('/obtener-contactos/{id}', 'InicioAdminController@obtenerContactos');
 
