@@ -42,6 +42,10 @@ Route::delete('/actividades/{id}', [ActividadController::class, 'destroy'])->wit
 // Ruta para listar todas las agendas
 Route::get('/agendas', [AgendaController::class, 'index'])->name('agendas');
 
+// Ruta para mostrar una agenda
+Route::get('/agenda/{ano}/{mes}/{semana}', [AgendaController::class, 'ver_agenda'])->name('agenda');
+Route::get('/agenda/{ano}/{mes}/{semana}/{id}', [AgendaController::class, 'ver_agenda_admin'])->name('agendaa');
+
 // Ruta para mostrar el formulario de creación de agenda (no es necesario para una API sin vistas)
 
 // Ruta para almacenar una nueva agenda sin protección CSRF
@@ -50,8 +54,11 @@ Route::post('/agendas', [AgendaController::class, 'store'])->withoutMiddleware([
 // Ruta para mostrar el formulario de edición de agenda (no es necesario para una API sin vistas)
 
 // Ruta para actualizar una agenda existente sin protección CSRF
-Route::put('/agendas/{id}', [AgendaController::class, 'update'])->withoutMiddleware(['web']);
+Route::put('/agendau', [AgendaController::class, 'update'])->withoutMiddleware(['web'])->name('agendau');
+Route::put('/agendaue', [AgendaController::class, 'updateEstado'])->withoutMiddleware(['web'])->name('agendaue');
 
+
+Route::get('/ver-agenda/{id}', [AgendaController::class, 'veragenda'])->name('ver-agenda');
 
 // Ruta para eliminar una agenda sin protección CSRF
 Route::delete('/agendas/{id}', [AgendaController::class, 'destroy'])->withoutMiddleware(['web']);
@@ -119,5 +126,7 @@ Route::patch('/inicioadmin/actualizar-usuario-staff/{id}', [InicioAdminControlle
 
 Route::get('/ver-contactos/{id}', [InicioAdminController::class, 'verContactos'])->name('ver-contactos');
 
-Route::get('/eliminar-usuario/{id}', [InicioAdminController::class, 'eliminar'])->name('eliminar-usuario');
+Route::get('/obtener-contactos/{id}', 'InicioAdminController@obtenerContactos');
+
+Route::post('/transferir-contactos', [InicioAdminController::class, 'transferirContactos'])->name('transferir-contactos');
 

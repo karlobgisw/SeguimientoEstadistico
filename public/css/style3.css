@@ -346,6 +346,7 @@ body {
     margin-bottom: 4%;
     word-wrap: break-word;
     white-space: normal;
+    cursor: default;
 }
 
 .cha{
@@ -359,6 +360,7 @@ body {
     word-wrap: break-word;
     white-space: normal;
     text-decoration: line-through;
+    cursor: default;
 }
 
 

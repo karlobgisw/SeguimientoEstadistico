@@ -32,7 +32,7 @@
 
                         <div class="mb-3">
                             <label for="nombre_archivo_foto" class="form-label">Foto de perfil:</label>
-                            <input type="file" name="nombre_archivo_foto" class="form-control" placeholder="" nullable>
+                            <input type="text" name="nombre_archivo_foto" class="form-control" placeholder="" nullable>
                         </div>
 
                         <div class="mb-3">
@@ -52,7 +52,7 @@
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Contraseña:</label>
-                            <input type="text" name="password" class="form-control" placeholder="" nullable>
+                            <input type="password" name="password" class="form-control" placeholder="" nullable>
                         </div>
 
                         <div class="mb-3">
@@ -63,16 +63,6 @@
                                 <option value="{{ $permiso->id }}">{{ $permiso->name }}</option>
                             @endforeach
                         </select>
-                        </div>
-
-
-                        <div class="mb-3">
-                            <label for="activo" class="form-label">Activo:</label>  
-                            <select id="activo" name="activo" class="form-select" nullable>
-                                <option value="opcion1">---</option>
-                                <option text="1">Activo</option>
-                                <option text="0">Suspendido</option>
-                            </select>
                         </div>
             </div>
             <div class="modal-footer">
@@ -168,9 +158,8 @@
                 <h4 class="acciones">ACCIONES</h4>
             </div>
             @foreach ($agentes as $agente)
+            @if ($agente->activo)
             <div class="agente-item">
-
-
             <div class="tabla editar-agente" data-agente="{{ json_encode($agente) }}">
                 <div class="datos">
                     <div class="imagen">
@@ -197,16 +186,19 @@
                               </svg>
                             <p class="agenteinfo">{{$agente->sir}}</p>
                         </div>
+                        @endif
                         <td>
                     </div>
                 </div>
                 <div class="accioness">
-                    <div class="accion">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check-fill" viewBox="0 0 16 16" id="logotipo">
-                            <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5.146-5.146-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
-                        </svg>
-                        <p class="ti">Ver</p>
-                        <p class="ti">Agenda</p>
+                    <div class="accion" id="ver-agenda">
+                        <a href="{{ route('ver-agenda', ['id' => $agente->id, $permiso]) }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check-fill" viewBox="0 0 16 16" id="logotipo">
+                                <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5.146-5.146-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                            </svg>
+                            <p class="ti">Ver</p>
+                            <p class="ti">Agenda</p>
+                        </a>
                     </div>
                     <div class="accion" id="ver-contactos" data-id="{{ $agente->id }}">
                         <a href="{{ route('ver-contactos', ['id' => $agente->id, $permiso]) }}">
@@ -233,7 +225,7 @@
                     <p class="ti">Editar</p>
                     <p class="ti">Agente</p>
                 </div>
-                    <div class="accion" id="acciond">
+                    <div class="accion" id="acciond" data-target="#miModal{{ $agente->id }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16" id="logotipo">
                             <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                         </svg>
@@ -243,7 +235,37 @@
                 </div>
             </div>
         </div>
-            @endforeach
+        <div class="modal fade" id="miModal{{ $agente->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Transferir Contactos</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="transferForm" method="post" action="{{ route('transferir-contactos') }}">
+                            @csrf
+                            <input type="hidden" name="agenteId" value="{{ $agente->id }}">
+                            <div class="mb-3">
+                                <label for="nuevoAgente" class="form-label">Seleccionar nuevo agente:</label>
+                                <select class="form-select" id="nuevoAgente" name="nuevoAgente">
+                                    @foreach($agentes as $agenteItem)
+                                    <option value="{{ $agenteItem->id }}">{{ $agenteItem->nombre }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <ul>
+                                @foreach($agente->contactos as $contacto)
+                                <li>{{ $contacto->nombre }}</li>
+                                @endforeach
+                            </ul>
+                            <button type="submit" class="btn btn-primary">Transferir contactos</button>
+                        </form>
+                    </div>            
+                </div>
+            </div>
+        </div>
+    @endforeach
  <!-- Sección de usuarios con permisos full -->
             <div class="titulos">
                 <h4>USUARIO STAFF</h4>
@@ -254,6 +276,7 @@
             <div class="tabla">
                 <div class="datos">
                     <div class="imagen">
+                        <img src="{{ $usuarioStaff->nombre_archivo_foto }}" alt="Foto del agente">
                     </div>
                     <div class="info">
                         <h6>{{$usuarioStaff->nombre}}</h6>
@@ -306,7 +329,6 @@
             </div>
         </div>
             @endforeach
-        </div>
 <!-- Modal de Edición -->
 <div class="modal fade" id="editarUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="editarUsuarioModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -389,7 +411,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="{{ asset('js/nav.js') }}"></script>
     
-    <script>
+<script>
     document.addEventListener('DOMContentLoaded', function () {
         var botonesEditarAgente = document.querySelectorAll('.accion#accione');
 
@@ -461,20 +483,42 @@
     });
 </script>
 <script>
+    $(document).ready(function () {
+
+        var modalesID = document.querySelectorAll("#acciond");
+
+        modalesID.forEach(function(modales){
+            $(modales).on('click', function () {
+            var modalId = modales.getAttribute("data-target");
+            
+            // Abre el modal correspondiente
+            $(modalId).modal('show');
+        });
+    });
+    });
+</script>
+<script>
     $(document).ready(function() {
         $('#inputt').on('keyup', function() {
             let searchTerm = $(this).val().toLowerCase();
 
+            // Mostrar todos los agentes cuando el término de búsqueda está vacío
+            if (searchTerm === '') {
+                $('.agente-item').show();
+                return;
+            }
+
             // Oculta todos los agentes
             $('.agente-item').hide();
 
-            // Muestra solo los agentes que coinciden con la búsqueda
+            // Muestra solo los agentes cuyo nombre coincide con la búsqueda
             $('.agente-item').filter(function() {
-                return $(this).text().toLowerCase().includes(searchTerm);
+                return $(this).find('.info h6').text().toLowerCase().includes(searchTerm);
             }).show();
         });
     });
 </script>
+
 
 
 

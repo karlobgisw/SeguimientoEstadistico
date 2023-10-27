@@ -26,7 +26,7 @@
           <div class="dropdown" id="menu-dropdown">
             <div class="perfil" onclick="toggleMenu()">
               <div class="imagenperfil">
-                <img src="" alt="">
+                <img src="{{ auth()->check() ? auth()->user()->nombre_archivo_foto : 'ruta/por/defecto/si/no/hay/imagen' }}" alt="Imagen de perfil">
               </div>
               <p class="po">{{ auth()->check() ? auth()->user()->sir : 'Invitado' }}</p>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">

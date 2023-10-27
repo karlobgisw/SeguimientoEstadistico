@@ -16,9 +16,11 @@ $fuentes_contacto = FuenteContacto::all();
     <header>
         @include('nav')
     </header>
+    @if ($permiso == "limited")
     <button type="button" class="btn btn-success" id="btn_agregar" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <img src="{{ asset('images\agregar.png') }}" alt="" id="suma">
     </button>
+    @endif
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content" id="modal">

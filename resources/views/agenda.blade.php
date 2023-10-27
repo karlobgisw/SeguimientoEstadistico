@@ -25,36 +25,54 @@
           <hr>
           <div class="actcuad">
             <div class="accordion" id="accordionExample">
+              @foreach ($diccionario as $ano => $meses)
               <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button" id="boton-acordion" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    AÑO
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$ano}}" aria-expanded="true" aria-controls="collapseOne">
+                    {{ $ano }}
                   </button>
                 </h2>
-                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div id="collapse{{$ano}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                   <div class="accordion-body" id="accordion-body">
                     <div class="accordion accordion-flush" id="accordionFlushExample">
+                      @foreach ($meses as $mes => $semanas)
                       <div class="accordion-item">
                         <h2 class="accordion-header">
-                          <button class="accordion-button collapsed" id="boton-acordion-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                            MES
-                          </button>
+                            <button class="accordion-button collapsed" id="boton-acordion-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{$mes}}" aria-expanded="false" aria-controls="flush-collapseOne">
+                              {{$mes}}
+                            </button>
                         </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div id="flush-collapse{{$mes}}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                           <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action" id="boton-semana">SEMANA 1</a>
+                            @foreach ($semanas as $semana)
+                            @if ($permiso == 'limited')
+                            <a href="{{ url("/agenda/{$ano}/{$mes}/{$semana}") }}" class="list-group-item list-group-item-action" id="boton-semana">SEMANA {{$semana}}</a>
+                            @endif
+                            @if ($permiso == 'full')
+                            <a href="{{ url("/agenda/{$ano}/{$mes}/{$semana}/{$id}") }}" class="list-group-item list-group-item-action" id="boton-semana">SEMANA {{$semana}}</a>
+                            @endif
+                            @endforeach
                           </div>
                         </div>
                       </div>
+                      @endforeach
                     </div>
                   </div>
                 </div>
               </div>
+              @endforeach
             </div>
           </div>
+          @if ($permiso == 'full')
           <button type="button" class="btn btn-primary ag" id="new">
-            Nueva agenda
-        </button>
+            Ver Actividades
+          </button>
+          @endif
+          @if ($permiso == 'limited')
+          <button type="button" class="btn btn-primary ag" id="new">
+            Nueva Agenda
+          </button>
+          @endif
         </div>
         <div id="content">
           <!-- Contenido principal -->

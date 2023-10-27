@@ -22,11 +22,13 @@ class ActividadController extends Controller
 
         $actividades = Actividad::all();
         $diasSemana = DiaSemana::all();
+        $user_id = auth()->user()->id;
 
         return view('agendacrear', [
             'actividades' => $actividades,
             'diasSemana' => $diasSemana,
             'permiso' => $permiso,
+            'user_id' => $user_id,
         ]);
     }
 

@@ -21,6 +21,7 @@ class InicioAdminController extends Controller
         // Usuario staff
         $permiso = 'full';
     }
+    
     // Obtener todos los permisos
     $permisos = Permission::all();
 
@@ -29,7 +30,7 @@ class InicioAdminController extends Controller
         $query->select('id')
             ->from('permissions')
             ->where('type', 'limited');
-    })->get();
+    })->where('activo', true)->get();
 
     // Obtener usuarios con permisos staff
     $usuariosStaff = User::where('permisos_id', function ($query) {
@@ -59,7 +60,7 @@ public function create(Request $request)
     $usuario = new User;
     $usuario->nombre = $request->nombre;
     $usuario->sir = $request->sir;
-    $usuario->password = bcrypt($request->password);
+    $usuario->password = $request->password;
     $usuario->permisos_id = $request->permisos_id;
     $usuario->celular = $request->celular;
     $usuario->correo_institucional = $request->correo_institucional;
@@ -91,6 +92,11 @@ public function update(Request $request, $id)
         // Validar y actualizar el usuario
         $user = User::findOrFail($id);
         $user->update($request->all());
+
+        // Si estás desactivando el agente
+        if ($request->has('activo') && !$request->input('activo')) {
+            $user->update(['activo' => false]);
+        }
 
         // Redireccionar o enviar una respuesta JSON, según tus necesidades
         return redirect()->route('inicioadmin');
@@ -162,23 +168,25 @@ public function verContactos($id)
 
 
 
-public function eliminar($id)
-    {
-        // Buscar el agente por el ID
-        $user = User::find($id);
+public function transferirContactos(Request $request) {
+    // Validaciones si es necesario
+    $agenteId = $request->input('agenteId');
+    $nuevoAgenteId = $request->input('nuevoAgente');
 
-        // Verificar si el agente existe
-        if (!$user) {
-            // Puedes manejar la situación en la que el agente no existe, por ejemplo, redirigir a una página de error.
-            return redirect()->route('ruta_error_agente_no_encontrado');
-        }
+    // Obtén el agente antiguo
+    $agenteAntiguo = User::findOrFail($agenteId);
 
-        // Realizar la lógica para eliminar el agente
-        $user->delete();
+    // Obtén el nuevo agente
+    $nuevoAgente = User::findOrFail($nuevoAgenteId);
 
-        // Redirigir a alguna parte después de la eliminación exitosa
-        return redirect()->route('inicioadmin')->with('success', 'Agente eliminado exitosamente');
-    }
+    // Transfiere los contactos al nuevo agente
+    $agenteAntiguo->contactos()->update(['user_id' => $nuevoAgenteId]);
+
+    // Desactiva al agente antiguo
+    $agenteAntiguo->update(['activo' => false]);
+
+    return redirect()->back()->with('success', 'Contactos transferidos exitosamente.');
+}
 }
 
 

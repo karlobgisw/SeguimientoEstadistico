@@ -389,7 +389,16 @@ body {
     color: gray; 
 }
 
+#ver-agenda a{
+    text-decoration: none;
+    color: gray; 
+}
+
 #ver-contactos:hover a{
+    color: white; 
+}
+
+#ver-agenda:hover a{
     color: white; 
 }
 
