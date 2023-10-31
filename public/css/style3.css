@@ -295,6 +295,10 @@ body {
     margin-top: 7%;
 }
 
+.btn.btn-secondary.ag{
+    margin-top: 7%;
+}
+
 .nactividad{
     margin: 0;
 }
@@ -347,7 +351,10 @@ body {
     word-wrap: break-word;
     white-space: normal;
     cursor: default;
+    transition: background-color 0.5s, color 0.2s;
 }
+
+
 
 .cha{
     text-align: center;
@@ -361,6 +368,7 @@ body {
     white-space: normal;
     text-decoration: line-through;
     cursor: default;
+    transition: background-color 0.5s, color 0.2s;
 }
 
 
@@ -433,6 +441,7 @@ body {
 
 .editdelete{
     display: flex;
+    margin-top: -1%;
 }
 
 .espacio{
@@ -483,4 +492,153 @@ body {
 #modal textarea{
     background-color: rgb(245, 245, 245);
 }
+
+#borraractt{
+    display: flex;
+    opacity: 0;
+    justify-content: center;
+    align-items: center;
+    width: 5%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #b7b6b6;
+    fill: #505050;
+    border-radius: 6px;
+    margin-top: -1%;
+    transition: background-color 0.5s, color 0.5s, width 0.5s, opacity 0.5s;
+}
+
+#borraractt.dragging {
+    width: 7%;
+    transition: background-color 0.5s, color 0.5s, width 0.5s;
+}
+
+#borraract{
+    width: 70%;
+    height: 70%;
+}
+
+#snackbar {
+    visibility: hidden; 
+    min-width: 250px; 
+    margin-left: -125px; 
+    background-color: #059931; 
+    color: #fff; 
+    font-weight: bolder;
+    text-align: center; 
+    border-radius: 2px; 
+    padding: 16px; 
+    position: fixed; 
+    z-index: 1; 
+    right: 30px; 
+    bottom: 30px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  #snackbar.show {
+    visibility: visible; 
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+
+  #snackbar2 {
+    visibility: hidden; 
+    min-width: 250px; 
+    margin-left: -125px; 
+    background-color: #990505; 
+    color: #fff; 
+    font-weight: bolder;
+    text-align: center; 
+    border-radius: 2px; 
+    padding: 16px; 
+    position: fixed; 
+    z-index: 1; 
+    right: 30px; 
+    bottom: 30px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  #snackbar2.show {
+    visibility: visible; 
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+
+  #snackbar3 {
+    visibility: hidden; 
+    min-width: 250px; 
+    margin-left: -125px; 
+    background-color: #d69301; 
+    color: #fff; 
+    font-weight: bolder;
+    text-align: center; 
+    border-radius: 2px; 
+    padding: 16px; 
+    position: fixed; 
+    z-index: 1; 
+    right: 30px; 
+    bottom: 30px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  #snackbar3.show {
+    visibility: visible; 
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
 

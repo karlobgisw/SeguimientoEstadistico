@@ -31,6 +31,29 @@ class ActividadController extends Controller
             'user_id' => $user_id,
         ]);
     }
+    public function indexAdmin($id)
+    {
+        $user = Auth::guard('web')->user();
+        if ($user->permisos->type === 'limited') {
+            // Usuario agente
+            $permiso = 'limited';
+        } elseif ($user->permisos->type === 'full') {
+            // Usuario staff
+            $permiso = 'full';
+        }
+
+        $actividades = Actividad::all();
+        $diasSemana = DiaSemana::all();
+        $user_id = auth()->user()->id;
+
+        return view('agendacrear', [
+            'actividades' => $actividades,
+            'diasSemana' => $diasSemana,
+            'permiso' => $permiso,
+            'id' => $id,
+            'user_id' => $user_id
+        ]);
+    }
 
     public function create()
     {

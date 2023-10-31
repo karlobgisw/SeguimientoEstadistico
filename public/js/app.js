@@ -3,11 +3,14 @@ const contenedores = document.querySelectorAll('.dropc');
 var identificador = -1;
 var permiso = document.querySelector('.todo');
 permiso = permiso.getAttribute("permiso");
+var exito = -1;
 
 if(permiso=="limited"){
 cajas.forEach(function(elemento) {
   elemento.setAttribute("draggable", "true");
 });
+
+
 
 document.addEventListener("dragstart", function(event) {
   event.dataTransfer.setData("text/plain", event.target.className); //envias la clase del objeto arrastrado
@@ -22,9 +25,52 @@ document.addEventListener("dragstart", function(event) {
     event.dataTransfer.setData("text/plain3", event.target.getAttribute("data-actividad-id"));
     event.dataTransfer.setData("texto", event.target.textContent);
   }
+
+
 });
 
+document.addEventListener("dragend", function(event) {
+  document.getElementById('borraractt').style.opacity = 0;
+});
+
+var borrar = document.getElementById("borraractt");
+var borrart = document.getElementById("borraract");
+
+borrar.addEventListener('dragenter', function(event) {
+});
+borrar.addEventListener('dragleave', function(event) {
+  event.preventDefault();
+  setTimeout(function () {
+    borrar.style.backgroundColor = '#b7b6b6';
+    borrart.setAttribute('fill', '#505050');
+    borrar.classList.remove('dragging');
+  }, 100);
+});
+borrar.addEventListener('dragover', function(event) {
+  event.preventDefault();
+  setTimeout(function () {
+    borrar.style.backgroundColor = '#bb0d0d';
+    borrart.setAttribute('fill', '#ffffff');
+    borrar.classList.add('dragging');
+  }, 10);
+});
+borrar.addEventListener('drop', function(event) {
+  event.preventDefault();
+  var idArrastrado = event.dataTransfer.getData("id");
+  var idArrastrado = document.getElementById(idArrastrado);
+  idArrastrado.parentNode.removeChild(idArrastrado);
+  borrar.style.backgroundColor = '#b7b6b6';
+  borrart.setAttribute('fill', '#505050');
+  borrar.classList.remove('dragging');
+  document.getElementById('borraractt').style.opacity = 0;
+});
+
+
+
 contenedores.forEach(contenedor => {
+  contenedor.addEventListener('dragstart', e => {
+    document.getElementById('borraractt').style.opacity = 1;
+  });
   contenedor.addEventListener('dragenter', e => {
   });
   contenedor.addEventListener('dragleave', e => {
@@ -74,9 +120,12 @@ contenedores.forEach(contenedor => {
       contenedor.appendChild(actividadarrastrada); //lo agrega al contenedor
       idArrastrado.parentNode.removeChild(idArrastrado);
     }
+
+    document.getElementById('borraractt').style.opacity = 0;
   });
 });
 }
+
 
 if(permiso=="full"){
 var cuadrosDeActividades = document.querySelectorAll(".cuad-act");
@@ -190,405 +239,643 @@ $('#guardar-agenda').click(function() {
   const act_sabado_medio = sabado_medio.querySelectorAll('.cho');
   const act_sabado_ves = sabado_ves.querySelectorAll('.cho');
 
-  if (act_lunes_mañana.length === 0) {
+  $.ajax({
+    type: 'POST',
+    url: checkDuplicateUrl,
+    data: {
+        ano: selectedAno,
+        mes: selectedmes,
+        semana: selectedsemanas,
+    },
+    success: function(response) {
+        if (response.message === 'no') {
+          var x = document.getElementById("snackbar3");
+          x.className = "show";
+          setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        } else {
+          if (act_lunes_mañana.length === 0) {
 
-  } else {
-    act_lunes_mañana.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 1,
-          momento_dia: 'Mañana',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
+          } else {
+            act_lunes_mañana.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 1,
+                  momento_dia: 'Mañana',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_lunes_medio.length === 0) {
+        
+          } else {
+            act_lunes_medio.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 1,
+                  momento_dia: 'Tarde',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_lunes_ves.length === 0) {
+        
+          } else {
+            act_lunes_ves.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 1,
+                  momento_dia: 'Noche',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_martes_mañana.length === 0) {
+        
+          } else {
+            act_martes_mañana.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 2,
+                  momento_dia: 'Mañana',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_martes_medio.length === 0) {
+        
+          } else {
+            act_martes_medio.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 2,
+                  momento_dia: 'Tarde',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_martes_ves.length === 0) {
+        
+          } else {
+            act_martes_ves.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 2,
+                  momento_dia: 'Noche',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_miercoles_mañana.length === 0) {
+        
+          } else {
+            act_miercoles_mañana.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 3,
+                  momento_dia: 'Mañana',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_miercoles_medio.length === 0) {
+        
+          } else {
+            act_miercoles_medio.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 3,
+                  momento_dia: 'Tarde',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_miercoles_ves.length === 0) {
+        
+          } else {
+            act_miercoles_ves.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 3,
+                  momento_dia: 'Noche',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_jueves_mañana.length === 0) {
+        
+          } else {
+            act_jueves_mañana.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 4,
+                  momento_dia: 'Mañana',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_jueves_medio.length === 0) {
+        
+          } else {
+            act_jueves_medio.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 4,
+                  momento_dia: 'Tarde',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_jueves_ves.length === 0) {
+        
+          } else {
+            act_jueves_ves.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 4,
+                  momento_dia: 'Noche',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_viernes_mañana.length === 0) {
+        
+          } else {
+            act_viernes_mañana.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 5,
+                  momento_dia: 'Mañana',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_viernes_medio.length === 0) {
+        
+          } else {
+            act_viernes_medio.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 5,
+                  momento_dia: 'Tarde',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_viernes_ves.length === 0) {
+        
+          } else {
+            act_viernes_ves.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 5,
+                  momento_dia: 'Noche',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_sabado_mañana.length === 0) {
+        
+          } else {
+            act_sabado_mañana.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 6,
+                  momento_dia: 'Mañana',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_sabado_medio.length === 0) {
+        
+          } else {
+            act_sabado_medio.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 6,
+                  momento_dia: 'Tarde',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
+          if (act_sabado_ves.length === 0) {
+        
+          } else {
+            act_sabado_ves.forEach(actividades => {
+              const si = actividades.getAttribute("data-actividad-id");
+              const actividadID = parseInt(si, 10);
+                $.ajax({
+                type: 'POST',
+                url: agendaStoreUrl,
+                data: {
+                  dia_semana_id: 6,
+                  momento_dia: 'Noche',
+                  estado: 0,
+                  actividad_id: actividadID,
+                  user_id: user_id,
+                  ano: selectedAno,
+                  mes: selectedmes,
+                  semana: selectedsemanas,
+                },
+                success: function(response) {
+                  if(response.message == 'si'){
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                  }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  var x = document.getElementById("snackbar2");
+                  x.className = "show";
+                  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+              });
+            });
+          }
         }
-      });
-    });
-  }
-if (act_lunes_medio.length === 0) {
-
-  } else {
-    act_lunes_medio.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 1,
-          momento_dia: 'Tarde',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-  if (act_lunes_ves.length === 0) {
-
-  } else {
-    act_lunes_ves.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 1,
-          momento_dia: 'Noche',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-  if (act_martes_mañana.length === 0) {
-
-  } else {
-    act_martes_mañana.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 2,
-          momento_dia: 'Mañana',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-  if (act_martes_medio.length === 0) {
-
-  } else {
-    act_martes_medio.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 2,
-          momento_dia: 'Tarde',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-  if (act_martes_ves.length === 0) {
-
-  } else {
-    act_martes_ves.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 2,
-          momento_dia: 'Noche',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-  if (act_miercoles_mañana.length === 0) {
-
-  } else {
-    act_miercoles_mañana.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 3,
-          momento_dia: 'Mañana',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-  if (act_miercoles_medio.length === 0) {
-
-  } else {
-    act_miercoles_medio.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 3,
-          momento_dia: 'Tarde',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-  if (act_miercoles_ves.length === 0) {
-
-  } else {
-    act_miercoles_ves.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 3,
-          momento_dia: 'Noche',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-  if (act_jueves_mañana.length === 0) {
-
-  } else {
-    act_jueves_mañana.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 4,
-          momento_dia: 'Mañana',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-  if (act_jueves_medio.length === 0) {
-
-  } else {
-    act_jueves_medio.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 4,
-          momento_dia: 'Tarde',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-  if (act_jueves_ves.length === 0) {
-
-  } else {
-    act_jueves_ves.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 4,
-          momento_dia: 'Noche',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-  if (act_viernes_mañana.length === 0) {
-
-  } else {
-    act_viernes_mañana.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 5,
-          momento_dia: 'Mañana',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-  if (act_viernes_medio.length === 0) {
-
-  } else {
-    act_viernes_medio.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 5,
-          momento_dia: 'Tarde',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-  if (act_viernes_ves.length === 0) {
-
-  } else {
-    act_viernes_ves.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 5,
-          momento_dia: 'Noche',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-  if (act_sabado_mañana.length === 0) {
-
-  } else {
-    act_sabado_mañana.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 6,
-          momento_dia: 'Mañana',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-  if (act_sabado_medio.length === 0) {
-
-  } else {
-    act_sabado_medio.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 6,
-          momento_dia: 'Tarde',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-  if (act_sabado_ves.length === 0) {
-
-  } else {
-    act_sabado_ves.forEach(actividades => {
-      const si = actividades.getAttribute("data-actividad-id");
-      const actividadID = parseInt(si, 10);
-        $.ajax({
-        type: 'POST',
-        url: agendaStoreUrl,
-        data: {
-          dia_semana_id: 6,
-          momento_dia: 'Noche',
-          estado: 0,
-          actividad_id: actividadID,
-          user_id: user_id,
-          ano: selectedAno,
-          mes: selectedmes,
-          semana: selectedsemanas,
-        }
-      });
-    });
-  }
-
-  window.location.reload();
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      var x = document.getElementById("snackbar2");
+      x.className = "show";
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+  });
 });
+
+
 
 
 

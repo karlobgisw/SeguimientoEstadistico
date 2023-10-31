@@ -64,9 +64,9 @@
             </div>
           </div>
           @if ($permiso == 'full')
-          <button type="button" class="btn btn-primary ag" id="new">
+          <a href="{{ url("/actividadesAdmin/{$id}") }}" type="button" class="btn btn-primary ag" id="new2">
             Ver Actividades
-          </button>
+          </a>
           @endif
           @if ($permiso == 'limited')
           <button type="button" class="btn btn-primary ag" id="new">

@@ -12,6 +12,11 @@
     <header>
         @include('nav')
     </header>
+    <div id="borraractt">
+      <svg xmlns="http://www.w3.org/2000/svg" id="borraract" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+      </svg>
+    </div>
     <div class="todo" permiso="{{$permiso}}">
       <div class="botonson" id="toggleButton2">
         >
@@ -188,9 +193,14 @@
             </div>
          </div>
          <div class="editdelete">
-          @if ($permiso == "limited")
-          <button type="button" class="btn btn-primary ag" id="editaragenda" data-bs-toggle="modal" data-bs-target="#modal_agenda">Guardar Agenda</button>
+          @if ($permiso == "full")
+            <a href="{{ route('ver-agenda', ['id' => $id]) }}" class="btn btn-secondary ag"><-- Agendas</a>
           @endif
+          @if ($permiso == "limited")
+            <a href="{{ route('agendas') }}" class="btn btn-secondary ag"><-- Agendas</a>
+            <button type="button" class="btn btn-primary ag" id="editaragenda" data-bs-toggle="modal" data-bs-target="#modal_agenda">Guardar Agenda</button>
+          @endif
+         </div>
           <div class="modal fade" id="modal_agenda" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content" id="modal">
@@ -239,17 +249,20 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary" id="guardar-agenda">Guardar</button>
+                  <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="guardar-agenda">Guardar</button>
                 </div>
-                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div id="snackbar">Agenda Guardada</div>
+    <div id="snackbar2">Hubo un error inesperado, Intenta de nuevo</div>
+    <div id="snackbar3">Hay una agenda ya registrada en esta fecha</div>
     <script>
       var agendaStoreUrl = "{{ route('agendas') }}";
+      var checkDuplicateUrl = "{{ route('agendasCheck') }}";
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

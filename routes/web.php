@@ -13,6 +13,7 @@ use App\Http\Controllers\InicioAdminController; // Importa el controlador
 //RUTAS_ActividadController
 
 Route::get('/actividades', [ActividadController::class, 'index'])->name('actividades')->middleware('auth');
+Route::get('/actividadesAdmin/{id}', [ActividadController::class, 'indexAdmin'])->name('actividadesAdmin')->middleware('auth');
 
 // Mostrar el formulario de creación (puedes omitir esta ruta si no es necesaria sin vistas)
 //Route::get('/actividades/create', [ActividadController::class, 'create']);
@@ -50,6 +51,7 @@ Route::get('/agenda/{ano}/{mes}/{semana}/{id}', [AgendaController::class, 'ver_a
 
 // Ruta para almacenar una nueva agenda sin protección CSRF
 Route::post('/agendas', [AgendaController::class, 'store'])->withoutMiddleware(['web']);
+Route::post('/agendasCheck', [AgendaController::class, 'checkDuplicados'])->withoutMiddleware(['web'])->name('agendasCheck');;
 
 // Ruta para mostrar el formulario de edición de agenda (no es necesario para una API sin vistas)
 

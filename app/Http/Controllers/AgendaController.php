@@ -208,18 +208,45 @@ class AgendaController extends Controller
 
     public function store(Request $request)
     {
-        $agenda = new Agenda();
-        $agenda->dia_semana_id = $request->input('dia_semana_id');
-        $agenda->momento_dia = $request->input('momento_dia');
-        $agenda->estado = $request->input('estado');
-        $agenda->actividad_id = $request->input('actividad_id');
-        $agenda->user_id = $request->input('user_id');
-        $agenda->ano = $request->input('ano');
-        $agenda->mes = $request->input('mes');
-        $agenda->semana = $request->input('semana');
+        $dia_semana_id = $request->input('dia_semana_id');
+        $momento_dia = $request->input('momento_dia');
+        $actividad_id = $request->input('actividad_id');
+        $user_id = $request->input('user_id');
+        $semana = $request->input('semana');
+        $mes = $request->input('mes');
+        $estado = $request->input('estado');
+        $ano = $request->input('ano');
 
+        $agenda = new Agenda();
+        $agenda->dia_semana_id = $dia_semana_id;
+        $agenda->momento_dia = $momento_dia;
+        $agenda->actividad_id = $actividad_id;
+        $agenda->user_id = $user_id;
+        $agenda->semana = $semana;
+        $agenda->mes = $mes;
+        $agenda->estado = $estado;
+        $agenda->ano = $ano;
+    
         $agenda->save();
-        return back();
+        return response()->json(['message' => 'si']);
+    }
+
+    public function checkDuplicados(Request $request)
+    {
+        $ano = $request->input('ano');
+        $mes = $request->input('mes');
+        $semana = $request->input('semana');
+    
+        $existingRecord = Agenda::where('mes', $mes)
+            ->where('ano', $ano)
+            ->where('semana', $semana)
+            ->count();
+    
+        if ($existingRecord > 0) {
+            return response()->json(['message' => 'no']);
+        } else {
+            return response()->json(['message' => 'si']);
+        }
     }
 
     public function edit($id)
