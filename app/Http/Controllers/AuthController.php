@@ -39,7 +39,7 @@ class AuthController extends Controller
             return redirect()->route('menu');
         } elseif ($user->permisos->type === 'full') {
             // Usuario staff
-            return redirect()->route('inicioadmin');
+            return redirect()->route('menuadmin');
         }
     }
 }

@@ -9,6 +9,8 @@ use App\Http\Controllers\LogoutController; // Importa el controlador
 use App\Http\Controllers\ContactoController; // Importa el controlador
 use App\Http\Controllers\FuenteContactoController; // Importa el controlador
 use App\Http\Controllers\InicioAdminController; // Importa el controlador
+use App\Http\Controllers\MenuAdminController; // Importa el controlador
+
 
 //RUTAS_ActividadController
 
@@ -132,3 +134,4 @@ Route::get('/obtener-contactos/{id}', 'InicioAdminController@obtenerContactos');
 
 Route::post('/transferir-contactos', [InicioAdminController::class, 'transferirContactos'])->name('transferir-contactos');
 
+Route::get('/menuadmin', [MenuAdminController::class, 'show'])->name('menuadmin')->middleware('auth.redirect', 'auth', 'staff');

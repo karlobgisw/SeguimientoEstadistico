@@ -10,6 +10,9 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           @if($permiso == 'full')
           <li class="nav-item">
+            <a class="nav-link letras" id="nav-item" aria-current="page" href="{{ route('menuadmin') }}">Menu</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link letras" id="nav-item" aria-current="page" href="{{ route('inicioadmin') }}">Agentes</a>
           </li>
           <li class="nav-item">
