@@ -43,10 +43,10 @@ public function store(Request $request)
         'fuente_contacto_id' => 'required|integer|exists:fuentes_contacto,id',
         'posible' => 'nullable|string|max:255',
         'clasificacion' => 'nullable|string|max:255',
-        'llamada' => 'nullable|boolean',
-        'contestada' => 'nullable|boolean',
-        'interesado' => 'nullable|boolean',
-        'cita' => 'nullable|boolean',
+        'llamada' => 'filled|boolean',
+        'contestada' => 'filled|boolean',
+        'interesado' => 'filled|boolean',
+        'cita' => 'filled|boolean',
         'clave_sir' => 'nullable|boolean',
         'fovissste' => 'nullable|boolean',
         'infonavit' => 'nullable|boolean',
@@ -75,10 +75,10 @@ public function store(Request $request)
     $contacto->clasificacion = $request->input('clasificacion');
 
     // Convertimos los campos booleanos a enteros
-    $contacto->llamada = $request->input('llamada') ? 1 : 0;
-    $contacto->contestada = $request->input('contestada') ? 1 : 0;
-    $contacto->interesado = $request->input('interesado') ? 1 : 0;
-    $contacto->cita = $request->input('cita') ? 1 : 0;
+    $contacto->llamada = $request->has('llamada');
+    $contacto->contestada = $request->has('contestada');
+    $contacto->interesado = $request->has('interesado');
+    $contacto->cita = $request->has('cita');
     $contacto->clave_sir = $request->input('clave_sir') ? 1 : 0;
     $contacto->fovissste = $request->input('fovissste') ? 1 : 0;
     $contacto->infonavit = $request->input('infonavit') ? 1 : 0;
@@ -137,7 +137,36 @@ public function destroy($id)
 }
 
 
+public function actualizarCheckbox(Request $request, $id)
+{
+    $campo = $request->input('campo');
+    $valor = $request->input('valor');
     
+
+    try {
+    // Validar que el campo enviado es uno de los campos permitidos
+    $camposPermitidos = ['llamada', 'contestada', 'interesado', 'cita'];
+    if (!in_array($campo, $camposPermitidos)) {
+        return response()->json(['error' => 'Campo no permitido'], 400);
+    }
+
+    // Obtener el contacto de la base de datos
+    $contacto = Contacto::find($id);
+
+    if (!$contacto) {
+        return response()->json(['error' => 'Contacto no encontrado'], 404);
+    }
+
+    // Actualizar el valor del campo en el modelo y guardar en la base de datos
+    $contacto->$campo = $valor;
+    $contacto->save();
+
+    return response()->json(['success' => true]);
+
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
 
 }
 

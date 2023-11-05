@@ -66,72 +66,25 @@ $fuentes_contacto = FuenteContacto::all();
                         </div>
 
                         <div class="mb-3">
-                            <label for="clasificacion" class="form-label">Clasificacion:</label>  
+                            <label for="clasificacion" class="form-label">Clasificación:</label>  
                             <select id="clasificacion" name="clasificacion" class="form-select" nullable>
                                 <option value="opcion1">---</option>
                                 <option text="A">A</option>
                                 <option text="B">B</option>
+                                <option text="C">C</option>
+                                <option text="D">D</option>
                             </select>
                         </div>
 
                         <div class="mb-3">
-                            <label for="llamada" class="form-label">LLamada:</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="llamada" value="1">
-                                <label class="form-check-label">Verdadero</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="llamada" value="0">
-                                <label class="form-check-label">Falso</label>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="contestada" class="form-label">Contestada:</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="contestada" value="1">
-                                <label class="form-check-label">Verdadero</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="contestada" value="0">
-                                <label class="form-check-label">Falso</label>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="interesado" class="form-label">Interesado:</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="interesado" value="1">
-                                <label class="form-check-label">Verdadero</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="interesado" value="0">
-                                <label class="form-check-label">Falso</label>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="cita" class="form-label">Cita:</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="cita" value="1">
-                                <label class="form-check-label">Verdadero</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="cita" value="0">
-                                <label class="form-check-label">Falso</label>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="llamada" class="form-label">LLamada:</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="llamada" value="1">
-                                <label class="form-check-label">Verdadero</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="llamada" value="0">
-                                <label class="form-check-label">Falso</label>
-                            </div>
+                        <label for="llamada">Llamada</label>
+                        <input type="checkbox" name="llamada" value="1">
+                        <label for="contestada">Contestada</label>
+                        <input type="checkbox" name="contestada" value="1">
+                        <label for="interesado">Interesado</label>
+                        <input type="checkbox" name="interesado" value="1">
+                        <label for="cita">Cita</label>
+                        <input type="checkbox" name="cita" value="1">
                         </div>
 
                         <div class="mb-3">
@@ -189,7 +142,7 @@ $fuentes_contacto = FuenteContacto::all();
 
                         <div class="mb-3">
                             <label for="valor" class="form-label">Valor:</label>
-                            <input type="text" class="form-control" name="valor" placeholder="" required>
+                            <input type="text" class="form-control" name="valor" placeholder="">
                         </div>
 
                         <div class="mb-3">
@@ -254,25 +207,79 @@ $fuentes_contacto = FuenteContacto::all();
         </thead>
         <tbody>
         @foreach($contactos as $contacto)
-                <tr data-contacto="{{ json_encode($contacto) }}" class="editar-contacto">
-                    <td class="text-center">{{ $contacto->nombre }}</td>
-                    <td class="text-center">{{ $contacto->telefono }}</td>
-                    <td class="text-center">{{ $contacto->correo }}</td>
-                    <td class="text-center">{{ $contacto->fuenteContacto['nombre_fuente'] }}</td>
-                    <td class="text-center">{{ $contacto->posible }}</td>
-                    <td class="text-center">{{ $contacto->clasificacion }}</td>
-                    <td class="text-center">{{ $contacto->llamada ? 'Verdadero' : 'Falso' }}</td>
-                    <td class="text-center">{{ $contacto->contestada ? 'Verdadero' : 'Falso' }}</td>
-                    <td class="text-center">{{ $contacto->interesado ? 'Verdadero' : 'Falso' }}</td>
-                    <td class="text-center">{{ $contacto->cita ? 'Verdadero' : 'Falso' }}</td>
-                    <td class="text-center">{{ $contacto->clave_sir ? 'Verdadero' : 'Falso' }}</td>
-                    <td class="text-center">{{ $contacto->fovissste ? 'Verdadero' : 'Falso' }}</td>
-                    <td class="text-center">{{ $contacto->infonavit ? 'Verdadero' : 'Falso' }}</td>
-                    <td class="text-center">{{ $contacto->bancario ? 'Verdadero' : 'Falso' }}</td>
-                    <td class="text-center">{{ $contacto->comentario }}</td>
-                    <td class="text-center">{{ $contacto->valor }}</td>
-                    <td class="text-center">{{ $contacto->semana }}</td>
-                    <td class="text-center">{{ $contacto->mes }}</td>
+                <tr>
+                    <td class="text-center">
+                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{ $contacto->nombre }}</div>
+                    </td>
+                    <td class="text-center">
+                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{ $contacto->telefono }}</div>
+                    </td>
+                    <td class="text-center">
+                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{ $contacto->correo }}</div>
+                    </td>
+                    <td class="text-center">
+                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{ $contacto->fuenteContacto['nombre_fuente'] }}</div>
+                    </td>
+                    <td class="text-center">
+                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{ $contacto->posible }}</div>
+                    </td>
+                    <td class="text-center">
+                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{ $contacto->clasificacion }}</div>
+                    </td>
+
+                    <td class="text-center">
+                    <input
+                        type="checkbox"
+                        class="checkbox-actualizar"
+                        data-id="{{ $contacto->id }}"
+                        data-campo="llamada"
+                        {{ $contacto->llamada ? 'checked' : '' }}
+                    >
+                    </td>
+                    <td class="text-center">
+                    <input
+                        type="checkbox"
+                        class="checkbox-actualizar"
+                        data-id="{{ $contacto->id }}"
+                        data-campo="contestada"
+                        {{ $contacto->contestada ? 'checked' : '' }}
+                    >
+                    </td>
+                    <td class="text-center">
+                    <input
+                        type="checkbox"
+                        class="checkbox-actualizar"
+                        data-id="{{ $contacto->id }}"
+                        data-campo="interesado"
+                        {{ $contacto->interesado ? 'checked' : '' }}
+                    >
+                    </td>
+                    <td class="text-center">
+                    <input
+                        type="checkbox"
+                        class="checkbox-actualizar"
+                        data-id="{{ $contacto->id }}"
+                        data-campo="cita"
+                        {{ $contacto->cita ? 'checked' : '' }}
+                    >
+                    </td>
+                    <td class="text-center">
+                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{  $contacto->clave_sir ? 'Verdadero' : 'Falso' }}</div>
+                    </td><td class="text-center">
+                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{  $contacto->fovissste ? 'Verdadero' : 'Falso' }}</div>
+                    </td><td class="text-center">
+                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{  $contacto->infonavit ? 'Verdadero' : 'Falso' }}</div>
+                    </td><td class="text-center">
+                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{  $contacto->bancario ? 'Verdadero' : 'Falso' }}</div>
+                    </td><td class="text-center">
+                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{ $contacto->comentario }}</div>
+                    </td><td class="text-center">
+                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{ $contacto->valor }}</div>
+                    </td><td class="text-center">
+                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{ $contacto->semana }}</div>
+                    </td><td class="text-center">
+                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{ $contacto->mes }}</div>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -281,20 +288,44 @@ $fuentes_contacto = FuenteContacto::all();
                 
 
    
-<<!-- Modal para editar el teléfono y correo -->
+<<!-- Modal para editar-->
 <div class="modal fade" id="modalEditarContacto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<style>
+    .custom-modal {
+        max-width: 40%; /* Ancho máximo personalizado */
+        width: 800px; /* Ancho fijo personalizado */
+        max-height: 80vh; /* Altura máxima personalizada en relación con la altura del viewport */
+        height: 400px; /* Altura fija personalizada */
+    }
+</style>
+
+<div class="modal-dialog custom-modal">
         <div class="modal-content" id="modalEditarContacto1">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar Contacto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+        <div class="modal-header" style="position: sticky; top: 0; background-color: white; z-index: 1000;">
+            <h5 class="modal-title" id="exampleModalLabel">Editar Contacto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+
                 <form id="formEditarContacto" method="POST" action="{{ route('contacto.update', ['id' => '__ID__']) }}">
                     @method('PATCH')
                     @csrf
                     <input type="hidden" id="edit_user_id" name="user_id" value="{{ Auth::user()->id }}">
                     <input type="hidden" id="edit_contacto_id" name="id">
+                    <div class="mb-3">
+                        <label for="llamada">Llamada</label>
+                        <input type="hidden" name="llamada" value="0">
+                        <input type="checkbox" name="llamada" id="edit_llamada" value="1">
+                        <label for="contestada">Contestada</label>
+                        <input type="hidden" name="contestada" value="0">
+                        <input type="checkbox" name="contestada" id="edit_contestada" value="1">
+                        <label for="interesado">Interesado</label>
+                        <input type="hidden" name="interesado" value="0">
+                        <input type="checkbox" name="interesado" id="edit_interesado" value="1">
+                        <label for="cita">Cita</label>
+                        <input type="hidden" name="cita" value="0">
+                        <input type="checkbox" name="cita" id="edit_cita" value="1">
+                    </div> 
                     <div class="mb-3">
                         <label for="edit_nombre" class="form-label">Nombre:</label>
                         <input type="text" class="form-control" id="edit_nombre" name="nombre">
@@ -330,52 +361,13 @@ $fuentes_contacto = FuenteContacto::all();
                         <select class="form-select" id="edit_clasificacion" name="clasificacion">
                             <option value="A">A</option>
                             <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
                         </select>
                     </div> 
-                    <div class="mb-3">
-                        <label for="edit_llamada" class="form-label">Llamada:</label>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="llamada" id="edit_llamada_si" value="1">
-                        <label class="form-check-label" for="edit_llamada_si">Verdadero</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="llamada" id="edit_llamada_no" value="0">
-                        <label class="form-check-label" for="edit_llamada_no">Falso</label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit_contestada" class="form-label">Contestada:</label>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="contestada" id="edit_contestada_si" value="1">
-                        <label class="form-check-label" for="edit_contestada_si">Verdadero</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="contestada" id="edit_contestada_no" value="0">
-                        <label class="form-check-label" for="edit_contestada_no">Falso</label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit_interesado" class="form-label">Interesado:</label>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="interesado" id="edit_interesado_si" value="1">
-                        <label class="form-check-label" for="edit_interesado_si">Verdadero</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="interesado" id="edit_interesado_no" value="0">
-                        <label class="form-check-label" for="edit_interesado_no">Falso</label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit_cita" class="form-label">Cita:</label>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="cita" id="edit_cita_si" value="1">
-                        <label class="form-check-label" for="edit_cita_si">Verdadero</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="cita" id="edit_cita_no" value="0">
-                        <label class="form-check-label" for="edit_cita_no">Falso</label>
-                        </div>
-                    </div>
+                    
+                    
+                    
                     <div class="mb-3">
                         <label for="edit_clave_sir" class="form-label">Clave SIR:</label>
                         <div class="form-check form-check-inline">
@@ -456,7 +448,6 @@ $fuentes_contacto = FuenteContacto::all();
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 @if ($permiso == "limited")
                 <button type="submit" class="btn btn-primary">Actualizar</button>
                 <button type="button" class="btn btn-danger" id="btnEliminarContacto">Eliminar</button>
@@ -466,47 +457,70 @@ $fuentes_contacto = FuenteContacto::all();
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var botonesEditarContacto = document.querySelectorAll('.editar-contacto');
+        var checkboxes = document.querySelectorAll('.checkbox-actualizar');
 
-        botonesEditarContacto.forEach(function (boton) {
-            boton.addEventListener('click', function () {
-                var contacto = JSON.parse(boton.getAttribute('data-contacto'));
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                var id = checkbox.getAttribute('data-id');
+                var campo = checkbox.getAttribute('data-campo');
+                var valor = checkbox.checked ? 1 : 0;
 
-                // Llenar los campos en el formulario con los datos del contacto
-                document.getElementById('edit_contacto_id').value = contacto.id;
-                document.getElementById('edit_nombre').value = contacto.nombre;
-                document.getElementById('edit_telefono').value = contacto.telefono;
-                document.getElementById('edit_correo').value = contacto.correo;
+                // Envia una solicitud AJAX para actualizar el checkbox en el servidor
+                axios.patch(`/actualizar-checkbox/${id}`, {
+                    campo: campo,
+                    valor: valor
+                })
+                .then(function (response) {
+                    console.log(response.data);
+                    // Puedes realizar acciones adicionales después de una actualización exitosa
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+            });
+        });
+    });
+</script>
 
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+    var botonesEditarContacto = document.querySelectorAll('.editar-contacto');
 
-                // Seleccionar la fuente de contacto actual
-                var fuenteContactoSelect = document.getElementById('edit_fuente_contacto');
-                for (var i = 0; i < fuenteContactoSelect.options.length; i++) {
-                    if (fuenteContactoSelect.options[i].value == contacto.fuente_contacto_id) {
-                        fuenteContactoSelect.options[i].selected = true;
-                    }
+    botonesEditarContacto.forEach(function (boton) {
+        boton.addEventListener('click', function () {
+            var contacto = JSON.parse(boton.getAttribute('data-contacto'));
+
+            // Llenar los campos en el formulario con los datos del contacto
+            document.getElementById('edit_contacto_id').value = contacto.id;
+            document.getElementById('edit_nombre').value = contacto.nombre;
+            document.getElementById('edit_telefono').value = contacto.telefono;
+            document.getElementById('edit_correo').value = contacto.correo;
+
+            // Seleccionar la fuente de contacto actual
+            var fuenteContactoSelect = document.getElementById('edit_fuente_contacto');
+            for (var i = 0; i < fuenteContactoSelect.options.length; i++) {
+                if (fuenteContactoSelect.options[i].value == contacto.fuente_contacto_id) {
+                    fuenteContactoSelect.options[i].selected = true;
                 }
+            }
 
-                // Seleccionar la opción de "posible" actual
-                document.getElementById('edit_posible').value = contacto.posible;
+            // Seleccionar la opción de "posible" actual
+            document.getElementById('edit_posible').value = contacto.posible;
 
-                // Seleccionar la opción de "clasificación" actual
-                document.getElementById('edit_clasificacion').value = contacto.clasificacion;
+            // Seleccionar la opción de "clasificación" actual
+            document.getElementById('edit_clasificacion').value = contacto.clasificacion;
 
-                // Seleccionar la opción de "contestada" actual
-                document.getElementById('edit_llamada_si').checked = contacto.llamada == 1;
-                document.getElementById('edit_llamada_no').checked = contacto.llamada == 0;
-                document.getElementById('edit_contestada_si').checked = contacto.contestada == 1;
-                document.getElementById('edit_contestada_no').checked = contacto.contestada == 0;
-                document.getElementById('edit_interesado_si').checked = contacto.interesado == 1;
-                document.getElementById('edit_interesado_no').checked = contacto.interesado == 0;
-                document.getElementById('edit_cita_si').checked = contacto.cita == 1;
-                document.getElementById('edit_cita_no').checked = contacto.cita == 0;
+            // Seleccionar la opción de "contestada" actual
+            document.getElementById('edit_llamada').checked = contacto.llamada;
+            document.getElementById('edit_contestada').checked = contacto.contestada;
+            document.getElementById('edit_interesado').checked = contacto.interesado;
+            document.getElementById('edit_cita').checked = contacto.cita;
                 document.getElementById('edit_clave_sir_si').checked = contacto.clave_sir == 1;
                 document.getElementById('edit_clave_sir_no').checked = contacto.clave_sir == 0;
                 document.getElementById('edit_fovissste_si').checked = contacto.fovissste == 1;
@@ -515,28 +529,29 @@ $fuentes_contacto = FuenteContacto::all();
                 document.getElementById('edit_infonavit_no').checked = contacto.infonavit == 0;
                 document.getElementById('edit_bancario_si').checked = contacto.bancario == 1;
                 document.getElementById('edit_bancario_no').checked = contacto.bancario == 0;
-               
-                // Llenar el área de texto con el comentario actual
-                document.getElementById('edit_comentario').value = contacto.comentario;
 
-                // Llenar el campo "valor" con el valor actual
-                document.getElementById('edit_valor').value = contacto.valor;
+            // Llenar el área de texto con el comentario actual
+            document.getElementById('edit_comentario').value = contacto.comentario;
 
-                 // Seleccionar la opción de "semana" actual
-                document.getElementById('edit_semana').value = contacto.semana;
+            // Llenar el campo "valor" con el valor actual
+            document.getElementById('edit_valor').value = contacto.valor;
 
-                 // Seleccionar la opción de "mes" actual
-                 document.getElementById('edit_mes').value = contacto.mes;
+            // Seleccionar la opción de "semana" actual
+            document.getElementById('edit_semana').value = contacto.semana;
 
-                // Actualizar la acción del formulario con el ID del contacto
-                document.getElementById('formEditarContacto').action = '{{ url('contacto') }}/' + contacto.id;
+            // Seleccionar la opción de "mes" actual
+            document.getElementById('edit_mes').value = contacto.mes;
 
-                // Abrir el modal de edición
-                var modalEditarContacto = new bootstrap.Modal(document.getElementById('modalEditarContacto'));
-                modalEditarContacto.show();
-            });
+            // Actualizar la acción del formulario con el ID del contacto
+            document.getElementById('formEditarContacto').action = '{{ url('contacto') }}/' + contacto.id;
+
+            // Abrir el modal de edición
+            var modalEditarContacto = new bootstrap.Modal(document.getElementById('modalEditarContacto'));
+            modalEditarContacto.show();
         });
     });
+});
+
 </script>
 
 <script>

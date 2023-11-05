@@ -23,6 +23,12 @@
           <li class="nav-item">
             <a class="nav-link letras" id="nav-item" aria-current="page" href="{{ route('menu') }}">Menu</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link letras" id="nav-item" aria-current="page" href="{{ route('agendas') }}">Agenda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link letras" id="nav-item" aria-current="page" href="{{ route('contactos') }}">Contactos</a>
+          </li>
           @endif
         </ul>
         <div class="d-flex">

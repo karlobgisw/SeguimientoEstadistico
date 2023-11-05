@@ -135,3 +135,5 @@ Route::get('/obtener-contactos/{id}', 'InicioAdminController@obtenerContactos');
 Route::post('/transferir-contactos', [InicioAdminController::class, 'transferirContactos'])->name('transferir-contactos');
 
 Route::get('/menuadmin', [MenuAdminController::class, 'show'])->name('menuadmin')->middleware('auth.redirect', 'auth', 'staff');
+
+Route::patch('/actualizar-checkbox/{id}', [ContactoController::class, 'actualizarCheckbox'])->name('contacto.actualizar.checkbox');
