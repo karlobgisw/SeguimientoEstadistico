@@ -90,7 +90,26 @@ $fuentes_contacto = FuenteContacto::all();
                 </select>
             </div>
         </div>
-
+        <div class="row mb-3">
+    <div class="col">
+        <label for="genero" class="form-label">Género:</label>
+        <select id="genero" name="genero" class="form-select" required>
+            <option value="" selected>Elige</option>
+            <option value="Hombre">Hombre</option>
+            <option value="Mujer">Mujer</option>
+        </select>
+    </div>
+    <div class="col">
+        <label for="rangoEdad" class="form-label">Rango de Edad:</label>
+        <select id="rangoEdad" name="rango_edad" class="form-select" required>
+            <option value="" selected>Elige</option>
+            <option value="20-30">20-30</option>
+            <option value="30-40">30-40</option>
+            <option value="40-50">40-50</option>
+            <option value="50-60">50-60</option>
+        </select>
+    </div>
+</div>
         <div class="row">
             <div class="col">
                 <input type="submit" value="Guardar" class="btn btn-primary mt-3">
