@@ -167,6 +167,89 @@ public function actualizarCheckbox(Request $request, $id)
         return response()->json(['error' => $e->getMessage()], 500);
     }
 }
+public function Estadistica(Request $request){
+    $user = Auth::guard('web')->user();
+    if ($user->permisos->type === 'limited') {
+        // Usuario agente
+        $permiso = 'limited';
+    } elseif ($user->permisos->type === 'full') {
+        // Usuario staff
+        $permiso = 'full';
+    }
 
+
+    $user_id = $request->input('user_id');
+    $contactData = Contacto::where('user_id', $user_id)
+    ->select('mes', 'semana')
+    ->distinct()
+    ->get();
+
+    $diccionario = [];
+
+    foreach ($contactData as $item) {
+        $mes = $item->mes;
+        $semana = $item->semana;
+
+        if (!isset($diccionario[$mes])) {
+            $diccionario[$mes] = [];
+        }
+
+        $diccionario[$mes][] = $semana;
+    }
+
+    $fecha = $request->input('inputt');
+    $parts = explode('/', $fecha);
+    if (count($parts) === 2) {
+        list($mess, $semanaa) = $parts;
+        $llamadas = Contacto::where('user_id', $user_id)->where('mes', $mess)->where('semana', $semanaa)->where('llamada', 1)->get();
+        $llamadas = $llamadas->count();
+    
+        $contestadas = Contacto::where('user_id', $user_id)->where('mes', $mess)->where('semana', $semanaa)->where('contestada', 1)->get();
+        $contestadas = $contestadas->count();
+    
+        $interesados = Contacto::where('user_id', $user_id)->where('mes', $mess)->where('semana', $semanaa)->where('interesado', 1)->get();
+        $interesados = $interesados->count();
+    
+        $citas = Contacto::where('user_id', $user_id)->where('mes', $mess)->where('semana', $semanaa)->where('cita', 1)->get();
+        $citas = $citas->count();
+
+        $tipos = Contacto::where('user_id', $user_id)->where('mes', $mess)->where('semana', $semanaa)->with('fuenteContacto')->get();
+        $tipo = $tipos->pluck('fuenteContacto.nombre_fuente');
+
+        $tabla = [];
+        foreach ($tipos as $tip) {
+            $nombreFuente = $tip->fuenteContacto->nombre_fuente;
+            
+            if (!isset($tabla[$nombreFuente])) {
+                $tabla[$nombreFuente] = [0, 0]; // Inicializar el array con dos elementos
+            }
+            
+            // Incrementar el contador del nombre fuente
+            $tabla[$nombreFuente][0]++;
+            
+            // Si el valor de 'cita' es igual a 1, incrementar la suma
+            if ($tip->cita == 1) {
+                $tabla[$nombreFuente][1]++;
+            }
+        }
+
+        $citas2 = Contacto::where('user_id', $user_id)->where('mes', $mess)->where('semana', $semanaa)->get();
+        $citas2 = $citas2->pluck('cita');
+
+        $contactosss= Contacto::where('user_id', $user_id)->where('mes', $mess)->where('semana', $semanaa)->get();
+        $contactosss = $contactosss->pluck('cita');
+        $contactosss = $contactosss->count();
+
+        return view('stats', ['contactos' => $contactosss,'citas2'=>$citas2,'tabla' => $tabla,'tipo' => $tipo,'semanapuesta' => $semanaa, 'mespuesto' => $mess, 'citas' => $citas,'interesados' => $interesados,'contestadas' => $contestadas,'llamadas' => $llamadas, 'diccionario' => $diccionario, 'id'=> $user_id, 'permiso' => $permiso]);
+    } else {
+        $llamadas = '---';
+        $contestadas = '---';
+        $interesados = '---';
+        $citas = '---';
+        $semanaa = '---';
+        $mess = '---'; 
+        return view('stats', ['semanapuesta' => $semanaa, 'mespuesto' => $mess, 'citas' => $citas,'interesados' => $interesados,'contestadas' => $contestadas,'llamadas' => $llamadas, 'diccionario' => $diccionario, 'id'=> $user_id, 'permiso' => $permiso]);
+    }
+}
 }
 

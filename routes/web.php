@@ -99,6 +99,8 @@ Route::get('/inicioadmin', [InicioAdminController::class, 'index'])->name('inici
 
 Route::post('/contactos/store', [ContactoController::class, 'store'])->name('/contactos/store');
 
+Route::post('/ver-stat', [ContactoController::class, 'Estadistica'])->name('ver-stat');
+
 
 Route::patch('/contacto/{id}', [ContactoController::class, 'update'])->name('contacto.update');
 Route::patch('/contacto/nombre/{id}', [ContactoController::class, 'updateNombre'])->name('contacto.updateNombre');
@@ -133,6 +135,8 @@ Route::get('/ver-contactos/{id}', [InicioAdminController::class, 'verContactos']
 Route::get('/obtener-contactos/{id}', 'InicioAdminController@obtenerContactos');
 
 Route::post('/transferir-contactos', [InicioAdminController::class, 'transferirContactos'])->name('transferir-contactos');
+
+Route::get('/stats/{id}', [InicioAdminController::class, 'verEstadisticas'])->name('stats')->middleware('auth');
 
 Route::get('/menuadmin', [MenuAdminController::class, 'show'])->name('menuadmin')->middleware('auth.redirect', 'auth', 'staff');
 

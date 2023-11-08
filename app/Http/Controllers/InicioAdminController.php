@@ -164,6 +164,38 @@ public function verContactos($id)
     // o
     // return view('circuloinf')->with('contactos', $contactos);
 }
+public function verEstadisticas($id)
+{
+    $user = Auth::guard('web')->user();
+    if ($user->permisos->type === 'limited') {
+        // Usuario agente
+        $permiso = 'limited';
+    } elseif ($user->permisos->type === 'full') {
+        // Usuario staff
+        $permiso = 'full';
+    }
+
+    $contactData = Contacto::where('user_id', $id)
+    ->select('mes', 'semana')
+    ->distinct()
+    ->get();
+
+    $diccionario = [];
+
+    foreach ($contactData as $item) {
+        $mes = $item->mes;
+        $semana = $item->semana;
+
+        if (!isset($diccionario[$mes])) {
+            $diccionario[$mes] = [];
+        }
+
+        $diccionario[$mes][] = $semana;
+    }
+
+
+    return view('stats', ['diccionario' => $diccionario, 'permiso' => $permiso, 'id' => $id]);
+}
 
 
 
