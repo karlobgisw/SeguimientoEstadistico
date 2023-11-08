@@ -10,7 +10,14 @@ use App\Http\Controllers\ContactoController; // Importa el controlador
 use App\Http\Controllers\FuenteContactoController; // Importa el controlador
 use App\Http\Controllers\InicioAdminController; // Importa el controlador
 use App\Http\Controllers\MenuAdminController; // Importa el controlador
+use App\Http\Controllers\RegistroCierreController;
 
+Route::get('/estadisticas_cierre', [RegistroCierreController::class, 'showEstadisticas'])->name('estadisticas_cierre');
+
+
+Route::get('/registrocierre', [RegistroCierreController::class, 'index'])->name('registrocierre');
+Route::get('/registrocierre', [RegistroCierreController::class, 'index'])->name('registrocierre.index');
+Route::post('/registrocierre', [RegistroCierreController::class, 'store'])->name('registrocierre.store');
 
 //RUTAS_ActividadController
 
