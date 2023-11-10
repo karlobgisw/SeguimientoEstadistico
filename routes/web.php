@@ -14,7 +14,7 @@ use App\Http\Controllers\RegistroCierreController;
 use App\Http\Controllers\EstadisticasController;
 
 // Ruta para la página de estadísticas
-Route::get('/estadisticas', [EstadisticasController::class, 'index'])->name('estadisticas.index');
+Route::get('/estadisticas', [EstadisticasController::class, 'index'])->name('estadisticas.index')->middleware('auth.redirect','auth','staff');
 
 // Ruta para generar las estadísticas y mostrar la gráfica
 Route::get('/estadisticas/generate', [EstadisticasController::class, 'generateStats'])->name('estadisticas.generate');

@@ -6,11 +6,31 @@ use App\Models\RegistroCierre;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class EstadisticasController extends Controller
 {
     public function index()
-    {
+    { 
+         // Lógica para obtener el permiso del usuario actual
+         $permiso = auth()->user()->permisos_id;
+        
+        $user = Auth::guard('web')->user();
+        if ($user->permisos->type === 'limited') {
+            // Usuario agente
+            $permiso = 'limited';
+        } elseif ($user->permisos->type === 'full') {
+            // Usuario staff
+            $permiso = 'full';
+        }
+        
+        // Verifica si el usuario está autenticado
+        if (! auth()->check()) {
+            return redirect('/login');
+        }
+           
+
+
         $usuarios = User::pluck('nombre', 'id');
         $stats = $this->generateStats();
         $ingresoStats = $this->generateColumnStats('ingreso');
@@ -20,8 +40,7 @@ class EstadisticasController extends Controller
         $rangoEdadStats = $this->generateColumnStats('rango_edad');
         $estadoCivilStats = $this->generateColumnStats('estado_civil');
         
-        // Lógica para obtener el permiso del usuario actual
-        $permiso = auth()->user()->permisos_id;
+       
 
         return view('estadisticas', compact('usuarios', 'stats', 'permiso', 'ingresoStats', 'recursoStats', 'fuenteContactoStats', 'generoStats', 'rangoEdadStats', 'estadoCivilStats'));
     }

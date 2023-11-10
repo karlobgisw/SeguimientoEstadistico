@@ -183,7 +183,7 @@
             });
         }
     </script>
-
+    <script src="{{ asset('js/nav.js') }}"></script>
     <!-- ... (código posterior) ... -->
 </body>
 
