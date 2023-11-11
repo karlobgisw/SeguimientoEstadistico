@@ -29,6 +29,10 @@
         document.getElementById("agentes").addEventListener("click", function() {
             window.location.href = "{{ route('inicioadmin') }}";
         });
+
+        document.getElementById("graficas").addEventListener("click", function() {
+            window.location.href = "{{ route('estadisticas.index') }}";
+        });
         </script>
 </body>
 </html>

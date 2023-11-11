@@ -11,6 +11,13 @@ use App\Http\Controllers\FuenteContactoController; // Importa el controlador
 use App\Http\Controllers\InicioAdminController; // Importa el controlador
 use App\Http\Controllers\MenuAdminController; // Importa el controlador
 use App\Http\Controllers\RegistroCierreController;
+use App\Http\Controllers\EstadisticasController;
+
+// Ruta para la página de estadísticas
+Route::get('/estadisticas', [EstadisticasController::class, 'index'])->name('estadisticas.index')->middleware('auth.redirect','auth','staff');
+
+// Ruta para generar las estadísticas y mostrar la gráfica
+Route::get('/estadisticas/generate', [EstadisticasController::class, 'generateStats'])->name('estadisticas.generate');
 
 Route::get('/estadisticas_cierre', [RegistroCierreController::class, 'showEstadisticas'])->name('estadisticas_cierre');
 

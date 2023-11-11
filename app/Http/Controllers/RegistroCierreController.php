@@ -20,23 +20,6 @@ class RegistroCierreController extends Controller
     $fuentes_contacto = FuenteContacto::all();
     return view('registrocierre', compact('usuarios', 'fuentes_contacto'));
 }
-public function showEstadisticas()
-{
-    $usuarios = User::where('permisos_id', 2)
-                    ->where('activo', 1)
-                    ->pluck('nombre', 'id');
-
-    $registros = RegistroCierre::select('cerro', DB::raw('count(*) as cierres_totales'), DB::raw('sum(monto_propiedad) as suma_monto_propiedades'))
-                              ->groupBy('cerro')
-                              ->get();
-
-    dd($usuarios, $registros); // Verifica si los datos se están recuperando correctamente
-
-    return view('estadisticas_cierre', compact('usuarios', 'registros'));
-}
-
-
-
 
     // Método para mostrar el formulario de creación
     // Método para almacenar un nuevo registro en la base de datos
