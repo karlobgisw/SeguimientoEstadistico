@@ -24,6 +24,7 @@ class ActividadController extends Controller
         $diasSemana = DiaSemana::all();
         $user_id = auth()->user()->id;
 
+
         return view('agendacrear', [
             'actividades' => $actividades,
             'diasSemana' => $diasSemana,
@@ -66,12 +67,14 @@ class ActividadController extends Controller
 
     public function store(Request $request)
     {
+        $id = $request->input('id');
+        
         $actividad = new Actividad();
         $actividad->nombre_actividad = $request->input('nombre_actividad');
 
         $actividad->save();
 
-        return redirect('/actividades');
+        return redirect()->route('actividadesAdmin', ['id' => $id]);
     }
 
     public function edit($id)
@@ -87,19 +90,23 @@ class ActividadController extends Controller
 
     public function update(Request $request, $id)
     {
+        $ids = $request->input('id');
+
         $actividad = Actividad::find($id);
         $actividad->nombre_actividad = $request->input('nombre_actividad');
 
         $actividad->save();
 
-        return redirect('/actividades');
+        return redirect()->route('actividadesAdmin', ['id' => $ids]);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        $ids = $request->input('id');
+
         $actividad = Actividad::find($id);
         $actividad->delete();
 
-        return redirect('/actividades');
+        return redirect()->route('actividadesAdmin', ['id' => $ids]);
     }
 }

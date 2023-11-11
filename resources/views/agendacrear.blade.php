@@ -53,6 +53,9 @@
                       <h5 id="numeroact"></h5>
                       <form action="{{ url('actividades/'.$actividad->id) }}" method="POST" id="editform">
                       <textarea name="nombre_actividad" id="actividadDetalle-{{ $actividad->id }}" cols="60" rows="10" class="actividadDetalle" ></textarea>
+                      @if ($permiso == 'full')
+                      <input type="hidden" name="id" value="{{$id}}">
+                      @endif
                     </div>
                     <div class="modal-footer">
                         {{ method_field('PUT') }}
@@ -60,6 +63,9 @@
                       </form>
                       <form action="{{ url('actividades/'.$actividad->id) }}" method="POST" id="deleteform">
                         {{ method_field('DELETE') }}
+                        @if ($permiso == 'full')
+                        <input type="hidden" name="id" value="{{$id}}">
+                        @endif
                         <button type="submit" class="btn btn-danger" id="delete_btn">Eliminar</button>
                       </form>
                     </div>
@@ -181,6 +187,9 @@
                     <div class="mb-3">
                       <label for="actividadInput" class="form-label">Actividad</label>
                       <input type="text" class="form-control" id="actividadInput" name="nombre_actividad" aria-describedby="emailHelp" required>
+                      @if ($permiso == 'full')
+                      <input type="hidden" name="id" value="{{$id}}">
+                      @endif
                       <div id="emailHelp" class="form-text">Esta actividad se mostrará para los agentes inmobiliarios</div>
                     </div>
                     <div class="modal-footer">

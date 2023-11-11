@@ -8,34 +8,55 @@ console.log(permiso)
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    const toggleButton = document.getElementById("toggleButton");
-    const hideButton = document.getElementById("hideButton");
-    const toggleButton2 = document.getElementById("toggleButton2");
-    const dashboard = document.getElementById("dashboard");
-    const content = document.getElementById("content");
-  
-    toggleButton.addEventListener("click", function() {
-        if (dashboard.classList.contains("open")) {
-            dashboard.classList.remove("open");
-            content.classList.remove("pushed");
-        } else {
-            dashboard.classList.add("open");
-            content.classList.add("pushed");
-        }
-    });
-    toggleButton2.addEventListener("click", function() {
+  const toggleButton = document.getElementById("toggleButton");
+  const hideButton = document.getElementById("hideButton");
+  const toggleButton2 = document.getElementById("toggleButton2");
+  const dashboard = document.getElementById("dashboard");
+  const content = document.getElementById("content");
+  const izq = document.querySelector(".izq");
+
+  const hideToggleButtons = function() {
+      toggleButton.style.display = "none";
+      toggleButton2.style.display = "none";
+      izq.style.display = "none";
+      izq.style.width = 0;
+  };
+
+  const showToggleButtons = function() {
+      toggleButton.style.display = "block";
+      toggleButton2.style.display = "block";
+      izq.style.display = "block";
+  };
+
+  toggleButton.addEventListener("click", function() {
       if (dashboard.classList.contains("open")) {
           dashboard.classList.remove("open");
           content.classList.remove("pushed");
+          showToggleButtons();
       } else {
           dashboard.classList.add("open");
           content.classList.add("pushed");
+          hideToggleButtons();
       }
-    });
-    hideButton.addEventListener("click", function() {
+  });
+
+  toggleButton2.addEventListener("click", function() {
+      if (dashboard.classList.contains("open")) {
+          dashboard.classList.remove("open");
+          content.classList.remove("pushed");
+          showToggleButtons();
+      } else {
+          dashboard.classList.add("open");
+          content.classList.add("pushed");
+          hideToggleButtons();
+      }
+  });
+
+  hideButton.addEventListener("click", function() {
       dashboard.classList.remove("open");
       content.classList.remove("pushed");
-    });
+      showToggleButtons();  // Asegúrate de mostrar los botones cuando se oculta el dashboard.
+  });
 });
 if(permiso == 'limited'){
 actividades.forEach(function(elemento) {
@@ -78,6 +99,8 @@ contenedores.forEach(contenedor => {
         actividadarrastrada.id = identificador;
         identificador = identificador + 1;
         actividadarrastrada.setAttribute("draggable", "true");
+        actividadarrastrada.setAttribute("id-act", idArrastrado.getAttribute("id-act"));
+        actividadarrastrada.setAttribute("estado", idArrastrado.getAttribute("estado"));
         contenedor.appendChild(actividadarrastrada); //lo agrega al contenedor
         idArrastrado.parentNode.removeChild(idArrastrado);
       }
@@ -99,6 +122,8 @@ document.addEventListener("click", function(event){
     if (event.target.classList.contains("cho")){
         event.target.classList.remove("cho");
         event.target.classList.add("cha");
+        event.target.setAttribute("estado", "1");
+        event.target.draggable = false;
         $.ajax({
             type: 'PUT',
             url: agendaUpdateEstadoUrl,
@@ -112,6 +137,8 @@ document.addEventListener("click", function(event){
     else if (event.target.classList.contains("cha")){
         event.target.classList.remove("cha");
         event.target.classList.add("cho");
+        event.target.setAttribute("estado", "0");
+        event.target.draggable = true;
         $.ajax({
             type: 'PUT',
             url: agendaUpdateEstadoUrl,

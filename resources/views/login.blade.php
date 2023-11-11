@@ -26,7 +26,6 @@
         <input type="password" name="password" required>
         <label>Contraseña</label>
       </div>
-      <div class="pass">¿Olvido su contraseña?</div>
       <input type="submit" value="Iniciar Sesion">
       <div class="card-body">                    
     </form>

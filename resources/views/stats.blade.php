@@ -43,7 +43,7 @@
         <div class="grafica" @isset($tipo) tipo="{{ $tipo }}" @endisset>
             <div class="cabecera">
                 @if(isset($llamadas))
-                    <p class="parametro">LLamadas: {{$llamadas}}</p>
+                    <p class="parametro" id="parametro">LLamadas: {{$llamadas}}</p>
                 @else
                     <p class="parametro">LLamadas: ---</p>
                 @endif

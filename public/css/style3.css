@@ -100,6 +100,65 @@
     color: rgb(255 255 255 / 65%);
     border: var(--bs-border-width) solid rgba(255, 255, 255, 0.15);
 }
+@media (max-width: 1300px) {
+    .d-flex{
+        width: 25%;
+    }
+}
+
+@media (max-width: 991px) {
+    .d-flex{
+        margin-bottom: 1%;
+    }
+}
+
+@media (max-width: 700px) {
+    .d-flex{
+        width: 30%;
+    }
+}
+
+@media (max-width: 600px) {
+    .d-flex{
+        width: 35%;
+    }
+}
+
+@media (max-width: 530px) {
+    .d-flex{
+        width: 40%;
+    }
+}
+
+@media (max-width: 455px) {
+    .d-flex{
+        width: 45%;
+    }
+}
+
+@media (max-width: 408px) {
+    .d-flex{
+        width: 50%;
+    }
+}
+
+@media (max-width: 390px) {
+    .d-flex{
+        width: 55%;
+    }
+}
+
+@media (max-width: 341px) {
+    .d-flex{
+        width: 60%;
+    }
+}
+
+@media (min-height:900px){
+    .d-flex {
+        width: 60%;
+    }
+}
 body {
     margin: 0;
     padding: 0;
@@ -117,7 +176,7 @@ body {
 .listas{
     display: flex;
     justify-content: flex-start;
-    margin-top: 1%;
+    margin-top: 3%;
     margin-left: 2%;
     height: 70vh;
     max-width: 100%; /* Ancho del contenedor al 100% del viewport */
@@ -229,7 +288,7 @@ body {
 #toggleButton {
     width: 2%;
     position: absolute;
-    height: 83.3vh;
+    height: 83.2%;
     background-color: #2b4c6d;
     cursor: pointer;
 }
@@ -641,4 +700,73 @@ body {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
   }
+
+
+  @media (min-width:1400px){
+    #dashboard.open {
+        width: 20%;
+    }
+  }
+  @media (max-width:1300px){
+    .dia {
+        min-width: 258px;
+        height: 392px;
+    }
+    .diaf{
+        min-width: 258px;
+        height: 392px;
+    }
+}
+
+@media (max-width:860px){
+    .botonson {
+        width: 48px;
+    }
+    #toggleButton{
+        width: 16px;
+    }
+}
+
+@media (max-width:735px){
+    .listas{
+        margin-left: 4%;
+    }
+}
+
+@media (max-width:470px){
+    .listas{
+        margin-left: 7%;
+    }
+}
+
+@media (max-width:650px){
+    #dashboard.open {
+        width: 214px;
+    }
+}
+
+@media (max-width:539px){
+    #dashboard.open {
+        width: 173px;
+    }
+}
+
+@media (min-height:660px){
+    .listas{
+        height: 63vh;
+    }
+}
+@media (min-height:721px){
+    .dia{
+        height: 505px;
+    }
+    .diaf{
+        height: 505px;
+    }
+    .listas{
+        height: 61vh;
+        margin-top: 12%;
+    }
+}
+
 
