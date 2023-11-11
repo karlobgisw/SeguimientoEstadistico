@@ -144,47 +144,73 @@
             }
         });
 
-        // Obtén los datos para la gráfica de pastel de "Ingreso" desde el backend
-        var ingresoData = <?php echo json_encode($ingresoStats); ?>;
-        createDoughnutChart('graficaIngreso', ingresoData);
+// Función para generar gráficas de pastel con colores diferentes
+function createDoughnutChart(canvasId, data, labelProperty, dataProperty) {
+        var ctx = document.getElementById(canvasId).getContext('2d');
 
-        // Obtén los datos para la gráfica de pastel de "Recurso" desde el backend
-        var recursoData = <?php echo json_encode($recursoStats); ?>;
-        createDoughnutChart('graficaRecurso', recursoData);
+        // Paleta de colores
+        var colors = [
+            '#f39c12', '#3498db', '#e74c3c', '#2ecc71', '#9b59b6',
+            '#1abc9c', '#e67e22', '#34495e', '#d35400', '#95a5a6',
+            '#27ae60', '#8e44ad', '#16a085', '#c0392b', '#2980b9',
+            '#f1c40f', '#2c3e50', '#e74c3c', '#3498db', '#2ecc71',
+            '#9b59b6', '#1abc9c', '#e67e22', '#34495e', '#d35400',
+            '#95a5a6', '#27ae60', '#8e44ad', '#16a085', '#c0392b',
+            '#2980b9', '#f1c40f', '#2c3e50', '#e74c3c', '#3498db'
+            // Agrega más colores según sea necesario
+        ];
 
-        // Obtén los datos para la gráfica de pastel de "Fuente de Contacto" desde el backend
-        var fuenteContactoData = <?php echo json_encode($fuenteContactoStats); ?>;
-        createDoughnutChart('graficaFuenteContacto', fuenteContactoData);
-
-        // Obtén los datos para la gráfica de pastel de "Genero" desde el backend
-        var generoData = <?php echo json_encode($generoStats); ?>;
-        createDoughnutChart('graficaGenero', generoData);
-
-        // Obtén los datos para la gráfica de pastel de "Rango de Edad" desde el backend
-        var rangoEdadData = <?php echo json_encode($rangoEdadStats); ?>;
-        createDoughnutChart('graficaRangoEdad', rangoEdadData);
-
-        // Obtén los datos para la gráfica de pastel de "Estado Civil" desde el backend
-        var estadoCivilData = <?php echo json_encode($estadoCivilStats); ?>;
-        createDoughnutChart('graficaEstadoCivil', estadoCivilData);
-
-        // Función para generar gráficas de pastel
-        function createDoughnutChart(canvasId, data) {
-            var ctx = document.getElementById(canvasId).getContext('2d');
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: data.map(stat => stat.column),
-                    datasets: [{
-                        data: data.map(stat => stat.count),
-                        backgroundColor: '#f39c12', // Cambié el color a amarillo
-                    }]
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: data.map(stat => stat[labelProperty]),
+                datasets: [{
+                    data: data.map(stat => stat[dataProperty]),
+                    backgroundColor: colors.slice(0, data.length), // Asigna colores diferentes
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'black' // Establece el color del texto de las opciones
+                        }
+                    }
                 }
-            });
-        }
-    </script>
+            }
+        });
+    }
+
+// Obtén los datos para la gráfica de pastel de "Ingreso" desde el backend
+var ingresoData = <?php echo json_encode($ingresoStats); ?>;
+createDoughnutChart('graficaIngreso', ingresoData, 'ingreso', 'count');
+
+
+// Obtén los datos para la gráfica de pastel de "Recurso" desde el backend
+var recursoData = <?php echo json_encode($recursoStats); ?>;
+createDoughnutChart('graficaRecurso', recursoData, 'recurso', 'count');
+
+// Obtén los datos para la gráfica de pastel de "Fuente de Contacto" desde el backend
+var fuenteContactoData = <?php echo json_encode($fuenteContactoStats); ?>;
+createDoughnutChart('graficaFuenteContacto', fuenteContactoData, 'fuente_contacto', 'count');
+
+// Obtén los datos para la gráfica de pastel de "Genero" desde el backend
+var generoData = <?php echo json_encode($generoStats); ?>;
+createDoughnutChart('graficaGenero', generoData, 'genero', 'count');
+
+// Obtén los datos para la gráfica de pastel de "Rango de Edad" desde el backend
+var rangoEdadData = <?php echo json_encode($rangoEdadStats); ?>;
+createDoughnutChart('graficaRangoEdad', rangoEdadData, 'rango_edad', 'count');
+
+// Obtén los datos para la gráfica de pastel de "Estado Civil" desde el backend
+var estadoCivilData = <?php echo json_encode($estadoCivilStats); ?>;
+createDoughnutChart('graficaEstadoCivil', estadoCivilData, 'estado_civil', 'count');
+ </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/nav.js') }}"></script>
-    <!-- ... (código posterior) ... -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>
