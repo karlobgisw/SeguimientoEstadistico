@@ -18,7 +18,7 @@
       </div>
       <div id="toggleButton"></div>
       <div class="listas">
-        <div id="dashboard" class="closed">
+        <div id="dashboard" class="">
           <div id="hideButton"><</div>
           <hr>
           <h3>AGENDAS</h3>
@@ -231,7 +231,7 @@
                               <div class="cho" data-actividad-id="{{$registro->actividad_id}}" id="{{$registro->id}}" id-act="{{$registro->id}}" estado="{{$registro->estado}}">{{ $registro->actividad["nombre_actividad"] }}</div>
                             @endif
                             @if ($registro->estado == 1)
-                            <div class="cha" data-actividad-id="{{$registro->actividad_id}}" id="{{$registro->id}}" id-act="{{$registro->id}}" estado="{{$registro->estado}}">{{ $registro->actividad_["nombre_actividad"]}}</div>
+                            <div class="cha" data-actividad-id="{{$registro->actividad_id}}" id="{{$registro->id}}" id-act="{{$registro->id}}" estado="{{$registro->estado}}">{{ $registro->actividad["nombre_actividad"]}}</div>
                             @endif
                         @endif
                     @endif

@@ -23,7 +23,7 @@
       </div>
       <div id="toggleButton"></div>
       <div class="listas">
-        <div id="dashboard" class="closed">
+        <div id="dashboard" class="">
           <div id="hideButton"><</div>
           <hr>
           <h3>ACTIVIDADES</h3>

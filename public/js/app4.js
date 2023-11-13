@@ -13,19 +13,17 @@ document.addEventListener("DOMContentLoaded", function() {
   const toggleButton2 = document.getElementById("toggleButton2");
   const dashboard = document.getElementById("dashboard");
   const content = document.getElementById("content");
-  const izq = document.querySelector(".izq");
+  const menunav = document.querySelector("#btn_nav_menu");
+  const nav = document.querySelector("#navbarSupportedContent");
 
   const hideToggleButtons = function() {
       toggleButton.style.display = "none";
       toggleButton2.style.display = "none";
-      izq.style.display = "none";
-      izq.style.width = 0;
   };
 
   const showToggleButtons = function() {
       toggleButton.style.display = "block";
       toggleButton2.style.display = "block";
-      izq.style.display = "block";
   };
 
   toggleButton.addEventListener("click", function() {
@@ -34,6 +32,9 @@ document.addEventListener("DOMContentLoaded", function() {
           content.classList.remove("pushed");
           showToggleButtons();
       } else {
+        if (nav && nav.classList.contains('show')) {
+          menunav.click();
+        }
           dashboard.classList.add("open");
           content.classList.add("pushed");
           hideToggleButtons();
@@ -46,6 +47,9 @@ document.addEventListener("DOMContentLoaded", function() {
           content.classList.remove("pushed");
           showToggleButtons();
       } else {
+        if (nav && nav.classList.contains('show')) {
+          menunav.click();
+        }
           dashboard.classList.add("open");
           content.classList.add("pushed");
           hideToggleButtons();
@@ -56,6 +60,14 @@ document.addEventListener("DOMContentLoaded", function() {
       dashboard.classList.remove("open");
       content.classList.remove("pushed");
       showToggleButtons();  // Asegúrate de mostrar los botones cuando se oculta el dashboard.
+  });
+
+  menunav.addEventListener("click", function() {
+    if (dashboard.classList.contains("open")) {
+      dashboard.classList.remove("open");
+      content.classList.remove("pushed");
+      showToggleButtons();
+    }
   });
 });
 if(permiso == 'limited'){
@@ -154,3 +166,11 @@ document.addEventListener("click", function(event){
 else{
 
 }
+
+menunav.addEventListener("click", function() {
+  if (dashboardd.classList.contains("open")) {
+    dashboardd.classList.remove("open");
+    content.classList.remove("pushed");
+    showToggleButtons();
+  }
+});

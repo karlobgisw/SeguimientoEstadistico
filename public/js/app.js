@@ -150,12 +150,17 @@ document.addEventListener("DOMContentLoaded", function() {
   const toggleButton2 = document.getElementById("toggleButton2");
   const dashboard = document.getElementById("dashboard");
   const content = document.getElementById("content");
+  const menunav = document.querySelector("#btn_nav_menu");
+  const nav = document.querySelector("#navbarSupportedContent");
 
   toggleButton.addEventListener("click", function() {
       if (dashboard.classList.contains("open")) {
           dashboard.classList.remove("open");
           content.classList.remove("pushed");
       } else {
+        if (nav && nav.classList.contains('show')) {
+          menunav.click();
+        }
           dashboard.classList.add("open");
           content.classList.add("pushed");
       }
@@ -165,6 +170,9 @@ document.addEventListener("DOMContentLoaded", function() {
         dashboard.classList.remove("open");
         content.classList.remove("pushed");
     } else {
+      if (nav && nav.classList.contains('show')) {
+        menunav.click();
+      }
         dashboard.classList.add("open");
         content.classList.add("pushed");
     }
@@ -172,6 +180,12 @@ document.addEventListener("DOMContentLoaded", function() {
   hideButton.addEventListener("click", function() {
     dashboard.classList.remove("open");
     content.classList.remove("pushed");
+  });
+  menunav.addEventListener("click", function() {
+    if (dashboard.classList.contains("open")) {
+      dashboard.classList.remove("open");
+      content.classList.remove("pushed");
+    }
   });
 });
 
@@ -875,8 +889,15 @@ $('#guardar-agenda').click(function() {
   });
 });
 
-
-
+const dashboardd = document.getElementById("dashboard");
+const menunav = document.querySelector("btn_nav_menu");
+menunav.addEventListener("click", function() {
+  if (dashboardd.classList.contains("open")) {
+    dashboardd.classList.remove("open");
+    content.classList.remove("pushed");
+    showToggleButtons();
+  }
+});
 
 
 
