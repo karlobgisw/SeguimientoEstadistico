@@ -316,3 +316,9 @@ tbody tr:hover {
     background: #61A2E0;
     border-radius: 10px;
 }
+
+@media (max-width: 576px){
+    #modalEditarContacto {
+        width: 241%;
+    }
+}

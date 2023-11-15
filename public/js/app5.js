@@ -1,6 +1,5 @@
 var tipos = document.querySelector(".grafica");
 tipos = tipos.getAttribute("tipo");
-console.log(tipos);
 
 var tipos = JSON.parse(tipos); // Parsear la cadena JSON
 
@@ -8,25 +7,27 @@ tipos = tipos.map(function(element) {
   return element.replace(/[\[\]"]/g, '');
 });
 
-var contador = {};
-tipos.forEach(function(element) {
-  if (contador[element]) {
-    contador[element]++;
+var contador = tipos.reduce(function(acc, tipo) {
+  if (!acc[tipo]) {
+    acc[tipo] = 1;
   } else {
-    contador[element] = 1;
+    acc[tipo]++;
   }
-});
+  return acc;
+}, {});
 
-var valores = tipos.map(function(element) {
-  return contador[element];
-});
-
-valores = [...new Set(valores)];
-tipos = [...new Set(tipos)];
-
+var valores = Object.values(contador);
 
 console.log(valores);
-console.log(tipos);
+
+tipos = [...new Set(tipos)];
+
+console.log('VALROES' + valores.length);
+console.log('TIPOS' + tipos.length);
+
+
+console.log('VALROES' + valores.length);
+console.log('TIPOS' + tipos.length);
 
 
 const chartData = {
@@ -40,6 +41,8 @@ const chartData = {
   const total = valores.reduce((acc, current) => acc + current, 0);
 
   const porcentajes = valores.map(valor => (valor / total) * 100);
+
+  console.log('PORCENTAJES' + porcentajes);
   
   new Chart(myChart, {
     type: "doughnut",
@@ -95,7 +98,7 @@ const chartData = {
   
   var conteoFinal = [conteo["1"], conteo["0"]];
 
-  console.log(conteoFinal)
+  console.log('CONTEO FINAL:' + conteoFinal)
 
 const chartData2 = {
     labels: ['CONCRETADAS', 'NO CONCRETADAS'],

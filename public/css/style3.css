@@ -370,6 +370,8 @@ body {
 .actividadDetalle{
     color: black;
     background-color: rgb(245, 245, 245);
+    width: 95%;
+    height: 22vh;
 }
 
 .modal-title.fs-5{
@@ -836,4 +838,24 @@ body {
     }
 }
 
+@media (max-height: 450px){
+    .actcuad{
+        height: 40vh;
+    }
+    #hideButton {
+        height: 8%;
+    }
+    .botonson{
+        height: 8%;
+    }
+    hr {
+        margin: 0.5rem 0;
+    }
+    #dashboard{
+        height: 95%;
+    }
+    #toggleButton {
+        height: 87.2%;
+    }
+}
 
