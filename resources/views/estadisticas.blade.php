@@ -20,9 +20,20 @@
         @include('nav')
     </header>
 
-    <div class="search">
-        <!-- Eliminé el formulario de filtro, ya que queremos mostrar todos los datos -->
-    </div>
+    <!-- Agrega este código en la sección de búsqueda de tu vista -->
+<div class="search">
+    <form id="filterForm" action="{{ route('filtrarRegistros') }}" method="GET">
+        @csrf
+        <label for="fechaInicio">Fecha de inicio:</label>
+        <input type="date" id="fechaInicio" name="fechaInicio" required>
+
+        <label for="fechaFin">Fecha de fin:</label>
+        <input type="date" id="fechaFin" name="fechaFin" required>
+
+        <button type="submit">Filtrar</button>
+    </form>
+</div>
+
 
     <!-- Título grande arriba de la gráfica -->
     <h1 style="text-align: center; font-size: 24px; margin-top: 20px;">Estadísticas Generales de Cierres</h1>
