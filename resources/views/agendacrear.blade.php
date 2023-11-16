@@ -52,7 +52,7 @@
                     <div class="modal-body">
                       <h5 id="numeroact"></h5>
                       <form action="{{ url('actividades/'.$actividad->id) }}" method="POST" id="editform">
-                      <textarea name="nombre_actividad" id="actividadDetalle-{{ $actividad->id }}" cols="60" rows="10" class="actividadDetalle" ></textarea>
+                      <textarea name="nombre_actividad" id="actividadDetalle-{{ $actividad->id }}" class="actividadDetalle" ></textarea>
                       @if ($permiso == 'full')
                       <input type="hidden" name="id" value="{{$id}}">
                       @endif
