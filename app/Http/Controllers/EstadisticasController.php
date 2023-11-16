@@ -12,9 +12,9 @@ class EstadisticasController extends Controller
 {
     public function index()
     { 
-         // Lógica para obtener el permiso del usuario actual
-         $permiso = auth()->user()->permisos_id;
-        
+        // Lógica para obtener el permiso del usuario actual
+        $permiso = auth()->user()->permisos_id;
+
         $user = Auth::guard('web')->user();
         if ($user->permisos->type === 'limited') {
             // Usuario agente
@@ -23,13 +23,11 @@ class EstadisticasController extends Controller
             // Usuario staff
             $permiso = 'full';
         }
-        
+
         // Verifica si el usuario está autenticado
         if (! auth()->check()) {
             return redirect('/login');
         }
-           
-
 
         $usuarios = User::pluck('nombre', 'id');
         $stats = $this->generateStats();
@@ -39,8 +37,6 @@ class EstadisticasController extends Controller
         $generoStats = $this->generateColumnStats('genero');
         $rangoEdadStats = $this->generateColumnStats('rango_edad');
         $estadoCivilStats = $this->generateColumnStats('estado_civil');
-        
-       
 
         return view('estadisticas', compact('usuarios', 'stats', 'permiso', 'ingresoStats', 'recursoStats', 'fuenteContactoStats', 'generoStats', 'rangoEdadStats', 'estadoCivilStats'));
     }
@@ -64,12 +60,12 @@ class EstadisticasController extends Controller
             ->groupBy('users.nombre')
             ->get();
     }
-    
+
     private function generateColumnStats3($column)
     {
         return DB::table('registro_cierre')
             ->join('fuentes_contacto', 'registro_cierre.fuente_contacto', '=', 'fuentes_contacto.id')
-            ->select('fuentes_contacto.nombre_fuente as '.$column, DB::raw('count(*) as count'))
+            ->select('fuentes_contacto.nombre_fuente as '.$column, DB::raw('count(*) as count'), DB::raw('sum(monto_propiedad) as total_monto'))
             ->groupBy('fuentes_contacto.nombre_fuente')
             ->get();
     }
