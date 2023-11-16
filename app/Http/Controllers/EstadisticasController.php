@@ -59,6 +59,18 @@ class EstadisticasController extends Controller
     }
 
     // Otras funciones del controlador...
+    
+    // Función para generar estadísticas generales
+    private function generateStats()
+    {
+        // Obtén el conteo de cierres y la suma de montos por usuario
+        $stats = RegistroCierre::join('users', 'registro_cierre.cerro', '=', 'users.id')
+            ->select('cerro', 'users.nombre', DB::raw('count(*) as cierres_count'), DB::raw('sum(monto_propiedad) as total_monto'))
+            ->groupBy('cerro', 'users.nombre')
+            ->get();
+
+        return $stats;
+    }
 
     // Función para generar estadísticas de una columna específica con filtro de fechas
     private function generateColumnStats($column, $fechaInicio = null, $fechaFin = null)

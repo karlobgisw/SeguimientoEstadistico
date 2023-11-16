@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('css/style7.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style9.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -22,77 +22,124 @@
 
     <!-- Agrega este código en la sección de búsqueda de tu vista -->
 <div class="search">
-    <form id="filterForm" action="{{ route('filtrarRegistros') }}" method="GET">
+    <form id="filterForm" action="{{ route('filtrarRegistros') }}" method="GET" class="buscador">
         @csrf
-        <label for="fechaInicio">Fecha de inicio:</label>
-        <input type="date" id="fechaInicio" name="fechaInicio" required>
-
-        <label for="fechaFin">Fecha de fin:</label>
-        <input type="date" id="fechaFin" name="fechaFin" required>
-
-        <button type="submit">Filtrar</button>
+        <label for="fechaInicio" class="fechas">FechaInicio</label>
+        <input class="inputt" type="date" id="fechaInicio" name="fechaInicio" required>
+        <label for="fechaInicio" class="fechas">FechaFin</label>
+        <input class="inputt" type="date" id="fechaFin" name="fechaFin" required>
+        <button type="submit" class="lupa-cuad">
+            <svg class="lupa" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+        </button>
     </form>
+    <button type="button" class="btn btn-warning">EDITAR DATOS</button>
 </div>
 
-
-    <!-- Título grande arriba de la gráfica -->
-    <h1 style="text-align: center; font-size: 24px; margin-top: 20px;">Estadísticas Generales de Cierres</h1>
-
-    <div class="estadisticas">
-        <!-- Gráfica de barras vertical para mostrar estadísticas -->
-        <div class="chart-container" style="width: 70%; margin: auto;">
-            <canvas class="my-chart" id="grafica"></canvas>
+<div class="estadisticas">
+    <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="grafica">
+                <div class="cabecera">
+                    <p class="parametro">ESTADISTICAS GENERALES DE CIERRES</p>
+                </div>
+                <div class="programming-stats">
+                    <div class="chart-container" style="width: 70%; margin: auto;">
+                        <canvas class="my-chart" id="grafica"></canvas>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="grafica">
+                <div class="cabecera">
+                    <p class="parametro">ESTADISTICAS GENERALES DE FUENTES DE CONTACTOS</p>
+                </div>
+                <div class="programming-stats">
+                    <div class="chart-container" style="width: 70%; margin: auto;">
+                        <canvas class="my-chart" id="graficaFuenteContacto"></canvas>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="grafica">
+                <div class="cabecera">
+                    <p class="parametro">ESTADISTICAS GENERALES DE INGRESOS</p>
+                </div>
+                <div class="programming-stats">
+                    <div class="chart-container" style="width: 70%; margin: auto;">
+                        <canvas class="my-chart" id="graficaIngreso"></canvas>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="grafica">
+                <div class="cabecera">
+                    <p class="parametro">ESTADISTICAS GENERALES DE ESTADO CIVIL</p>
+                </div>
+                <div class="programming-stats">
+                    <div class="chart-container" style="width: 70%; margin: auto;">
+                        <canvas class="my-chart" id="graficaEstadoCivil"></canvas>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="grafica">
+                <div class="cabecera">
+                    <p class="parametro">ESTADISTICAS GENERALES DE GENERO</p>
+                </div>
+                <div class="programming-stats">
+                    <div class="chart-container" style="width: 70%; margin: auto;">
+                        <canvas class="my-chart" id="graficaGenero"></canvas>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="grafica">
+                <div class="cabecera">
+                    <p class="parametro">ESTADISTICAS GENERALES DE RANGO DE EDAD</p>
+                </div>
+                <div class="programming-stats">
+                    <div class="chart-container" style="width: 70%; margin: auto;">
+                        <canvas class="my-chart" id="graficaRangoEdad"></canvas>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="grafica">
+                <div class="cabecera">
+                    <p class="parametro">ESTADISTICAS GENERALES DE RECURSOS</p>
+                </div>
+                <div class="programming-stats">
+                    <div class="chart-container" style="width: 70%; margin: auto;">
+                        <canvas class="my-chart" id="graficaRecurso"></canvas>
+                    </div>
+                </div>
+            </div>
+          </div>
         </div>
-    </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <div class="cir">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </div>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <div class="cir">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </div>
+            <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+</div>
 
-    <!-- Gráfica de barras para "Fuente de Contacto" -->
-    <h1 style="text-align: center; font-size: 24px; margin-top: 20px;">Estadísticas Generales de Fuentes de
-        Contactos</h1>
-    <div class="estadisticas">
-        <div class="chart-container" style="width: 70%; margin: auto;">
-            <canvas class="my-chart" id="graficaFuenteContacto"></canvas>
-        </div>
-    </div>
-
-    <!-- Gráfica de barras para "Ingreso" -->
-    <h1 style="text-align: center; font-size: 24px; margin-top: 20px;">Estadísticas Generales de Ingresos</h1>
-    <div class="estadisticas">
-        <div class="chart-container" style="width: 70%; margin: auto;">
-            <canvas class="my-chart" id="graficaIngreso"></canvas>
-        </div>
-    </div>
-
-    <!-- Gráfica de pastel para "Estado Civil" -->
-    <h1 style="text-align: center; font-size: 24px; margin-top: 20px;">Estadísticas Generales de Estado Civil</h1>
-    <div class="estadisticas">
-        <div class="chart-container" style="width: 70%; margin: auto;">
-            <canvas class="my-chart" id="graficaEstadoCivil"></canvas>
-        </div>
-    </div>
-
-    <!-- Gráfica de pastel para "Género" -->
-    <h1 style="text-align: center; font-size: 24px; margin-top: 20px;">Estadísticas Generales de Género</h1>
-    <div class="estadisticas">
-        <div class="chart-container" style="width: 70%; margin: auto;">
-            <canvas class="my-chart" id="graficaGenero"></canvas>
-        </div>
-    </div>
-
-    <!-- Gráfica de pastel para "Rango de Edad" -->
-    <h1 style="text-align: center; font-size: 24px; margin-top: 20px;">Estadísticas Generales de Rango de Edad</h1>
-    <div class="estadisticas">
-        <div class="chart-container" style="width: 70%; margin: auto;">
-            <canvas class="my-chart" id="graficaRangoEdad"></canvas>
-        </div>
-    </div>
-
-    <!-- Gráfica de pastel para "Recurso" -->
-    <h1 style="text-align: center; font-size: 24px; margin-top: 20px;">Estadísticas Generales de Recursos</h1>
-    <div class="estadisticas">
-        <div class="chart-container" style="width: 70%; margin: auto;">
-            <canvas class="my-chart" id="graficaRecurso"></canvas>
-        </div>
-    </div>
 
     <script>
         // Obtén los datos para la gráfica de barras desde el backend
