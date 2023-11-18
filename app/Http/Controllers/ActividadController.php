@@ -34,6 +34,7 @@ class ActividadController extends Controller
     }
     public function indexAdmin($id)
     {
+        $actividadDuplicada = request()->query('actividadDuplicada');
         $user = Auth::guard('web')->user();
         if ($user->permisos->type === 'limited') {
             // Usuario agente
@@ -52,7 +53,8 @@ class ActividadController extends Controller
             'diasSemana' => $diasSemana,
             'permiso' => $permiso,
             'id' => $id,
-            'user_id' => $user_id
+            'user_id' => $user_id,
+            'actividadDuplicada' => $actividadDuplicada,
         ]);
     }
 
@@ -68,13 +70,20 @@ class ActividadController extends Controller
     public function store(Request $request)
     {
         $id = $request->input('id');
-        
+        $actividadDuplicada = 0;
+    
+        $actividadExistente = Actividad::where('nombre_actividad', $request->input('nombre_actividad'))->exists();
+    
+        if ($actividadExistente) {
+            $actividadDuplicada = 1;
+            return redirect()->route('actividadesAdmin', ['id' => $id, 'actividadDuplicada' => $actividadDuplicada]);
+        }
+    
         $actividad = new Actividad();
         $actividad->nombre_actividad = $request->input('nombre_actividad');
-
         $actividad->save();
-
-        return redirect()->route('actividadesAdmin', ['id' => $id]);
+    
+        return redirect()->route('actividadesAdmin', ['id' => $id, 'actividadDuplicada' => $actividadDuplicada]);
     }
 
     public function edit($id)
@@ -91,13 +100,21 @@ class ActividadController extends Controller
     public function update(Request $request, $id)
     {
         $ids = $request->input('id');
+        $actividadDuplicada = 0;
+    
+        $actividadExistente = Actividad::where('nombre_actividad', $request->input('nombre_actividad'))->exists();
+    
+        if ($actividadExistente) {
+            $actividadDuplicada = 1;
+            return redirect()->route('actividadesAdmin', ['id' => $id, 'actividadDuplicada' => $actividadDuplicada]);
+        }
 
         $actividad = Actividad::find($id);
         $actividad->nombre_actividad = $request->input('nombre_actividad');
 
         $actividad->save();
 
-        return redirect()->route('actividadesAdmin', ['id' => $ids]);
+        return redirect()->route('actividadesAdmin', ['id' => $ids, 'actividadDuplicada' => $actividadDuplicada]);
     }
 
     public function destroy(Request $request, $id)

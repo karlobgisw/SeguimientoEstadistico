@@ -17,7 +17,7 @@
         <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
       </svg>
     </div>
-    <div class="todo" permiso="{{$permiso}}">
+    <div class="todo" permiso="{{$permiso}}" hola="{{$actividadDuplicada}}">
       <div class="botonson" id="toggleButton2">
         >
       </div>
@@ -269,9 +269,15 @@
     <div id="snackbar">Agenda Guardada</div>
     <div id="snackbar2">Hubo un error inesperado, Intenta de nuevo</div>
     <div id="snackbar3">Hay una agenda ya registrada en esta fecha</div>
+    @if(isset($actividadDuplicada) && $actividadDuplicada)
+      <div id="snackbar4">Ya hay una actividad con ese nombre</div>
+    @endif
     <script>
       var agendaStoreUrl = "{{ route('agendas') }}";
       var checkDuplicateUrl = "{{ route('agendasCheck') }}";
+      var zsd = document.getElementById("snackbar4");
+      zsd.className = "show";
+      setTimeout(function(){ zsd.className = zsd.className.replace("show", ""); }, 3000);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
