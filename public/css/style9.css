@@ -188,6 +188,20 @@ body {
     overflow-x: auto;
     white-space: nowrap;
 }
+
+.programming-stats2 {
+    font-family: "Rubik", sans-serif;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    color: #023047;
+    transition: all 400ms ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
   
 .programming-stats .details ul {
     list-style: none;

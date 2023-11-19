@@ -81,7 +81,7 @@
         <div class="cabecera">
             <p class="parametro">ESTADISTICAS GENERALES DE ESTADO CIVIL</p>
         </div>
-        <div class="programming-stats">
+        <div class="programming-stats2">
             <div class="chart-container">
                 <canvas class="my-chart" id="graficaEstadoCivil"></canvas>
             </div>
@@ -94,7 +94,7 @@
         <div class="cabecera">
             <p class="parametro">ESTADISTICAS GENERALES DE GENERO</p>
         </div>
-        <div class="programming-stats">
+        <div class="programming-stats2">
             <div class="chart-container">
                 <canvas class="my-chart" id="graficaGenero"></canvas>
             </div>
@@ -107,7 +107,7 @@
         <div class="cabecera">
             <p class="parametro">ESTADISTICAS GENERALES DE RANGO DE EDAD</p>
         </div>
-        <div class="programming-stats">
+        <div class="programming-stats2">
             <div class="chart-container">
                 <canvas class="my-chart" id="graficaRangoEdad"></canvas>
             </div>
@@ -120,7 +120,7 @@
         <div class="cabecera">
             <p class="parametro">ESTADISTICAS GENERALES DE RECURSOS</p>
         </div>
-        <div class="programming-stats">
+        <div class="programming-stats2">
             <div class="chart-container">
                 <canvas class="my-chart" id="graficaRecurso"></canvas>
             </div>
