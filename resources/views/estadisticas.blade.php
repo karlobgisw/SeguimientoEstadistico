@@ -38,110 +38,98 @@
 </div>
 
 <div class="estadisticas">
-    <div id="carouselExample" class="carousel slide">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="grafica">
-                <div class="cabecera">
-                    <p class="parametro">ESTADISTICAS GENERALES DE CIERRES</p>
-                </div>
-                <div class="programming-stats">
-                    <div class="chart-container" style="width: 70%; margin: auto;">
-                        <canvas class="my-chart" id="grafica"></canvas>
-                    </div>
-                </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="grafica">
-                <div class="cabecera">
-                    <p class="parametro">ESTADISTICAS GENERALES DE FUENTES DE CONTACTOS</p>
-                </div>
-                <div class="programming-stats">
-                    <div class="chart-container" style="width: 70%; margin: auto;">
-                        <canvas class="my-chart" id="graficaFuenteContacto"></canvas>
-                    </div>
-                </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="grafica">
-                <div class="cabecera">
-                    <p class="parametro">ESTADISTICAS GENERALES DE INGRESOS</p>
-                </div>
-                <div class="programming-stats">
-                    <div class="chart-container" style="width: 70%; margin: auto;">
-                        <canvas class="my-chart" id="graficaIngreso"></canvas>
-                    </div>
-                </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="grafica">
-                <div class="cabecera">
-                    <p class="parametro">ESTADISTICAS GENERALES DE ESTADO CIVIL</p>
-                </div>
-                <div class="programming-stats">
-                    <div class="chart-container" style="width: 70%; margin: auto;">
-                        <canvas class="my-chart" id="graficaEstadoCivil"></canvas>
-                    </div>
-                </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="grafica">
-                <div class="cabecera">
-                    <p class="parametro">ESTADISTICAS GENERALES DE GENERO</p>
-                </div>
-                <div class="programming-stats">
-                    <div class="chart-container" style="width: 70%; margin: auto;">
-                        <canvas class="my-chart" id="graficaGenero"></canvas>
-                    </div>
-                </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="grafica">
-                <div class="cabecera">
-                    <p class="parametro">ESTADISTICAS GENERALES DE RANGO DE EDAD</p>
-                </div>
-                <div class="programming-stats">
-                    <div class="chart-container" style="width: 70%; margin: auto;">
-                        <canvas class="my-chart" id="graficaRangoEdad"></canvas>
-                    </div>
-                </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="grafica">
-                <div class="cabecera">
-                    <p class="parametro">ESTADISTICAS GENERALES DE RECURSOS</p>
-                </div>
-                <div class="programming-stats">
-                    <div class="chart-container" style="width: 70%; margin: auto;">
-                        <canvas class="my-chart" id="graficaRecurso"></canvas>
-                    </div>
-                </div>
-            </div>
-          </div>
+    <div class="grafica">
+        <div class="cabecera">
+            <p class="parametro">ESTADISTICAS GENERALES DE CIERRES</p>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <div class="cir">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <div class="programming-stats">
+            <div class="chart-container">
+                <canvas class="my-chart" id="grafica"></canvas>
             </div>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <div class="cir">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </div>
+    </div>
+</div>
+
+<div class="estadisticas">
+    <div class="grafica">
+        <div class="cabecera">
+            <p class="parametro">ESTADISTICAS GENERALES DE FUENTES DE CONTACTOS</p>
+        </div>
+        <div class="programming-stats">
+            <div class="chart-container">
+                <canvas class="my-chart" id="graficaFuenteContacto"></canvas>
             </div>
-            <span class="visually-hidden">Next</span>
-        </button>
-      </div>
+        </div>
+    </div>
+</div>
+
+<div class="estadisticas">
+    <div class="grafica">
+        <div class="cabecera">
+            <p class="parametro">ESTADISTICAS GENERALES DE INGRESOS</p>
+        </div>
+        <div class="programming-stats">
+            <div class="chart-container">
+                <canvas class="my-chart" id="graficaIngreso"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="estadisticas">
+    <div class="grafica">
+        <div class="cabecera">
+            <p class="parametro">ESTADISTICAS GENERALES DE ESTADO CIVIL</p>
+        </div>
+        <div class="programming-stats">
+            <div class="chart-container">
+                <canvas class="my-chart" id="graficaEstadoCivil"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="estadisticas">
+    <div class="grafica">
+        <div class="cabecera">
+            <p class="parametro">ESTADISTICAS GENERALES DE GENERO</p>
+        </div>
+        <div class="programming-stats">
+            <div class="chart-container">
+                <canvas class="my-chart" id="graficaGenero"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="estadisticas">
+    <div class="grafica">
+        <div class="cabecera">
+            <p class="parametro">ESTADISTICAS GENERALES DE RANGO DE EDAD</p>
+        </div>
+        <div class="programming-stats">
+            <div class="chart-container">
+                <canvas class="my-chart" id="graficaRangoEdad"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="estadisticas">
+    <div class="grafica">
+        <div class="cabecera">
+            <p class="parametro">ESTADISTICAS GENERALES DE RECURSOS</p>
+        </div>
+        <div class="programming-stats">
+            <div class="chart-container">
+                <canvas class="my-chart" id="graficaRecurso"></canvas>
+            </div>
+        </div>
+    </div>
 </div>
 
 
-    <script>
+<script>
         // Obtén los datos para la gráfica de barras desde el backend
         var statsData = <?php echo json_encode($stats); ?>;
 
@@ -392,7 +380,7 @@
         });
 
         // Puedes agregar más bloques de código similar para otras gráficas
-    </script>
+</script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

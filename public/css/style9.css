@@ -112,6 +112,7 @@ body {
 }
 
 .estadisticas{
+    margin-top: 2%;
     display: flex;
     width: 96%;
     height: 79vh;
@@ -123,7 +124,6 @@ body {
     background-color: white;
     width: 100%;
     height: 79vh;
-    margin-left: 3%;
     border-radius: 5px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     display: flex;
@@ -184,7 +184,9 @@ body {
     transition: all 400ms ease;
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
+    overflow-x: auto;
+    white-space: nowrap;
 }
   
 .programming-stats .details ul {
@@ -332,12 +334,16 @@ tbody tr:hover {
 .btn.btn-warning{
     margin-left: 2%;
 }
-
-@media (max-width: 850px) {
-
-}
 @media (max-width: 1300px) {
-
+    .chart-container{
+        width: 727px;
+        height: 405px;
+    }
+}
+@media (max-width: 770px){
+    .programming-stats{
+        justify-content: flex-start;
+    }
 }
 
 
