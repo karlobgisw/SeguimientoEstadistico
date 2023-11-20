@@ -27,4 +27,18 @@ class RegistroCierre extends Model
         'cerro', 'ingreso', 'monto_propiedad', 'recurso', 'fuente_contacto', 'genero', 'rango_edad', 'estado_civil',
         // Agrega otros campos aquí si necesitas asignación masiva
     ];
+    // En tu modelo RegistroCierre
+
+public function userCerro()
+{
+    return $this->belongsTo(User::class, 'cerro');
+}
+
+public function userIngreso()
+{
+    return $this->belongsTo(User::class, 'ingreso');
+}
+
+
+
 }

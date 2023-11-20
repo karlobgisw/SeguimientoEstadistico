@@ -34,7 +34,8 @@
             </svg>
         </button>
     </form>
-    <button type="button" class="btn btn-warning">EDITAR DATOS</button>
+    <button type="button" class="btn btn-warning" onclick="window.location.href='{{ url('/registros-cierre') }}'">EDITAR DATOS</button>
+
 </div>
 
 <div class="estadisticas">

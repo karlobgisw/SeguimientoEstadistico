@@ -12,6 +12,12 @@ use App\Http\Controllers\InicioAdminController; // Importa el controlador
 use App\Http\Controllers\MenuAdminController; // Importa el controlador
 use App\Http\Controllers\RegistroCierreController;
 use App\Http\Controllers\EstadisticasController;
+use App\Http\Controllers\RegistroSCRUDController;
+
+Route::get('/registros-cierre', [RegistroSCRUDController::class, 'index'])->name('registroscrud.index');
+Route::get('/registros-cierre/{id}/edit', [RegistroSCRUDController::class, 'edit'])->name('registroscrud.edit');
+Route::put('/registros-cierre/{id}', [RegistroSCRUDController::class, 'update'])->name('registroscrud.update');
+Route::delete('/registros-cierre/{id}', [RegistroSCRUDController::class, 'destroy'])->name('registroscrud.destroy');
 
 // Ruta para la página de estadísticas
 Route::get('/estadisticas', [EstadisticasController::class, 'index'])->name('estadisticas.index')->middleware('auth.redirect','auth','staff');
