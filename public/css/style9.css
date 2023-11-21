@@ -276,7 +276,7 @@ tbody tr:hover {
 }
 .search{
     width: 100%;
-    height: 13vh;
+    height: 15vh;
     display: flex;
     justify-content: center; /* Centrar horizontalmente */
     align-items: center;
@@ -357,6 +357,29 @@ tbody tr:hover {
 @media (max-width: 770px){
     .programming-stats{
         justify-content: flex-start;
+    }
+}
+@media (max-width: 743px){
+    .search{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 2%;
+    }
+    #filterForm{
+        margin-bottom: 1%;
+        width: 93%;
+    }
+}
+@media (max-width: 476px){
+    #filterForm{
+        width: 97%;
+    }
+}
+@media (max-width: 460px){
+    #filterForm{
+        font-size: 67%;
     }
 }
 
