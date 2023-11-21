@@ -6,29 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Registros de Cierre</title>
-    <link rel="stylesheet" href="{{ asset('css/style3.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style9.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 
-<body style="background-color: #3498db; color: #fff;">
+<body style="background-color: #b5f3f7; color: #fff;">
     <header>
         @include('nav')
     </header>
     <div class="container mt-4">
-        <h1>Registros de Cierre</h1>
+    
 
         <!-- Agrega el botón para ir a Estadísticas -->
         <div class="search">
-            <form action="{{ route('estadisticas.index') }}" method="get" class="buscador" id="miFormulario">
-                @csrf
-                <button type="submit" class="btn btn-primary">Ir a Estadísticas</button>
-            </form>
-        </div>
+    <form id="filterForm" action="{{ route('registroscrud.index') }}" method="GET" class="buscador">
+        @csrf
+        <label for="fechaFiltro" class="fechas">Seleccionar día:</label>
+        <input class="inputt" type="date" id="fechaFiltro" name="fechaFiltro" required>
+        <button type="submit" class="lupa-cuad">
+            <svg class="lupa" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+        </button>
+        <button type="button" class="btn btn-warning" onclick="window.location.href='{{ url('/estadisticas') }}'">Volver a Estadisticas</button>
+    </form>
+    
+</div>
 
-        <table class="table table-bordered table-striped mt-4" style="background-color: #ffffff; color: #000;">
-            <thead>
-                <tr style="background-color: #2980b9;">
+
+<table class="table table-bordered table-dark">
+                <div class="cabecera">
+            <p class="parametro">Registros de Cierres</p>
+        </div>
                     <th>ID</th>
                     <th>Cerró (Usuario)</th>
                     <th>Ingreso (Usuario)</th>
@@ -40,15 +50,13 @@
                     <th>Estado Civil</th>
                     <th>Fecha de Creación</th>
                     <th>Acciones</th>
-                </tr>
-            </thead>
             <tbody>
                 @foreach($registros as $registro)
                     <tr>
                         <td>{{ $registro->id }}</td>
                         <td>{{ $registro->userCerro->nombre }}</td>
                         <td>{{ $registro->userIngreso->nombre }}</td>
-                        <td>{{ $registro->monto_propiedad }}</td>
+                        <td>{{ number_format($registro->monto_propiedad, 2, '.', ',') }} $</td>
                         <td>{{ $registro->recurso }}</td>
                         <td>{{ $registro->fuenteContacto->nombre_fuente }}</td>
                         <td>{{ $registro->genero }}</td>
@@ -58,7 +66,7 @@
 
                         <!-- Botón para abrir el modal -->
                         <td>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal{{ $registro->id }}">
+                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editarModal{{ $registro->id }}">
                                 Editar
                             </button>
                         </td>
@@ -66,15 +74,16 @@
 
                     <!-- Modal para editar -->
                     <div class="modal fade" id="editarModal{{ $registro->id }}" tabindex="-1" aria-labelledby="editarModalLabel{{ $registro->id }}" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="editarModalLabel{{ $registro->id }}">Editar Registro</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- Contenido del modal -->
-                <form action="{{ route('registroscrud.update', $registro->id) }}" method="POST">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white"> <!-- Cambia el fondo a negro y el texto a blanco -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarModalLabel{{ $registro->id }}">Editar Registro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+            <!-- Contenido del modal -->
+            <form action="{{ route('registroscrud.update', $registro->id) }}" method="POST">
                     @csrf
                     @method('PUT')
 
@@ -172,11 +181,13 @@
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Eliminar</button>
+            </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
                 @endforeach
             </tbody>
         </table>

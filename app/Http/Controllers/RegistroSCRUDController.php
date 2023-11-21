@@ -9,15 +9,22 @@ use Illuminate\Http\Request;
 
 class RegistroSCRUDController extends Controller
 {
-    public function index()
-    {
-        $registros = RegistroCierre::all();
-        $usuarios = User::all();
-        $fuentes_contacto = FuenteContacto::all();
-        $permiso = 'full';
+    public function index(Request $request)
+{
+    $registros = RegistroCierre::all();
+    $usuarios = User::all();
+    $fuentes_contacto = FuenteContacto::all();
+    $permiso = 'full';
 
-        return view('registroscrud.index', compact('registros', 'usuarios', 'fuentes_contacto', 'permiso'));
+    // Verifica si se proporcionó una fecha en la solicitud
+    if ($request->has('fechaFiltro')) {
+        $fechaFiltro = $request->input('fechaFiltro');
+        $registros = RegistroCierre::whereDate('created_at', $fechaFiltro)->get();
     }
+
+    return view('registroscrud.index', compact('registros', 'usuarios', 'fuentes_contacto', 'permiso'));
+}
+
 
     public function edit($id)
     {
