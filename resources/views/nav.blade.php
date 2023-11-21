@@ -16,7 +16,7 @@
             <a class="nav-link letras" id="nav-item" aria-current="page" href="{{ route('inicioadmin') }}">Agentes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link letras" id="nav-item" href="#">Estadisticas</a>
+            <a class="nav-link letras" id="nav-item" href="{{ route('verstatsglobales') }}">Estadisticas-Globales</a>
           </li>
           @endif
           @if($permiso == 'limited')

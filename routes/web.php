@@ -122,6 +122,10 @@ Route::post('/contactos/store', [ContactoController::class, 'store'])->name('/co
 
 Route::post('/ver-stat', [ContactoController::class, 'Estadistica'])->name('ver-stat');
 
+Route::post('/ver-stats-globales', [ContactoController::class, 'EstadisticasGlobales'])->name('statsglobales');
+
+Route::get('/statsglobales', [ContactoController::class, 'VerEstadisticasGlobales'])->name('verstatsglobales');
+
 
 Route::patch('/contacto/{id}', [ContactoController::class, 'update'])->name('contacto.update');
 Route::patch('/contacto/nombre/{id}', [ContactoController::class, 'updateNombre'])->name('contacto.updateNombre');
