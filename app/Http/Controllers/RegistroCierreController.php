@@ -6,55 +6,58 @@ use App\Models\RegistroCierre;
 use App\Models\User;
 use App\Models\FuenteContacto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class RegistroSCRUDController extends Controller
+
+class RegistroCierreController extends Controller
 {
     public function index()
-    {
-        $registros = RegistroCierre::all();
-        $usuarios = User::all();
-        $fuentes_contacto = FuenteContacto::all();
-        $permiso = 'full';
+{
+    // Obtén usuarios con permisos igual a 2 y activos igual a 1
+    $usuarios = User::where('permisos_id', 2)
+                    ->where('activo', 1)
+                    ->pluck('nombre', 'id'); // Obtén solo los nombres de usuario como un array asociativo     
+    $fuentes_contacto = FuenteContacto::all();
+    return view('registrocierre', compact('usuarios', 'fuentes_contacto'));
+}
+public function showEstadisticas()
+{
+    $usuarios = User::where('permisos_id', 2)
+                    ->where('activo', 1)
+                    ->pluck('nombre', 'id');
 
-        return view('registroscrud.index', compact('registros', 'usuarios', 'fuentes_contacto', 'permiso'));
-    }
+    $registros = RegistroCierre::select('cerro', DB::raw('count(*) as cierres_totales'), DB::raw('sum(monto_propiedad) as suma_monto_propiedades'))
+                              ->groupBy('cerro')
+                              ->get();
 
-    public function edit($id)
-    {
-        $registro = RegistroCierre::findOrFail($id);
-        $usuarios = User::where('permisos_id', 2)
-                        ->where('activo', 1)
-                        ->pluck('nombre', 'id');
-        $fuentes_contacto = FuenteContacto::pluck('nombre_fuente', 'id');
-        $permiso = 'full';
+    dd($usuarios, $registros); // Verifica si los datos se están recuperando correctamente
 
-        return view('registroscrud.edit', compact('registro', 'usuarios', 'fuentes_contacto', 'permiso'));
-    }
+    return view('estadisticas_cierre', compact('usuarios', 'registros'));
+}
 
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'cerro' => 'required|numeric',
-            'ingreso' => 'required|numeric',
-            'monto_propiedad' => 'required|string',
-            'recurso' => 'required|string',
-            'fuente_contacto' => 'required|integer|not_in:0',
-            'genero' => 'required|string|not_in:0',
-            'rango_edad' => 'required|string|not_in:0',
-            'estado_civil' => 'required|string|not_in:0',
-        ]);
 
-        $registro = RegistroCierre::findOrFail($id);
-        $registro->update($request->all());
 
-        return redirect()->route('registroscrud.index')->with('success', 'Registro actualizado exitosamente');
-    }
 
-    public function destroy($id)
-    {
-        $registro = RegistroCierre::findOrFail($id);
-        $registro->delete();
+    // Método para mostrar el formulario de creación
+    // Método para almacenar un nuevo registro en la base de datos
+    public function store(Request $request)
+{
+    // Validaciones y almacenamiento de datos en la base de datos
+    $request->validate([
+        'cerro' => 'required|numeric',
+        'ingreso' => 'required|numeric',
+        'monto_propiedad' => 'required|string',
+        'recurso' => 'required|string',
+        'fuente_contacto' => 'required|integer|not_in:0', // Asegura que el valor sea distinto de 0
+        'genero' => 'required|string|not_in:0', // Asegura que el valor sea distinto de 0
+        'rango_edad' => 'required|string|not_in:0', // Asegura que el valor sea distinto de 0
+        'estado_civil' => 'required|string|not_in:0', // Asegura que el valor sea distinto de 0
+    ]);
 
-        return redirect()->route('registroscrud.index')->with('success', 'Registro eliminado exitosamente');
-    }
+    // Crea el registro de cierre en la base de datos
+    $registro = RegistroCierre::create($request->all());
+
+    // Redirige a la página de éxito con un mensaje
+    return redirect()->back();
+}
 }

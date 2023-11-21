@@ -7,6 +7,14 @@
 #logoutModalContent{
     background-color: white;
 }
+.navbar {
+    color: black;
+}
+
+/* Si estás usando un identificador */
+#nav {
+    color: black;
+}
 .btn.btn-danger.logout {
     --bs-btn-color: #fff;
     --bs-btn-bg: #061320;
