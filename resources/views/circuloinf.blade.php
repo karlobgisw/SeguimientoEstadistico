@@ -11,7 +11,9 @@ $fuentes_contacto = FuenteContacto::all();
     <title>Circulo Influencia</title>
     <link rel="stylesheet" href="{{ asset('css/style4.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
 </head>
+
 <body>
     <header>
         @include('nav')
@@ -182,7 +184,7 @@ $fuentes_contacto = FuenteContacto::all();
         </div>
       </div>
     <div class="contenedor">
-    <table>
+    <table id="example">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -574,6 +576,32 @@ $fuentes_contacto = FuenteContacto::all();
 </script>
 <script src="{{ asset('js/nav.js') }}"></script>
    
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script> 
+
+<script>
+$(document).ready(function(){
+    var table = $('#example').DataTable({
+        orderCellsTop: true,
+        fixedHeader: true 
+    });
+
+    // Creamos una fila en el head de la tabla y lo clonamos para cada columna
+    $('#example thead tr').clone(true).appendTo('#example thead');
+
+    $('#example thead tr:eq(1) th').each(function (i) {
+        var title = $(this).text(); // es el nombre de la columna
+        $(this).html('<input type="text" placeholder="Search... ' + title + '" />');
+
+        $('input', this).on('keyup change', function () {
+            if (table.column(i).search() !== this.value) {
+                table.column(i).search(this.value).draw();
+            }
+        });
+    });
+});
+</script>
 
 </body>
 </html>
