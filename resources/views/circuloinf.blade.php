@@ -11,9 +11,44 @@ $fuentes_contacto = FuenteContacto::all();
     <title>Circulo Influencia</title>
     <link rel="stylesheet" href="{{ asset('css/style4.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-
+    
 </head>
+<style>
+    #example th.center,
+    #example td.center {
+        text-align: center;
+    }
+    #example thead input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        /* Estilo para los cuadros de búsqueda en las columnas */
+        #example_wrapper .dataTables_filter input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
 
+        /* Estilo para reducir el ancho de las filas de la tabla */
+        
+
+        /* Ocultar el filtro general y la sección "Show" */
+        #example_wrapper .dataTables_length,
+        #example_wrapper .dataTables_info,
+        #example_wrapper .dataTables_filter {
+            display: none;
+        }
+
+        /* Ocultar la navegación "Previous" y "Next" */
+        #example_wrapper .dataTables_paginate {
+            display: none;
+        }
+    </style>
 <body>
     <header>
         @include('nav')
@@ -276,7 +311,11 @@ $fuentes_contacto = FuenteContacto::all();
                     </td><td class="text-center">
                     <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{ $contacto->comentario }}</div>
                     </td><td class="text-center">
-                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{ $contacto->valor }}</div>
+    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto">
+        {{ number_format($contacto->valor, 2, ',', '.') }} {{-- 2 decimales, ',' como separador de miles y '.' como separador decimal --}}
+    </div>
+</td>
+
                     </td><td class="text-center">
                     <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{ $contacto->semana }}</div>
                     </td><td class="text-center">
@@ -592,16 +631,21 @@ $(document).ready(function(){
 
     $('#example thead tr:eq(1) th').each(function (i) {
         var title = $(this).text(); // es el nombre de la columna
-        $(this).html('<input type="text" placeholder="Search... ' + title + '" />');
+        if (title !== 'Llamada' && title !== 'Contestada' && title !== 'Interesado' && title !== 'Cita') {
+            $(this).html('<input type="text" placeholder="Search... " />');
 
-        $('input', this).on('keyup change', function () {
-            if (table.column(i).search() !== this.value) {
-                table.column(i).search(this.value).draw();
-            }
-        });
+            $('input', this).on('keyup change', function () {
+                if (table.column(i).search() !== this.value) {
+                    table.column(i).search(this.value).draw();
+                }
+            });
+        } else {
+            $(this).html('');
+        }
     });
 });
 </script>
+
 
 </body>
 </html>

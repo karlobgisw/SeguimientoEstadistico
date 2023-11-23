@@ -62,6 +62,11 @@ $fuentes_contacto = FuenteContacto::all();
                     <option value="INFONAVIT">INFONAVIT</option>
                     <option value="Credito Bancario">Crédito Bancario</option>
                     <option value="Recursos Propios">Recursos Propios</option>
+                    <option value="IMSS">IMSS</option>
+                    <option value="Alia2">Alia2</option>
+                    <option value="Caja de Ahorro">Caja de Ahorro</option> 
+                    <option value="Cofinavit">Cofinavit</option>
+                    
                 </select>
             </div>
         </div>
@@ -132,3 +137,4 @@ $fuentes_contacto = FuenteContacto::all();
 </body>
 
 </html>
+

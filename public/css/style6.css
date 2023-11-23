@@ -39,10 +39,10 @@ body {
     top: 62%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40%; /* Aumentado el ancho para una mejor visualización */
+    width: 70%; /* Aumentado el ancho para una mejor visualización */
     background: #0B2742;
     border-radius: 10px;
-    padding: 20px; /* Añadido relleno para un mejor espacio interno */
+    padding: 5px; /* Añadido relleno para un mejor espacio interno */
     text-align: center; /* Centrar el contenido */
     color: white; /* Cambiado el color de texto a blanco */
     margin-bottom: 20px; /* Agrega un margen inferior de 20 píxeles al contenedor */
@@ -50,7 +50,7 @@ body {
 
 /* Form Styles */
 .center form {
-    max-width: 400px; /* Limitado el ancho del formulario para una mejor legibilidad */
+    max-width: 700px; /* Limitado el ancho del formulario para una mejor legibilidad */
     margin: 0 auto; /* Centrar el formulario dentro del contenedor */
 }
 
