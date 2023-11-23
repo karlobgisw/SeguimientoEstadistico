@@ -161,6 +161,7 @@
 body {
     min-height: 100vh;
     --bs-body-bg: #bae6f7;
+
 }
 
 tbody{
@@ -315,6 +316,42 @@ tbody tr:hover {
 .contenedor::-webkit-scrollbar-thumb{
     background: #61A2E0;
     border-radius: 10px;
+}
+
+#example thead input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+/* Estilo para los cuadros de búsqueda en las columnas */
+#example_wrapper .dataTables_filter input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilo para reducir el ancho de las filas de la tabla */
+#example tbody td {
+    max-width: 100px; /* Ajusta el ancho según tus necesidades */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Ocultar el filtro general y la sección "Show" */
+#example_wrapper .dataTables_length,
+#example_wrapper .dataTables_info,
+#example_wrapper .dataTables_filter {
+    display: none;
+}
+
+/* Ocultar la navegación "Previous" y "Next" */
+#example_wrapper .dataTables_paginate {
+    display: none;
 }
 
 @media (max-width: 576px){

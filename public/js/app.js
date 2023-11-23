@@ -28,8 +28,27 @@ document.addEventListener("dragstart", function(event) {
 
 
 });
+document.addEventListener("touchstart", function(event) {
+  event.dataTransfer.setData("text/plain", event.target.className); //envias la clase del objeto arrastrado
+  event.dataTransfer.setData("id", event.target.id); //envias la id del objeto arrastrado
+  var elementoArrastrado = event.target; //iguala el objeto que estas arrastrando a una variable 
+  var claseDelElementoArrastrado = elementoArrastrado.className; // obtiene la clase del elemento arrastradro
+  if(claseDelElementoArrastrado == 'cho'){  //comparativa para saber si se estan arrastrando tareas DENTRO DE LA MISMA AGENDA, es decir no arrastrar una actividad desde fuera
+    event.dataTransfer.setData("texto2", event.target.textContent);//obtengo el texto del objeto arrastrado
+    event.dataTransfer.setData("text/plain4", event.target.getAttribute("data-actividad-id"));
+  }
+  if(claseDelElementoArrastrado == 'cuad-act'){
+    event.dataTransfer.setData("text/plain3", event.target.getAttribute("data-actividad-id"));
+    event.dataTransfer.setData("texto", event.target.textContent);
+  }
+
+
+});
 
 document.addEventListener("dragend", function(event) {
+  document.getElementById('borraractt').style.opacity = 0;
+});
+document.addEventListener("touchend", function(event) {
   document.getElementById('borraractt').style.opacity = 0;
 });
 
@@ -38,6 +57,9 @@ var borrart = document.getElementById("borraract");
 
 borrar.addEventListener('dragenter', function(event) {
 });
+borrar.addEventListener('touchenter', function(event) {
+});
+
 borrar.addEventListener('dragleave', function(event) {
   event.preventDefault();
   setTimeout(function () {
@@ -46,6 +68,15 @@ borrar.addEventListener('dragleave', function(event) {
     borrar.classList.remove('dragging');
   }, 100);
 });
+borrar.addEventListener('touchleave', function(event) {
+  event.preventDefault();
+  setTimeout(function () {
+    borrar.style.backgroundColor = '#b7b6b6';
+    borrart.setAttribute('fill', '#505050');
+    borrar.classList.remove('dragging');
+  }, 100);
+});
+
 borrar.addEventListener('dragover', function(event) {
   event.preventDefault();
   setTimeout(function () {
@@ -54,7 +85,26 @@ borrar.addEventListener('dragover', function(event) {
     borrar.classList.add('dragging');
   }, 10);
 });
+borrar.addEventListener('touchleave', function(event) {
+  event.preventDefault();
+  setTimeout(function () {
+    borrar.style.backgroundColor = '#bb0d0d';
+    borrart.setAttribute('fill', '#ffffff');
+    borrar.classList.add('dragging');
+  }, 10);
+});
+
 borrar.addEventListener('drop', function(event) {
+  event.preventDefault();
+  var idArrastrado = event.dataTransfer.getData("id");
+  var idArrastrado = document.getElementById(idArrastrado);
+  idArrastrado.parentNode.removeChild(idArrastrado);
+  borrar.style.backgroundColor = '#b7b6b6';
+  borrart.setAttribute('fill', '#505050');
+  borrar.classList.remove('dragging');
+  document.getElementById('borraractt').style.opacity = 0;
+});
+borrar.addEventListener('touchend', function(event) {
   event.preventDefault();
   var idArrastrado = event.dataTransfer.getData("id");
   var idArrastrado = document.getElementById(idArrastrado);
@@ -71,14 +121,69 @@ contenedores.forEach(contenedor => {
   contenedor.addEventListener('dragstart', e => {
     document.getElementById('borraractt').style.opacity = 1;
   });
+  contenedor.addEventListener('touchstart', e => {
+    document.getElementById('borraractt').style.opacity = 1;
+  });
   contenedor.addEventListener('dragenter', e => {
   });
+  contenedor.addEventListener('touchenter', e => {
+  });
   contenedor.addEventListener('dragleave', e => {
+  });
+  contenedor.addEventListener('touchleave', e => {
   });
   contenedor.addEventListener('dragover', e => {
     e.preventDefault();
   });
+  contenedor.addEventListener('touchmove', e => {
+    e.preventDefault();
+  });
   contenedor.addEventListener('drop', function(event) { //entramos al evento drop
+    console.log('Drop');
+    event.preventDefault();
+    var actid = event.dataTransfer.getData("text/plain3");
+    var actid2 = event.dataTransfer.getData("text/plain4");
+    var texto = event.dataTransfer.getData("texto");
+    var elementoArrastrado = event.dataTransfer.getData("text/plain"); //obtenemos la clase del elemento del evento drag
+    var idArrastrado = event.dataTransfer.getData("id");
+    var idArrastrado = document.getElementById(idArrastrado);
+    var dataArray = contenedor.getAttribute("data-array");
+    var miArray;
+    if(dataArray){
+      miArray = JSON.parse(dataArray)
+    }else{
+      miArray = [];
+    }
+    var nuevoValor = JSON.stringify(miArray);
+    contenedor.setAttribute("data-array", nuevoValor);
+
+    console.log(elementoArrastrado);
+    if(elementoArrastrado == 'cuad-act'){ //si el elemento arrastrado viene de actividades del carrusel
+      const actividadarrastrada = document.createElement('div'); // crea un elemento div
+      actividadarrastrada.textContent = texto; // crea texto para ese elemento
+      actividadarrastrada.classList.add('cho');
+      actividadarrastrada.setAttribute('data-actividad-id', actid);
+      actividadarrastrada.id = identificador;
+      identificador = identificador + 1;
+      actividadarrastrada.setAttribute("draggable", "true");
+      contenedor.appendChild(actividadarrastrada); //lo agrega al contenedor
+    }
+    if(elementoArrastrado == 'cho'){ //si el elemento es una actividad que ya esta en la agenda, es decir, que se quiere pasar a otro dia por asi decirlo
+      var texto2 = event.dataTransfer.getData("texto2"); // obtenemos los datos que enviamos en el eventro drag, en este caso el texto
+      const actividadarrastrada = document.createElement('div'); // crea un elemento div
+      actividadarrastrada.textContent = texto2; // crea texto para ese elemento
+      actividadarrastrada.classList.add('cho');
+      actividadarrastrada.setAttribute('data-actividad-id', actid2);
+      actividadarrastrada.id = identificador;
+      identificador = identificador + 1;
+      actividadarrastrada.setAttribute("draggable", "true");
+      contenedor.appendChild(actividadarrastrada); //lo agrega al contenedor
+      idArrastrado.parentNode.removeChild(idArrastrado);
+    }
+
+    document.getElementById('borraractt').style.opacity = 0;
+  });
+  contenedor.addEventListener('touchend', function(event) { //entramos al evento drop
     console.log('Drop');
     event.preventDefault();
     var actid = event.dataTransfer.getData("text/plain3");

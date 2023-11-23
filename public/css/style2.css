@@ -219,6 +219,16 @@ body {
     transform: translateY(-3%);
 }
 
+.bi.bi-people-fill{
+    fill: white;
+    position: absolute;
+    top: 41%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 30%;
+}
+
 @media (max-width: 700px) {
     .cartas{
         display: block;

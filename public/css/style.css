@@ -147,8 +147,12 @@ input[type="submit"]:hover{
 }
 
 #mi-toast{
-    position: absolute;
-    bottom: 0;
-    left: 120%;
-    transform: none;
+  position: absolute;
+  bottom: 20px; /* Ajusta esta propiedad según sea necesario para la separación del borde inferior */
+  right: 20px; /* Ajusta esta propiedad según sea necesario para la separación del borde derecho */
+  background-color: #333;
+  color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 9999; /* Asegura que el toast esté por encima de otros elementos */
 }

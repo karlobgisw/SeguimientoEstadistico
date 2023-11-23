@@ -790,6 +790,9 @@ body {
     #dashboard.open {
         width: 173px;
     }
+    #toggleButton{
+        display: none;
+    }
 }
 
 @media screen and (min-height:622px) and (max-height: 667px){
@@ -817,7 +820,7 @@ body {
         margin-top: 21%;
     }
     .actcuad{
-        height: 65vh;
+        height: 55vh;
     }
 }
 @media screen and (min-height:740px) and (max-height: 743px){
@@ -847,7 +850,7 @@ body {
         margin-top: 8%;
     }
     .actcuad{
-        height: 65vh;
+        height: 55vh;
     }
 }
 @media (min-height:744px){
@@ -870,7 +873,7 @@ body {
         margin-top: 21%;
     }
     .actcuad{
-        height: 65vh;
+        height: 55vh;
     }
 }
 @media (min-height: 874px){
@@ -881,7 +884,7 @@ body {
 
 @media (max-height: 450px){
     .actcuad{
-        height: 40vh;
+        height: 35vh;
     }
     #hideButton {
         height: 8%;
