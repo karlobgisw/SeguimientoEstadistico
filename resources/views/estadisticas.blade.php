@@ -183,14 +183,14 @@
                 labels: labels,
                 datasets: [
                     {
-                        label: 'Cierres Totales',
+                        label: 'Numero Total',
                         data: cierresCount,
                         backgroundColor: '#3498db',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1
                     },
                     {
-                        label: 'Total Monto',
+                        label: 'Monto Total',
                         data: totalMonto,
                         backgroundColor: '#e74c3c',
                         borderColor: 'rgba(255, 99, 132, 1)',
@@ -241,7 +241,7 @@
                 labels: labelsFuenteContacto,
                 datasets: [
                     {
-                        label: 'Número de Registros',
+                        label: 'Numero de Contactos',
                         data: fuenteContactoCount,
                         backgroundColor: '#3498db',
                         borderColor: 'rgba(75, 192, 192, 1)',
@@ -258,7 +258,7 @@
             }
         });
 
-        // Obtén los datos para la gráfica de barras de "Ingreso" desde el backend
+       // Obtén los datos para la gráfica de barras de "Ingreso" desde el backend
 var ingresoData = <?php echo json_encode($ingresoStats); ?>;
 
 // Preparar los datos para la gráfica de barras de "Ingreso"
@@ -271,7 +271,7 @@ var ingresoCount = ingresoData.map(function (stat) {
 });
 
 var montoTotalIngreso = ingresoData.map(function (stat) {
-    return stat.monto_total;
+    return stat.monto_total || 0; // Asegurar que monto_total esté definido y manejar el caso en que sea nulo
 });
 
 // Crear la gráfica de barras para "Ingreso"
@@ -282,7 +282,7 @@ var myChartIngreso = new Chart(ctxIngreso, {
         labels: labelsIngreso,
         datasets: [
             {
-                label: 'Número de Registros',
+                label: 'Número Total',
                 data: ingresoCount,
                 backgroundColor: '#3498db',
                 borderColor: 'rgba(75, 192, 192, 1)',
@@ -351,7 +351,7 @@ var myChartMes = new Chart(ctxMes, {
     data: {
         labels: labelsMes,
         datasets: [{
-            label: 'Registros por Mes',
+            label: 'Cierres Mensuales',
             data: mesCount,
             backgroundColor: '#3498db',
         }]

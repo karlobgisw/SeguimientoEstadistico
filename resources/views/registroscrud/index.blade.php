@@ -11,7 +11,42 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
+<style>
+    #example th.center,
+    #example td.center {
+        text-align: center;
+    }
+    #example thead input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        /* Estilo para los cuadros de búsqueda en las columnas */
+        #example_wrapper .dataTables_filter input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
 
+        /* Estilo para reducir el ancho de las filas de la tabla */
+        
+
+        /* Ocultar el filtro general y la sección "Show" */
+        #example_wrapper .dataTables_length,
+        #example_wrapper .dataTables_info,
+        #example_wrapper .dataTables_filter {
+            display: none;
+        }
+
+        /* Ocultar la navegación "Previous" y "Next" */
+        #example_wrapper .dataTables_paginate {
+            display: none;
+        }
+    </style>
 <body style="background-color: #b5f3f7; color: #fff;">
     <header>
         @include('nav')
@@ -32,14 +67,19 @@
         </button>
         <button type="button" class="btn btn-warning" onclick="window.location.href='{{ url('/estadisticas') }}'">Volver a Estadisticas</button>
     </form>
-    
+        </div>
 </div>
 
 
-<table class="table table-bordered table-dark">
-                <div class="cabecera">
-            <p class="parametro">Registros de Cierres</p>
-        </div>
+                
+            
+ 
+<table id="example"class="table table-bordered table-dark">
+<div class="cabecera"><p class="parametro">Registros de Cierres</p></div>     
+
+        
+        <thead>
+            <tr>
                     <th>ID</th>
                     <th>Cerró (Usuario)</th>
                     <th>Ingreso (Usuario)</th>
@@ -51,6 +91,8 @@
                     <th>Estado Civil</th>
                     <th>Fecha de Creación</th>
                     <th>Acciones</th>
+                    </tr>
+                </thead>
             <tbody>
                 @foreach($registros as $registro)
                     <tr>
@@ -203,7 +245,7 @@
             </tbody>
         </table>
     </div>
-
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
@@ -212,5 +254,34 @@
     <script src="{{ asset('js/nav.js') }}"></script>
     <script src="{{ asset('js/app5.js') }}"></script>
 </body>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
+<script>
+$(document).ready(function(){
+    var table = $('#example').DataTable({
+        orderCellsTop: true,
+        fixedHeader: true, 
+        paging: false
+    });
+
+    // Creamos una fila en el head de la tabla y lo clonamos para cada columna
+    $('#example thead tr').clone(true).appendTo('#example thead');
+
+
+    $('#example thead tr:eq(1) th').each(function (i) {
+        var title = $(this).text(); // es el nombre de la columna
+        if (title !== 'Llamada' && title !== 'Contestada' && title !== 'Interesado' && title !== 'Cita') {
+            $(this).html('<input type="text" placeholder="Search... " />');
+
+            $('input', this).on('keyup change', function () {
+                if (table.column(i).search() !== this.value) {
+                    table.column(i).search(this.value).draw();
+                }
+            });
+        } else {
+            $(this).html('');
+        }
+    });
+});
+</script>
 </html>
