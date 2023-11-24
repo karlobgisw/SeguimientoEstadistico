@@ -46,13 +46,14 @@ public function showEstadisticas()
     $request->validate([
         'cerro' => 'required|numeric',
         'ingreso' => 'required|numeric',
-        'monto_propiedad' => 'required|string',
+        'monto_propiedad' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
         'recurso' => 'required|string',
-        'fuente_contacto' => 'required|integer|not_in:0', // Asegura que el valor sea distinto de 0
-        'genero' => 'required|string|not_in:0', // Asegura que el valor sea distinto de 0
-        'rango_edad' => 'required|string|not_in:0', // Asegura que el valor sea distinto de 0
-        'estado_civil' => 'required|string|not_in:0', // Asegura que el valor sea distinto de 0
+        'fuente_contacto' => 'required|integer|not_in:0',
+        'genero' => 'required|string|not_in:0',
+        'rango_edad' => 'required|string|not_in:0',
+        'estado_civil' => 'required|string|not_in:0',
     ]);
+    
 
     // Crea el registro de cierre en la base de datos
     $registro = RegistroCierre::create($request->all());

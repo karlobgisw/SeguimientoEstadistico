@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +36,7 @@
 </div>
 
 
-<table class="table table-bordered table-dark">
+<table id="example" class="table table-bordered table-dark">
                 <div class="cabecera">
             <p class="parametro">Registros de Cierres</p>
         </div>
@@ -62,7 +63,7 @@
                         <td>{{ $registro->genero }}</td>
                         <td>{{ $registro->rango_edad }}</td>
                         <td>{{ $registro->estado_civil }}</td>
-                        <td>{{ $registro->created_at }}</td>
+                        <td>{{ $registro->created_at->format('Y-m-d') }}</td>
 
                         <!-- Botón para abrir el modal -->
                         <td>
@@ -114,17 +115,25 @@
                             <input type="text" id="montoPropiedadModal" name="montoPropiedadModal" class="form-control" value="{{ $registro->monto_propiedad }}" required>
                         </div>
                         <div class="col">
-                            <label for="recursoModal" class="form-label">Recurso:</label>
-                            <select id="recursoModal" name="recursoModal" class="form-select" required>
-                                <option value="" selected>Elige</option>
-                                <option value="FOVISSSTE" {{ $registro->recurso == 'FOVISSSTE' ? 'selected' : '' }}>FOVISSSTE</option>
-                                <option value="INFONAVIT" {{ $registro->recurso == 'INFONAVIT' ? 'selected' : '' }}>INFONAVIT</option>
-                                <option value="Credito Bancario" {{ $registro->recurso == 'Credito Bancario' ? 'selected' : '' }}>Crédito Bancario</option>
-                                <option value="Recursos Propios" {{ $registro->recurso == 'Recursos Propios' ? 'selected' : '' }}>Recursos Propios</option>
-                            </select>
-                        </div>
+    <label for="recursoModal" class="form-label">Recurso:</label>
+    <select id="recursoModal" name="recursoModal" class="form-select" required>
+        <option value="" selected>Elige</option>
+        <option value="FOVISSSTE" {{ $registro->recurso == 'FOVISSSTE' ? 'selected' : '' }}>FOVISSSTE</option>
+        <option value="INFONAVIT" {{ $registro->recurso == 'INFONAVIT' ? 'selected' : '' }}>INFONAVIT</option>
+        <option value="Credito Bancario" {{ $registro->recurso == 'Credito Bancario' ? 'selected' : '' }}>Crédito Bancario</option>
+        <option value="Recursos Propios" {{ $registro->recurso == 'Recursos Propios' ? 'selected' : '' }}>Recursos Propios</option>
+        <option value="IMSS" {{ $registro->recurso == 'IMSS' ? 'selected' : '' }}>IMSS</option>
+        <option value="Alia2" {{ $registro->recurso == 'Alia2' ? 'selected' : '' }}>Alia2</option>
+        <option value="Caja de Ahorro" {{ $registro->recurso == 'Caja de Ahorro' ? 'selected' : '' }}>Caja de Ahorro</option>
+        <option value="Cofinavit" {{ $registro->recurso == 'Cofinavit' ? 'selected' : '' }}>Cofinavit</option>
+    </select>
+</div>
                     </div>
+                    <div class="mb-3">
+    <label for="fechaCreacion" class="form-label">Fecha de Creación:</label>
+    <input type="datetime-local" id="fechaCreacion" name="fechaCreacion" class="form-control" value="{{ $registro->created_at->format('Y-m-d\TH:i') }}" required>
 
+</div>
                     <div class="row mb-3">
                         <div class="col">
                             <label for="estadoCivil" class="form-label">Estado Civil:</label>
@@ -192,7 +201,39 @@
             </tbody>
         </table>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script> 
 
+<script>
+let temp = $("#btn1").clone();
+$("#btn1").click(function(){
+    $("#btn1").after(temp);
+});
+
+$(document).ready(function(){
+    var table = $('#example').DataTable({
+       orderCellsTop: true,
+       fixedHeader: true 
+    });
+
+    //Creamos una fila en el head de la tabla y lo clonamos para cada columna
+    $('#example thead tr').clone(true).appendTo( '#example thead' );
+
+    $('#example thead tr:eq(1) th').each( function (i) {
+        var title = $(this).text(); //es el nombre de la columna
+        $(this).html( '<input type="text" placeholder="Search...'+title+'" />' );
+ 
+        $( 'input', this ).on( 'keyup change', function () {
+            if ( table.column(i).search() !== this.value ) {
+                table
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );   
+});
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
@@ -202,4 +243,9 @@
     <script src="{{ asset('js/app5.js') }}"></script>
 </body>
 
+
+
+ 
+
+</script>
 </html>

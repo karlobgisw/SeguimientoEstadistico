@@ -55,7 +55,13 @@ class EstadisticasController extends Controller
             $estadoCivilStats = $this->generateColumnStats('estado_civil');
         }
 
-        return view('estadisticas', compact('usuarios', 'stats', 'permiso', 'ingresoStats', 'recursoStats', 'fuenteContactoStats', 'generoStats', 'rangoEdadStats', 'estadoCivilStats'));
+        // Dentro de la función index
+$mesStats = $this->generateStatsByMonth();
+
+// Convertir los datos a formato JSON
+$mesData = json_encode($mesStats);
+
+return view('estadisticas', compact('usuarios', 'stats', 'permiso', 'ingresoStats', 'recursoStats', 'fuenteContactoStats', 'generoStats', 'rangoEdadStats', 'estadoCivilStats', 'mesData'));
     }
 
     // Otras funciones del controlador...
@@ -125,6 +131,44 @@ class EstadisticasController extends Controller
 
         return $stats;
     }
+    private function generateStatsByMonth()
+{
+    $stats = RegistroCierre::select(
+            DB::raw('MONTH(created_at) as month'),
+            DB::raw('MONTHNAME(created_at) as month_name'),
+            DB::raw('count(*) as cierres_count')
+        )
+        ->groupBy(DB::raw('MONTH(created_at), MONTHNAME(created_at)'))
+        ->get();
 
+    // Convertir el nombre del mes a español
+    $stats = $stats->map(function ($stat) {
+        $stat->month_name = $this->translateMonthName($stat->month_name);
+        return $stat;
+    });
+
+    return $stats;
+}
+
+private function translateMonthName($englishMonthName)
+{
+    $translations = [
+        'January' => 'Enero',
+        'February' => 'Febrero',
+        'March' => 'Marzo',
+        'April' => 'Abril',
+        'May' => 'Mayo',
+        'June' => 'Junio',
+        'July' => 'Julio',
+        'August' => 'Agosto',
+        'September' => 'Septiembre',
+        'October' => 'Octubre',
+        'November' => 'Noviembre',
+        'December' => 'Diciembre',
+    ];
+
+    return $translations[$englishMonthName] ?? $englishMonthName;
+}
+    
     // Resto del controlador...
 }

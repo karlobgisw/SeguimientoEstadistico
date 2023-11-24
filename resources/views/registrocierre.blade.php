@@ -50,10 +50,12 @@ $fuentes_contacto = FuenteContacto::all();
         <!-- Repite esta estructura para otros campos -->
 
         <div class="row mb-3">
-            <div class="col">
-                <label for="montoPropiedad" class="form-label">Monto de Propiedad:</label>
-                <input type="text" id="montoPropiedad" name="monto_propiedad" class="form-control" required>
-            </div>
+    <div class="col">
+        <label for="montoPropiedad" class="form-label">Monto de Propiedad:</label>
+        <input type="text" id="montoPropiedad" name="monto_propiedad" class="form-control" required pattern="\d*">
+        <small class="form-text text-muted">Ingrese solo caracteres numéricos.</small>
+    </div>
+
             <div class="col">
                 <label for="recurso" class="form-label">Recurso:</label>
                 <select id="recurso" name="recurso" class="form-select" required>

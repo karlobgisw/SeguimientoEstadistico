@@ -11,6 +11,7 @@ class RegistroSCRUDController extends Controller
 {
     public function index(Request $request)
 {
+    
     $registros = RegistroCierre::all();
     $usuarios = User::all();
     $fuentes_contacto = FuenteContacto::all();
@@ -39,20 +40,17 @@ class RegistroSCRUDController extends Controller
     public function update(Request $request, $id)
 {
     $request->validate([
-        // Agrega las reglas de validación necesarias
-        'cerroModal' => 'required|integer|exists:users,id',
-        'ingresoModal' => 'required|integer|exists:users,id',
-        'montoPropiedadModal' => 'required|string',
-        'recursoModal' => 'required|string',
-        'fuente_contacto' => 'required|integer|exists:fuentes_contacto,id',
-        'genero' => 'required|string|not_in:0',
-        'rango_edad' => 'required|string|not_in:0',
-        'estado_civil' => 'required|string|not_in:0',
+        // ... other validation rules ...
+        'fechaCreacion' => 'required|date_format:Y-m-d\TH:i',
     ]);
-    
+
+    // Convert the date format
+    $fechaCreacion = $request->input('fechaCreacion');
+    $fechaCreacionFormatted = \Carbon\Carbon::createFromFormat('Y-m-d\TH:i', $fechaCreacion)->format('Y-m-d H:i:s');
+
     $registro = RegistroCierre::findOrFail($id);
 
-    // Actualiza los campos con los valores del formulario
+    // Update the fields without 'created_at'
     $registro->update([
         'cerro' => $request->input('cerroModal'),
         'ingreso' => $request->input('ingresoModal'),
@@ -62,8 +60,8 @@ class RegistroSCRUDController extends Controller
         'genero' => $request->input('genero'),
         'rango_edad' => $request->input('rango_edad'),
         'estado_civil' => $request->input('estado_civil'),
+        // ... other fields ...
     ]);
-    
 
     return redirect()->route('registroscrud.index')->with('success', 'Registro actualizado exitosamente');
 }

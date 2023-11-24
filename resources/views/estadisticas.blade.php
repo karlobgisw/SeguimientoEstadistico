@@ -41,11 +41,35 @@
 <div class="estadisticas">
     <div class="grafica">
         <div class="cabecera">
-            <p class="parametro">ESTADISTICAS GENERALES DE CIERRES</p>
+            <p class="parametro">ESTADISTICAS DE CIERRES</p>
         </div>
         <div class="programming-stats">
             <div class="chart-container">
                 <canvas class="my-chart" id="grafica"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="estadisticas">
+    <div class="grafica">
+        <div class="cabecera">
+            <p class="parametro">ESTADISTICAS GENERALES DE INGRESOS</p>
+        </div>
+        <div class="programming-stats">
+            <div class="chart-container">
+                <canvas class="my-chart" id="graficaIngreso"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="estadisticas">
+    <div class="grafica">
+        <div class="cabecera">
+            <p class="parametro">ESTADISTICAS MENSUALES DE CIERRES y INGRESOS</p>
+        </div>
+        <div class="programming-stats">
+            <div class="chart-container">
+                <canvas class="my-chart" id="graficaMes"></canvas>
             </div>
         </div>
     </div>
@@ -64,18 +88,7 @@
     </div>
 </div>
 
-<div class="estadisticas">
-    <div class="grafica">
-        <div class="cabecera">
-            <p class="parametro">ESTADISTICAS GENERALES DE INGRESOS</p>
-        </div>
-        <div class="programming-stats">
-            <div class="chart-container">
-                <canvas class="my-chart" id="graficaIngreso"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <div class="estadisticas">
     <div class="grafica">
@@ -236,41 +249,52 @@
         });
 
         // Obtén los datos para la gráfica de barras de "Ingreso" desde el backend
-        var ingresoData = <?php echo json_encode($ingresoStats); ?>;
+var ingresoData = <?php echo json_encode($ingresoStats); ?>;
 
-        // Preparar los datos para la gráfica de barras de "Ingreso"
-        var labelsIngreso = ingresoData.map(function (stat) {
-            return stat.ingreso;
-        });
+// Preparar los datos para la gráfica de barras de "Ingreso"
+var labelsIngreso = ingresoData.map(function (stat) {
+    return stat.ingreso;
+});
 
-        var ingresoCount = ingresoData.map(function (stat) {
-            return stat.count;
-        });
+var ingresoCount = ingresoData.map(function (stat) {
+    return stat.count;
+});
 
-        // Crear la gráfica de barras para "Ingreso"
-        var ctxIngreso = document.getElementById('graficaIngreso').getContext('2d');
-        var myChartIngreso = new Chart(ctxIngreso, {
-            type: 'bar',
-            data: {
-                labels: labelsIngreso,
-                datasets: [
-                    {
-                        label: 'Número de Registros',
-                        data: ingresoCount,
-                        backgroundColor: '#3498db',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }
-                ]
+var montoTotalIngreso = ingresoData.map(function (stat) {
+    return stat.monto_total;
+});
+
+// Crear la gráfica de barras para "Ingreso"
+var ctxIngreso = document.getElementById('graficaIngreso').getContext('2d');
+var myChartIngreso = new Chart(ctxIngreso, {
+    type: 'bar',
+    data: {
+        labels: labelsIngreso,
+        datasets: [
+            {
+                label: 'Número de Registros',
+                data: ingresoCount,
+                backgroundColor: '#3498db',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
             },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+            {
+                label: 'Monto Total',
+                data: montoTotalIngreso,
+                backgroundColor: '#e74c3c',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
             }
-        });
+        ]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
 
         // Obtén los datos para la gráfica de pastel de "Estado Civil" desde el backend
         var estadoCivilData = <?php echo json_encode($estadoCivilStats); ?>;
@@ -298,6 +322,31 @@
                 ]
             }
         });
+// En tu vista blade, debajo del código Chart.js existente
+var mesData = <?php echo $mesData; ?>;
+
+// Preparar los datos para la gráfica de barras por mes
+var labelsMes = mesData.map(function (stat) {
+    return stat.month_name; // Utilizar el nombre del mes en lugar del número
+});
+
+var mesCount = mesData.map(function (stat) {
+    return stat.cierres_count;
+});
+
+// Crear la gráfica de barras por mes
+var ctxMes = document.getElementById('graficaMes').getContext('2d');
+var myChartMes = new Chart(ctxMes, {
+    type: 'bar',
+    data: {
+        labels: labelsMes,
+        datasets: [{
+            label: 'Registros por Mes',
+            data: mesCount,
+            backgroundColor: '#3498db',
+        }]
+    }
+});
 
         // Obtén los datos para la gráfica de pastel de "Género" desde el backend
         var generoData = <?php echo json_encode($generoStats); ?>;
@@ -352,7 +401,6 @@
                 ]
             }
         });
-
         // Obtén los datos para la gráfica de pastel de "Recurso" desde el backend
         var recursoData = <?php echo json_encode($recursoStats); ?>;
 
@@ -379,6 +427,10 @@
                 ]
             }
         });
+       
+
+
+
 
         // Puedes agregar más bloques de código similar para otras gráficas
 </script>

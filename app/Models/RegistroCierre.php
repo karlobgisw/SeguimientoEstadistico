@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class RegistroCierre extends Model
 {
+    protected $dates = ['created_at', 'updated_at'];
+
     protected $table = 'registro_cierre';
     public $timestamps = false; // Indicamos a Laravel que no gestione los campos created_at y updated_at
 
