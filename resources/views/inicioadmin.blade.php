@@ -18,21 +18,23 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content" id="modal">
-            <div class="modal-header">
+          <div class="modal-header" style="position: sticky; top: 0; background-color: white; z-index: 1000;">
               <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Usuario</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="{{ url('inicioadmin/create') }}" method="POST">
                 @csrf
-                        <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre:</label>
-                            <input type="text" class="form-control" name="nombre" placeholder="" required>
-                        </div>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <input type="text" class="form-control" name="nombre" placeholder="" required pattern="[A-Za-z ]+">
+                    <small class="form-text text-muted">Ingrese solo caracteres alfabéticos y espacios.</small>
+                </div>
 
                         <div class="mb-3">
                             <label for="nombre_archivo_foto" class="form-label">Foto de perfil:</label>
                             <input type="text" name="nombre_archivo_foto" class="form-control" placeholder="" nullable>
+                            <small class="form-text text-muted">URL de la Imagen.</small>
                         </div>
 
                         <div class="mb-3">
@@ -42,17 +44,21 @@
 
                         <div class="mb-3">
                             <label for="celular" class="form-label">Celular:</label>
-                            <input type="text" name="celular" class="form-control" placeholder="" required>
+                            <input type="text" name="celular" class="form-control" placeholder="" required required pattern="\d*">
+                            <small class="form-text text-muted">Ingrese solo caracteres numéricos.</small>
+
                         </div>
 
                         <div class="mb-3">
                             <label for="sir" class="form-label">Sir:</label>
-                            <input type="text" name="sir" class="form-control" placeholder="" nullable>
+                            <input type="text" name="sir" class="form-control" placeholder="" required required pattern="[A-Za-z]+">
+                            <small class="form-text text-muted">Ingrese solo caracteres alfabéticos.</small>
                         </div>
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Contraseña:</label>
-                            <input type="password" name="password" class="form-control" placeholder="" nullable>
+                            <input type="password" class="form-control" name="password" placeholder="" required>
+                            <small class="form-text text-muted">Min 8 caracteres, incluyendo letras, números y caracteres especiales.</small>
                         </div>
 
                         <div class="mb-3">
@@ -66,7 +72,6 @@
                         </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
             </form>
@@ -80,11 +85,11 @@
 <div class="modal fade" id="modalEditarAgente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="modalEditarA">
-            <div class="modal-header">
+        <div class="modal-header" style="position: sticky; top: 0; background-color: white; z-index: 1000;">
                 <h5 class="modal-title" id="exampleModalLabel">Editar Agente</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
                 <form id="formEditarAgente" method="POST" action="{{ route('agente.update', ['id' => '__ID__']) }}">
                     @method('PATCH')
                     @csrf
@@ -122,13 +127,14 @@
                     <div class="mb-3">
                     <label for="edit_password" class="form-label">Contraseña:</label>
                     <input type="password" class="form-control" id="edit_password" name="password">
+                    <small class="form-text text-muted">Min 8 caracteres, incluyendo letras, números y caracteres especiales.</small>
                     </div>
                     <div class="mb-3">
                         <label for="edit_password_confirmation" class="form-label">Confirmar Contraseña:</label>
                         <input type="password" class="form-control" id="edit_password_confirmation" name="password_confirmation">
                     </div>
+</div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                     </div>
                 </form>
@@ -409,7 +415,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ asset('js/nav.js') }}"></script>
-    
+   
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelector('form').addEventListener('submit', function (event) {
+            const password = document.querySelector('[name="password"]').value;
+
+            if (!/(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&_])/.test(password)) {
+                alert("La contraseña debe tener al menos 8 caracteres, incluyendo letras, números y caracteres especiales.");
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var botonesEditarAgente = document.querySelectorAll('.accion#accione');

@@ -47,7 +47,7 @@ public function store(Request $request)
         'contestada' => 'filled|boolean',
         'interesado' => 'filled|boolean',
         'cita' => 'filled|boolean',
-        'clave_sir' => 'nullable|boolean',
+        'clave_sir' => 'nullable|string|max:255',
         'fovissste' => 'nullable|boolean',
         'infonavit' => 'nullable|boolean',
         'bancario' => 'nullable|boolean',
@@ -79,7 +79,7 @@ public function store(Request $request)
     $contacto->contestada = $request->has('contestada');
     $contacto->interesado = $request->has('interesado');
     $contacto->cita = $request->has('cita');
-    $contacto->clave_sir = $request->input('clave_sir') ? 1 : 0;
+    $contacto->clave_sir = $request->input('clave_sir');
     $contacto->fovissste = $request->input('fovissste') ? 1 : 0;
     $contacto->infonavit = $request->input('infonavit') ? 1 : 0;
     $contacto->bancario = $request->input('bancario') ? 1 : 0;

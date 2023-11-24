@@ -61,7 +61,7 @@ $fuentes_contacto = FuenteContacto::all();
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content" id="modal">
-            <div class="modal-header">
+          <div class="modal-header" style="position: sticky; top: 0; background-color: white; z-index: 1000;">
               <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Registro</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -70,14 +70,17 @@ $fuentes_contacto = FuenteContacto::all();
                 @csrf
                         <div class="mb-3">
                             <label for="Nombre" class="form-label">Nombre Completo:</label>
-                            <input type="text" class="form-control" name="nombre" placeholder="" required>
+                            <input type="text" class="form-control" name="nombre" placeholder="" required pattern="[A-Za-z ]+">
+                            <small class="form-text text-muted">Ingrese solo caracteres alfabéticos y espacios.</small>
                         </div>
 
                         <div class="mb-3">
                             <label for="telefono" class="form-label">Telefono:</label>
-                            <input type="text" name="telefono" class="form-control" placeholder="" nullable>
+                            <input type="text" name="telefono" class="form-control" placeholder="" nullable required pattern="\d*">
+                            <small class="form-text text-muted">Ingrese solo caracteres numéricos.</small>
                         </div>
 
+                        
                         <div class="mb-3">
                             <label for="Correo" class="form-label">Correo:</label>
                             <input type="email" name="correo" class="form-control" placeholder="" nullable>
@@ -92,7 +95,7 @@ $fuentes_contacto = FuenteContacto::all();
                         </div>
                         <div class="mb-3">
                             <label for="posible" class="form-label">Posible:</label>
-                            <select id="posible" name="posible" class="form-select" nullable>
+                            <select id="posible" name="posible" class="form-select" required>
                                 <option text="opcion3">---</option>
                                 <option text="Comprador">Comprador</option>
                                 <option text="Vendedor">Vendedor</option>
@@ -113,64 +116,42 @@ $fuentes_contacto = FuenteContacto::all();
                             </select>
                         </div>
 
-                        <div class="mb-3">
-                        <label for="llamada">Llamada</label>
-                        <input type="checkbox" name="llamada" value="1">
-                        <label for="contestada">Contestada</label>
-                        <input type="checkbox" name="contestada" value="1">
-                        <label for="interesado">Interesado</label>
-                        <input type="checkbox" name="interesado" value="1">
-                        <label for="cita">Cita</label>
-                        <input type="checkbox" name="cita" value="1">
-                        </div>
+                       
 
                         <div class="mb-3">
-                            <label for="CLAVE_SIR" class="form-label">CLAVE_SIR:</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="clave_sir" value="1">
-                                <label class="form-check-label">Verdadero</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="clave_sir" value="0">
-                                <label class="form-check-label">Falso</label>
-                            </div>
+                            <label for="clave_sir" class="form-label">CLAVE SIR:</label>
+                            <input type="text" class="form-control" name="clave_sir" placeholder="" nullable>
                         </div>
 
                         <div class="mb-3">
                             <label for="FOVISSSTE" class="form-label">FOVISSSTE:</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="fovissste" value="1">
-                                <label class="form-check-label">Verdadero</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="fovissste" value="0">
-                                <label class="form-check-label">Falso</label>
-                            </div>
+                            <select class="form-select" name="fovissste" required>
+                                <option value="opcion1">---</option>
+                                <option value="1">Verdadero</option>
+                                <option value="0">Falso</option>
+                            </select>
                         </div>
+
 
                         <div class="mb-3">
                             <label for="infonavit" class="form-label">Infonavit:</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="infonavit" value="1">
-                                <label class="form-check-label">Verdadero</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="infonavit" value="0">
-                                <label class="form-check-label">Falso</label>
-                            </div>
+                            <select class="form-select" name="infonavit" required>
+                                <option value="opcion1">---</option>
+                                <option value="1">Verdadero</option>
+                                <option value="0">Falso</option>
+                            </select>
                         </div>
+
 
                         <div class="mb-3">
                             <label for="bancario" class="form-label">Bancario:</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="bancario" value="1">
-                                <label class="form-check-label">Verdadero</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="bancario" value="0">
-                                <label class="form-check-label">Falso</label>
-                            </div>
+                            <select class="form-select" name="bancario" required>
+                                <option value="opcion1">---</option>
+                                <option value="1">Verdadero</option>
+                                <option value="0">Falso</option>
+                            </select>
                         </div>
+
 
                         <div class="mb-3">
                             <label for="comentario" class="form-label">Comentario:</label>
@@ -179,12 +160,14 @@ $fuentes_contacto = FuenteContacto::all();
 
                         <div class="mb-3">
                             <label for="valor" class="form-label">Valor:</label>
-                            <input type="text" class="form-control" name="valor" placeholder="">
+                            <input type="text" class="form-control" name="valor" placeholder="" pattern="\d*">
+                            <small class="form-text text-muted">Ingrese solo caracteres numéricos.</small>
                         </div>
 
                         <div class="mb-3">
                             <label for="semana" class="form-label">Semana:</label>
                             <select class="form-select" name="semana">
+                                <option value="opcion1">---</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -195,6 +178,7 @@ $fuentes_contacto = FuenteContacto::all();
                         <div class="mb-3">
                             <label for="mes" class="form-label">Mes:</label>
                             <select class="form-select" name="mes">
+                                <option value="opcion1">---</option>
                                 <option value="Enero">Enero</option>
                                 <option value="Febrero">Febrero</option>
                                 <option value="Marzo">Marzo</option>
@@ -211,7 +195,6 @@ $fuentes_contacto = FuenteContacto::all();
                         </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
             </form>
@@ -301,7 +284,7 @@ $fuentes_contacto = FuenteContacto::all();
                     >
                     </td>
                     <td class="text-center">
-                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{  $contacto->clave_sir ? 'Verdadero' : 'Falso' }}</div>
+                    <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{ $contacto->clave_sir }}</div>
                     </td><td class="text-center">
                     <div data-contacto="{{ json_encode($contacto) }}" class="editar-contacto"> {{  $contacto->fovissste ? 'Verdadero' : 'Falso' }}</div>
                     </td><td class="text-center">
@@ -353,20 +336,20 @@ $fuentes_contacto = FuenteContacto::all();
                     @csrf
                     <input type="hidden" id="edit_user_id" name="user_id" value="{{ Auth::user()->id }}">
                     <input type="hidden" id="edit_contacto_id" name="id">
-                    <div class="mb-3">
-                        <label for="llamada">Llamada</label>
+                    
+                       
                         <input type="hidden" name="llamada" value="0">
-                        <input type="checkbox" name="llamada" id="edit_llamada" value="1">
-                        <label for="contestada">Contestada</label>
+                        <input type="hidden" name="llamada" id="edit_llamada" value="1">
+                       
                         <input type="hidden" name="contestada" value="0">
-                        <input type="checkbox" name="contestada" id="edit_contestada" value="1">
-                        <label for="interesado">Interesado</label>
+                        <input type="hidden" name="contestada" id="edit_contestada" value="1">
+                        
                         <input type="hidden" name="interesado" value="0">
-                        <input type="checkbox" name="interesado" id="edit_interesado" value="1">
-                        <label for="cita">Cita</label>
+                        <input type="hidden" name="interesado" id="edit_interesado" value="1">
+                       
                         <input type="hidden" name="cita" value="0">
-                        <input type="checkbox" name="cita" id="edit_cita" value="1">
-                    </div> 
+                        <input type="hidden" name="cita" id="edit_cita" value="1">
+                   
                     <div class="mb-3">
                         <label for="edit_nombre" class="form-label">Nombre:</label>
                         <input type="text" class="form-control" id="edit_nombre" name="nombre">
@@ -407,52 +390,35 @@ $fuentes_contacto = FuenteContacto::all();
                         </select>
                     </div> 
                     
-                    
-                    
                     <div class="mb-3">
-                        <label for="edit_clave_sir" class="form-label">Clave SIR:</label>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="clave_sir" id="edit_clave_sir_si" value="1">
-                        <label class="form-check-label" for="edit_clave_sir_si">Verdadero</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="clave_sir" id="edit_clave_sir_no" value="0">
-                        <label class="form-check-label" for="edit_clave_sir_no">Falso</label>
-                        </div>
+                        <label for="edit_clave_sir" class="form-label">CLAVE SIR:</label>
+                        <input type="text" class="form-control" id="edit_clave_sir" name="clave_sir">
                     </div>
+
                     <div class="mb-3">
                         <label for="edit_fovissste" class="form-label">Fovissste:</label>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="fovissste" id="edit_fovissste_si" value="1">
-                        <label class="form-check-label" for="edit_fovissste_si">Verdadero</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="fovissste" id="edit_fovissste_no" value="0">
-                        <label class="form-check-label" for="edit_fovissste_no">Falso</label>
-                        </div>
+                        <select class="form-select" name="fovissste" id="edit_fovissste">
+                            <option value="1" id="edit_fovissste_si">Verdadero</option>
+                            <option value="0" id="edit_fovissste_no">Falso</option>
+                        </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="edit_infonavit" class="form-label">Infonavit:</label>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="infonavit" id="edit_infonavit_si" value="1">
-                        <label class="form-check-label" for="edit_infonavit_si">Verdadero</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="infonavit" id="edit_infonavit_no" value="0">
-                        <label class="form-check-label" for="edit_infonavit_no">Falso</label>
-                        </div>
+                        <select class="form-select" name="infonavit" id="edit_infonavit">
+                            <option value="1" id="edit_infonavit_si">Verdadero</option>
+                            <option value="0" id="edit_infonavit_no">Falso</option>
+                        </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="edit_bancario" class="form-label">Bancario:</label>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="bancario" id="edit_bancario_si" value="1">
-                        <label class="form-check-label" for="edit_bancario_si">Verdadero</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="bancario" id="edit_bancario_no" value="0">
-                        <label class="form-check-label" for="edit_bancario_no">Falso</label>
-                        </div>
+                        <select class="form-select" name="bancario" id="edit_bancario">
+                            <option value="1" id="edit_bancario_si">Verdadero</option>
+                            <option value="0" id="edit_bancario_no">Falso</option>
+                        </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="edit_comentario" class="form-label">Comentario:</label>
                         <textarea class="form-control" id="edit_comentario" name="comentario" rows="3"></textarea>
@@ -562,14 +528,12 @@ $fuentes_contacto = FuenteContacto::all();
             document.getElementById('edit_contestada').checked = contacto.contestada;
             document.getElementById('edit_interesado').checked = contacto.interesado;
             document.getElementById('edit_cita').checked = contacto.cita;
-                document.getElementById('edit_clave_sir_si').checked = contacto.clave_sir == 1;
-                document.getElementById('edit_clave_sir_no').checked = contacto.clave_sir == 0;
-                document.getElementById('edit_fovissste_si').checked = contacto.fovissste == 1;
-                document.getElementById('edit_fovissste_no').checked = contacto.fovissste == 0;
-                document.getElementById('edit_infonavit_si').checked = contacto.infonavit == 1;
-                document.getElementById('edit_infonavit_no').checked = contacto.infonavit == 0;
-                document.getElementById('edit_bancario_si').checked = contacto.bancario == 1;
-                document.getElementById('edit_bancario_no').checked = contacto.bancario == 0;
+            document.getElementById('edit_clave_sir').value = contacto.clave_sir;
+
+            document.getElementById('edit_fovissste').value = contacto.fovissste.toString();
+            document.getElementById('edit_infonavit').value = contacto.infonavit.toString();
+            document.getElementById('edit_bancario').value = contacto.bancario.toString();
+
 
             // Llenar el área de texto con el comentario actual
             document.getElementById('edit_comentario').value = contacto.comentario;
