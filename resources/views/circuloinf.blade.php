@@ -623,11 +623,13 @@ $fuentes_contacto = FuenteContacto::all();
 $(document).ready(function(){
     var table = $('#example').DataTable({
         orderCellsTop: true,
-        fixedHeader: true 
+        fixedHeader: true, 
+        paging: false
     });
 
     // Creamos una fila en el head de la tabla y lo clonamos para cada columna
     $('#example thead tr').clone(true).appendTo('#example thead');
+
 
     $('#example thead tr:eq(1) th').each(function (i) {
         var title = $(this).text(); // es el nombre de la columna

@@ -100,18 +100,20 @@ class EstadisticasController extends Controller
     }
 
     private function generateColumnStats2($column, $fechaInicio = null, $fechaFin = null)
-    {
-        $query = DB::table('registro_cierre')
-            ->join('users', 'registro_cierre.ingreso', '=', 'users.id');
+{
+    $query = DB::table('registro_cierre')
+        ->join('users', 'registro_cierre.ingreso', '=', 'users.id');
 
-        if ($fechaInicio && $fechaFin) {
-            $query->whereBetween('registro_cierre.fecha', [$fechaInicio, $fechaFin]);
-        }
-
-        return $query->select('users.nombre as '.$column, DB::raw('count(*) as count'))
-            ->groupBy('users.nombre')
-            ->get();
+    if ($fechaInicio && $fechaFin) {
+        $query->whereBetween('registro_cierre.fecha', [$fechaInicio, $fechaFin]);
     }
+
+    return $query->select(
+        'users.nombre as ' . $column,
+        DB::raw('count(*) as count'),
+        DB::raw('sum(registro_cierre.monto_propiedad) as monto_total') // Agregar la sumatoria del monto_propiedad
+    )->groupBy('users.nombre')->get();
+}
 
     private function generateColumnStats3($column, $fechaInicio = null, $fechaFin = null)
     {
