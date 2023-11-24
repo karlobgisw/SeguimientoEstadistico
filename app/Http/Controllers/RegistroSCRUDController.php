@@ -11,7 +11,6 @@ class RegistroSCRUDController extends Controller
 {
     public function index(Request $request)
 {
-    
     $registros = RegistroCierre::all();
     $usuarios = User::all();
     $fuentes_contacto = FuenteContacto::all();
@@ -20,37 +19,47 @@ class RegistroSCRUDController extends Controller
     // Verifica si se proporcionó una fecha en la solicitud
     if ($request->has('fechaFiltro')) {
         $fechaFiltro = $request->input('fechaFiltro');
-        $registros = RegistroCierre::whereDate('created_at', $fechaFiltro)->get();
+        $registros = RegistroCierre::whereDate('fecha', $fechaFiltro)->get();
     }
 
     return view('registroscrud.index', compact('registros', 'usuarios', 'fuentes_contacto', 'permiso'));
 }
 
 
-    public function edit($id)
-    {
-        $registro = RegistroCierre::findOrFail($id);
-        $usuarios = User::all();
-        $fuentes_contacto = FuenteContacto::all();
-        $permiso = 'full';
+public function edit($id)
+{
+    $registro = RegistroCierre::findOrFail($id);
+    $usuarios = User::all();
+    $fuentes_contacto = FuenteContacto::all();
+    $permiso = 'full';
 
-        return view('registroscrud.edit', compact('registro', 'usuarios', 'fuentes_contacto', 'permiso'));
+    // Asegúrate de que la fecha sea un objeto DateTime
+    if (is_string($registro->fecha)) {
+        $registro->fecha = new \DateTime($registro->fecha);
     }
+
+    return view('registroscrud.edit', compact('registro', 'usuarios', 'fuentes_contacto', 'permiso'));
+}
+
 
     public function update(Request $request, $id)
 {
     $request->validate([
-        // ... other validation rules ...
-        'fechaCreacion' => 'required|date_format:Y-m-d\TH:i',
+        // Agrega las reglas de validación necesarias
+        'cerroModal' => 'required|integer|exists:users,id',
+        'ingresoModal' => 'required|integer|exists:users,id',
+        'montoPropiedadModal' => 'required|string',
+        'recursoModal' => 'required|string',
+        'fuente_contacto' => 'required|integer|exists:fuentes_contacto,id',
+        'genero' => 'required|string|not_in:0',
+        'rango_edad' => 'required|string|not_in:0',
+        'estado_civil' => 'required|string|not_in:0',
+        'fecha' => 'required|date', // Agrega la validación para el campo fecha
     ]);
-
-    // Convert the date format
-    $fechaCreacion = $request->input('fechaCreacion');
-    $fechaCreacionFormatted = \Carbon\Carbon::createFromFormat('Y-m-d\TH:i', $fechaCreacion)->format('Y-m-d H:i:s');
 
     $registro = RegistroCierre::findOrFail($id);
 
-    // Update the fields without 'created_at'
+    // Actualiza los campos con los valores del formulario, incluyendo el nuevo campo fecha
     $registro->update([
         'cerro' => $request->input('cerroModal'),
         'ingreso' => $request->input('ingresoModal'),
@@ -60,7 +69,7 @@ class RegistroSCRUDController extends Controller
         'genero' => $request->input('genero'),
         'rango_edad' => $request->input('rango_edad'),
         'estado_civil' => $request->input('estado_civil'),
-        // ... other fields ...
+        'fecha' => $request->input('fecha'), // Asigna el valor del campo fecha
     ]);
 
     return redirect()->route('registroscrud.index')->with('success', 'Registro actualizado exitosamente');
@@ -73,4 +82,5 @@ class RegistroSCRUDController extends Controller
 
         return redirect()->route('registroscrud.index')->with('success', 'Registro eliminado exitosamente');
     }
+    
 }

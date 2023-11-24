@@ -52,13 +52,13 @@ public function showEstadisticas()
         'genero' => 'required|string|not_in:0',
         'rango_edad' => 'required|string|not_in:0',
         'estado_civil' => 'required|string|not_in:0',
+        'fecha' => 'required|date',
     ]);
-    
 
     // Crea el registro de cierre en la base de datos
     $registro = RegistroCierre::create($request->all());
 
     // Redirige a la página de éxito con un mensaje
-    return redirect()->back();
+    return redirect()->back()->with('success', 'Registro de cierre creado correctamente');
 }
 }

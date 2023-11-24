@@ -37,7 +37,7 @@
     <button type="button" class="btn btn-warning" onclick="window.location.href='{{ url('/registros-cierre') }}'">EDITAR DATOS</button>
 
 </div>
-<div class="titulo">
+<div class="hit-the-floor">
     <h1>ANALITICAS DE CIERRES</h1>
 </div>
 <div class="cierres">
@@ -81,7 +81,7 @@
 </div>
 <br>
 <br>
-<div class="titulo">
+<div class="hit-the-floor">
     <h1>INTELIGENCIA DE MERCADO</h1>
 </div>
 <div class="estadisticas">
@@ -332,8 +332,8 @@ var myChartIngreso = new Chart(ctxIngreso, {
                 ]
             }
         });
-// En tu vista blade, debajo del código Chart.js existente
-var mesData = <?php echo $mesData; ?>;
+/// En tu vista blade, debajo del código Chart.js existente
+var mesData = <?php echo $mesStats; ?>;
 
 // Preparar los datos para la gráfica de barras por mes
 var labelsMes = mesData.map(function (stat) {

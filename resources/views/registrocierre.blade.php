@@ -85,7 +85,14 @@ $fuentes_contacto = FuenteContacto::all();
                 </select>
             </div>
         </div>
-
+        <div class="row mb-3">
+        <div class="col">
+        <div class="form-group">
+        <label for="fecha">Fecha:</label>
+        <input type="date" name="fecha" class="form-control" required>
+        </div>
+        </div>
+        </div>
         <div class="row mb-3">
             <div class="col">
                 <label for="fuenteContacto" class="form-label">Fuente de Contacto:</label>

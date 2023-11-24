@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RegistroCierre extends Model
 {
+    
     protected $dates = ['created_at', 'updated_at'];
 
     protected $table = 'registro_cierre';
@@ -26,8 +27,15 @@ class RegistroCierre extends Model
     }
 
     protected $fillable = [
-        'cerro', 'ingreso', 'monto_propiedad', 'recurso', 'fuente_contacto', 'genero', 'rango_edad', 'estado_civil',
-        // Agrega otros campos aquí si necesitas asignación masiva
+        'cerro',
+        'ingreso',
+        'monto_propiedad',
+        'recurso',
+        'fuente_contacto',
+        'genero',
+        'rango_edad',
+        'estado_civil',
+        'fecha', // Agrega el nuevo campo fecha
     ];
     // En tu modelo RegistroCierre
 
