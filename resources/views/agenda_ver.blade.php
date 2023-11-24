@@ -16,7 +16,7 @@
       <div class="botonson" id="toggleButton2">
         >
       </div>
-      <div id="toggleButton"></div>
+      <div id="toggleButton" style="display: none"></div>
       <div class="listas">
         <div id="dashboard" class="">
           <div id="hideButton"><</div>

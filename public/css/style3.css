@@ -354,12 +354,8 @@ body {
     --bs-btn-hover-border-color: #05daff;
     --bs-btn-border-color: #ffffff;
     --bs-btn-hover-color: #05daff;
-    margin-top: 7%;
 }
 
-.btn.btn-secondary.ag{
-    margin-top: 7%;
-}
 
 .nactividad{
     margin: 0;
@@ -504,8 +500,9 @@ body {
 
 
 .editdelete{
+    height: 6vh;
     display: flex;
-    margin-top: -2%;
+    align-items: center;
 }
 
 .espacio{
@@ -581,6 +578,10 @@ body {
 #borraract{
     width: 70%;
     height: 70%;
+}
+
+#new{
+    margin-top: 7%;
 }
 
 #snackbar {
@@ -805,9 +806,6 @@ body {
     #dashboard {
         height: 88.9%;
     }
-    .btn.btn-primary.ag {
-        margin-top: 21%;
-    }
 }
 @media screen and (min-height:670px) and (max-height: 739px){
     #toggleButton {
@@ -818,9 +816,6 @@ body {
     }
     .agregar{
         margin-top: 12%;
-    }
-    .btn.btn-primary.ag {
-        margin-top: 21%;
     }
     .actcuad{
         height: 55vh;
@@ -849,9 +844,6 @@ body {
     .agregar{
         margin-top: 12%;
     }
-    .btn.btn-primary.ag {
-        margin-top: 8%;
-    }
     .actcuad{
         height: 55vh;
     }
@@ -871,9 +863,6 @@ body {
     }
     .agregar{
         margin-top: 12%;
-    }
-    .btn.btn-primary.ag {
-        margin-top: 21%;
     }
     .actcuad{
         height: 55vh;

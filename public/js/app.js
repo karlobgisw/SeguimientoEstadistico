@@ -4,31 +4,18 @@ var identificador = -1;
 var permiso = document.querySelector('.todo');
 permiso = permiso.getAttribute("permiso");
 var exito = -1;
-let currentCaja = null;
+let currentContenedor = null;
 
 if(permiso=="limited"){
 cajas.forEach(function(elemento) {
   elemento.setAttribute("draggable", "true");
 });
 
-cajas.forEach(caja => {
-  caja.addEventListener('touchstart', function(event) {
-    currentCaja = this;
-    console.log("na");
-  });
-  caja.addEventListener('touchmove', function(event) {
-    console.log("de locos")
-  });
-  caja.addEventListener('touchend', function(event) {
-  });
-  caja.addEventListener('touchenter', function(event) {
-    console.log("hola");
-  });
-});
+
 
 contenedores.forEach(contenedor=> {
-  contenedor.addEventListener('touchenter', function(event) {
-    console.log("hola")
+  contenedor.addEventListener('touchstart', function(event) {
+    console.log("naaaa")
   });
 });
 
@@ -147,6 +134,21 @@ contenedores.forEach(contenedor => {
     document.getElementById('borraractt').style.opacity = 0;
   });
 });
+function agendar(nombreActividad, idActividad) {
+  var selectedValue = document.getElementById('selectMomento-' + idActividad).value;
+  var diaDiv = document.getElementById(selectedValue);
+  if (diaDiv) {
+    var nuevoElemento = document.createElement('div');
+    nuevoElemento.className = 'cho';
+    nuevoElemento.textContent = nombreActividad;
+    nuevoElemento.setAttribute('data-actividad-id', idActividad);
+    nuevoElemento.id = identificador;
+    identificador = identificador + 1;
+    nuevoElemento.setAttribute('draggable', 'true');
+    diaDiv.appendChild(nuevoElemento);
+  }
+  $('#agendar-' + idActividad).modal('hide');
+}
 }
 
 

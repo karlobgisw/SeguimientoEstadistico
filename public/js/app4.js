@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
   };
 
   const showToggleButtons = function() {
-      toggleButton.style.display = "block";
+      toggleButton.style.display = "none";
       toggleButton2.style.display = "block";
   };
 

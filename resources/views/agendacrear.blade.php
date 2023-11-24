@@ -32,7 +32,7 @@
             @foreach($actividades as $actividad)
               <div class="cuad-act" id="caja" data-actividad-id="{{ $actividad->id }}">
                 @if ($permiso == 'limited')
-                <button class="btn btn-primary open-modal" data-bs-target="" data-bs-toggle="modal" id="nactividad">
+                <button class="btn btn-primary open-modal" data-bs-target="#agendar-{{ $actividad->id }}" data-bs-toggle="modal" id="nactividad">
                   {{ $actividad->nombre_actividad }}
                 </button>
                 @endif
@@ -68,6 +68,43 @@
                         @endif
                         <button type="submit" class="btn btn-danger" id="delete_btn">Eliminar</button>
                       </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="agendar-{{$actividad->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Agendar en</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <label for="" class="form-label" style="color: black">Selecciona el dia y momento</label>
+                      <select  id="selectMomento-{{$actividad->id}}" class="form-select" aria-label="Default select example">
+                        <option value="Lunes-m">Lunes-Matutina</option>
+                        <option value="Lunes-me">Lunes-Madio Dia</option>
+                        <option value="Lunes-ves">Lunes-Vespertino</option>
+                        <option value="Martes-m">Martes-Matutina</option>
+                        <option value="Martes-me">Martes-Madio Dia</option>
+                        <option value="Martes-ves">Martes-Vespertino</option>
+                        <option value="Miercoles-m">Miercoles-Matutina</option>
+                        <option value="Miercoles-me">Miercoles-Madio Dia</option>
+                        <option value="Miercoles-ves">Miercoles-Vespertino</option>
+                        <option value="Jueves-m">Jueves-Matutina</option>
+                        <option value="Jueves-me">Jueves-Madio Dia</option>
+                        <option value="Jueves-ves">Jueves-Vespertino</option>
+                        <option value="Viernes-m">Viernes-Matutina</option>
+                        <option value="Viernes-me">Viernes-Madio Dia</option>
+                        <option value="Viernes-ves">Viernes-Vespertino</option>
+                        <option value="Sabado-m">Sabado-Matutina</option>
+                        <option value="Sabado-me">Sabado-Madio Dia</option>
+                        <option value="Sabado-ves">Sabado-Vespertino</option>
+                      </select>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-primary" onclick="agendar('{{$actividad->nombre_actividad}}', '{{$actividad->id}}')">Agendar</button>
                     </div>
                   </div>
                 </div>
