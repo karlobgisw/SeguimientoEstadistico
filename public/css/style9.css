@@ -11,7 +11,7 @@
     color: black;
 }
 
-/* Si estás usando un identificador */
+/* Si estÃ¡s usando un identificador */
 #nav {
     color: black;
 }
@@ -125,7 +125,15 @@ body {
     width: 96%;
     height: 79vh;
     margin-left: 2%;
-
+    margin-right: 2%;
+}
+.estadisticas-1{
+    margin-top: 2%;
+    display: flex;
+    width: 46%;
+    height: 79vh;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 .grafica{
@@ -152,6 +160,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center; 
+    text-align: center;
 }
 
 .tabla{
@@ -175,6 +184,20 @@ body {
   
 .chart-container {
     width: 66%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.chart-container-mod {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.chart-container-cir {
+    width: 97%;
     height: 90%;
     display: flex;
     justify-content: center;
@@ -356,8 +379,36 @@ tbody tr:hover {
 .btn.btn-warning{
     margin-left: 2%;
 }
+
+.cierres{
+    display: flex;
+    width: 100%;
+}
+
+.titulo{
+    color: #0B2742;
+
+    width: 100%;
+    height: 8vh;
+    text-align: center;
+}
+
+.titulo h1{
+    border-bottom: solid 5px #0B2742;
+}
+
 @media (max-width: 1300px) {
     .chart-container{
+        width: 727px;
+        height: 405px;
+    }
+    .cierres{
+        flex-direction: column;
+    }
+    .estadisticas-1{
+        width: 96%;
+    }
+    .chart-container-mod{
         width: 727px;
         height: 405px;
     }

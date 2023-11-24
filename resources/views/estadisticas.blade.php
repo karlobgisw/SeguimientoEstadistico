@@ -37,35 +37,40 @@
     <button type="button" class="btn btn-warning" onclick="window.location.href='{{ url('/registros-cierre') }}'">EDITAR DATOS</button>
 
 </div>
+<div class="titulo">
+    <h1>ANALITICAS DE CIERRES</h1>
+</div>
+<div class="cierres">
+    <div class="estadisticas-1">
+        <div class="grafica">
+            <div class="cabecera">
+                <p class="parametro">ESTADISTICAS COMO CERRADOR</p>
+            </div>
+            <div class="programming-stats">
+                <div class="chart-container-mod">
+                    <canvas class="my-chart" id="grafica"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="estadisticas-1">
+        <div class="grafica">
+            <div class="cabecera">
+                <p class="parametro">ESTADISTICAS COMO INGRESOS</p>
+            </div>
+            <div class="programming-stats">
+                <div class="chart-container-mod">
+                    <canvas class="my-chart" id="graficaIngreso"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="estadisticas">
     <div class="grafica">
         <div class="cabecera">
-            <p class="parametro">ESTADISTICAS DE CIERRES</p>
-        </div>
-        <div class="programming-stats">
-            <div class="chart-container">
-                <canvas class="my-chart" id="grafica"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="estadisticas">
-    <div class="grafica">
-        <div class="cabecera">
-            <p class="parametro">ESTADISTICAS GENERALES DE INGRESOS</p>
-        </div>
-        <div class="programming-stats">
-            <div class="chart-container">
-                <canvas class="my-chart" id="graficaIngreso"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="estadisticas">
-    <div class="grafica">
-        <div class="cabecera">
-            <p class="parametro">ESTADISTICAS MENSUALES DE CIERRES y INGRESOS</p>
+            <p class="parametro">HISTORICO DE CIERRES</p>
         </div>
         <div class="programming-stats">
             <div class="chart-container">
@@ -74,11 +79,15 @@
         </div>
     </div>
 </div>
-
+<br>
+<br>
+<div class="titulo">
+    <h1>INTELIGENCIA DE MERCADO</h1>
+</div>
 <div class="estadisticas">
     <div class="grafica">
         <div class="cabecera">
-            <p class="parametro">ESTADISTICAS GENERALES DE FUENTES DE CONTACTOS</p>
+            <p class="parametro">FUENTES DE CONTACTO</p>
         </div>
         <div class="programming-stats">
             <div class="chart-container">
@@ -89,54 +98,55 @@
 </div>
 
 
-
-<div class="estadisticas">
-    <div class="grafica">
-        <div class="cabecera">
-            <p class="parametro">ESTADISTICAS GENERALES DE ESTADO CIVIL</p>
-        </div>
-        <div class="programming-stats2">
-            <div class="chart-container">
-                <canvas class="my-chart" id="graficaEstadoCivil"></canvas>
+<div class="cierres">
+    <div class="estadisticas">
+        <div class="grafica">
+            <div class="cabecera">
+                <p class="parametro">ESTADO CIVIL</p>
+            </div>
+            <div class="programming-stats2">
+                <div class="chart-container-cir">
+                    <canvas class="my-chart" id="graficaEstadoCivil"></canvas>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="estadisticas">
-    <div class="grafica">
-        <div class="cabecera">
-            <p class="parametro">ESTADISTICAS GENERALES DE GENERO</p>
-        </div>
-        <div class="programming-stats2">
-            <div class="chart-container">
-                <canvas class="my-chart" id="graficaGenero"></canvas>
+    
+    <div class="estadisticas">
+        <div class="grafica">
+            <div class="cabecera">
+                <p class="parametro">GENERO</p>
+            </div>
+            <div class="programming-stats2">
+                <div class="chart-container-cir">
+                    <canvas class="my-chart" id="graficaGenero"></canvas>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="estadisticas">
-    <div class="grafica">
-        <div class="cabecera">
-            <p class="parametro">ESTADISTICAS GENERALES DE RANGO DE EDAD</p>
-        </div>
-        <div class="programming-stats2">
-            <div class="chart-container">
-                <canvas class="my-chart" id="graficaRangoEdad"></canvas>
+    
+    <div class="estadisticas">
+        <div class="grafica">
+            <div class="cabecera">
+                <p class="parametro">RANGO DE EDAD</p>
+            </div>
+            <div class="programming-stats2">
+                <div class="chart-container-cir">
+                    <canvas class="my-chart" id="graficaRangoEdad"></canvas>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="estadisticas">
-    <div class="grafica">
-        <div class="cabecera">
-            <p class="parametro">ESTADISTICAS GENERALES DE RECURSOS</p>
-        </div>
-        <div class="programming-stats2">
-            <div class="chart-container">
-                <canvas class="my-chart" id="graficaRecurso"></canvas>
+    
+    <div class="estadisticas">
+        <div class="grafica">
+            <div class="cabecera">
+                <p class="parametro">RECURSOS</p>
+            </div>
+            <div class="programming-stats2">
+                <div class="chart-container-cir">
+                    <canvas class="my-chart" id="graficaRecurso"></canvas>
+                </div>
             </div>
         </div>
     </div>
