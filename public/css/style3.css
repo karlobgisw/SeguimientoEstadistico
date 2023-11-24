@@ -569,6 +569,28 @@ body {
     margin-top: -1%;
     transition: background-color 0.5s, color 0.5s, width 0.5s, opacity 0.5s;
 }
+#borraracttt{
+    display: flex;
+    opacity: 0;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 40%;
+    height: 5vh;
+    font-size: 70%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff0000;
+    color: white;
+    font-weight: bolder;
+    border-radius: 6px;
+    margin-top: -1%;
+    transition: background-color 0.5s, color 0.5s, width 0.5s, opacity 0.5s;
+}
+#borraracttt p{
+    margin-top: 7%;
+}
 
 #borraractt.dragging {
     width: 7%;
@@ -770,11 +792,19 @@ body {
     #toggleButton{
         width: 16px;
     }
+    #borraract{
+        width: 85%;
+        height: 85%;
+    }
 }
 
 @media (max-width:735px){
     .listas{
         margin-left: 4%;
+    }
+    #borraract{
+        width: 105%;
+        height: 105%;
     }
 }
 

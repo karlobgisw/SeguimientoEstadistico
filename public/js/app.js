@@ -13,11 +13,21 @@ cajas.forEach(function(elemento) {
 
 
 
-contenedores.forEach(contenedor=> {
-  contenedor.addEventListener('touchstart', function(event) {
-    console.log("naaaa")
-  });
+
+document.addEventListener('touchend', function(event) {
+  if (event.target.classList.contains("cho")){
+    var idArrastrado = event.target.id;
+    var idArrastrado = document.getElementById(idArrastrado);
+    idArrastrado.parentNode.removeChild(idArrastrado);
+    document.getElementById('borraracttt').style.opacity = 0;
+  }
 });
+document.addEventListener('touchmove', function(event) {
+  if (event.target.classList.contains("cho")){
+    document.getElementById('borraracttt').style.opacity = 1;
+  }
+});
+
 
 
 document.addEventListener("dragstart", function(event) {
