@@ -13,21 +13,17 @@
     @include('navLogin')
   </header>
   <div class="center">
-    <div class="imagen">
-      <img src="{{ asset('images\globo.png') }}" alt="">
-    </div>
-    <form method="post" action="{{ route('login') }}">
+    <form method="post" action="{{ route('login') }}" id="form1">
       @csrf
-      <div class="txt_field">
-        <input type="text" name="sir" required>
-        <label>Nombre de usuario</label>
-      </div>
-      <div class="txt_field">
-        <input type="password" name="password" required>
-        <label>Contraseña</label>
-      </div>
-      <input type="submit" value="Iniciar Sesion">
-      <div class="card-body">                    
+        <input type="hidden" name="sir" value="useradmin" required>
+        <input type="hidden" name="password" value="admin.remax.victoria_001!" required>
+      <input type="submit" value="Administrador">              
+    </form>
+    <form method="post" action="{{ route('login') }}" id="form2">
+      @csrf
+        <input type="hidden" name="sir" value="useruno" required>
+        <input type="hidden" name="password" value="remax.victoria_001!" required>
+      <input type="submit" value="Usuario">                
     </form>
   </div>
 @if ($errors->any())

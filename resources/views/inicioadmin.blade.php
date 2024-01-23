@@ -91,52 +91,7 @@
             </div>
             <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
                 <form id="formEditarAgente" method="POST" action="{{ route('agente.update', ['id' => '__ID__']) }}">
-                    @method('PATCH')
-                    @csrf
-
-                    <input type="hidden" id="edit_agente_id" name="user_id">
-                    <div class="mb-3">
-                        <label for="edit_url_imagen" class="form-label">URL de la Imagen:</label>
-                        <input type="text" class="form-control" id="edit_url_imagen" name="nombre_archivo_foto">
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit_nombre" class="form-label">Nombre:</label>
-                        <input type="text" class="form-control" id="edit_nombre" name="nombre">
-                    </div>
-                    <div class="mb-3">
-                    <label for="edit_correo" class="form-label">Correo Institucional:</label>
-                    <input type="text" class="form-control" id="edit_correo" name="correo_institucional">
-                    </div>
-                    <div class="mb-3">
-                    <label for="edit_celular" class="form-label">Celular:</label>
-                    <input type="text" class="form-control" id="edit_celular" name="celular">
-                    </div>
-                    <div class="mb-3">
-                    <label for="edit_sir" class="form-label">Sir:</label>
-                    <input type="text" class="form-control" id="edit_sir" name="sir">
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit_permisos_id" class="form-label">Permiso:</label>
-                        <select class="form-select" id="edit_permisos_id" name="permisos_id">
-                            <!-- Aquí debes llenar las opciones con los permisos disponibles -->
-                            @foreach ($permisos as $permiso)
-                                <option value="{{ $permiso->id }}">{{ $permiso->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                    <label for="edit_password" class="form-label">Contraseña:</label>
-                    <input type="password" class="form-control" id="edit_password" name="password">
-                    <small class="form-text text-muted">Min 8 caracteres, incluyendo letras, números y caracteres especiales.</small>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit_password_confirmation" class="form-label">Confirmar Contraseña:</label>
-                        <input type="password" class="form-control" id="edit_password_confirmation" name="password_confirmation">
-                    </div>
-</div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                    </div>
+                    <h8>No se puede editar agentes en esta demo</h8>
                 </form>
             </div>
         </div>
@@ -160,7 +115,7 @@
         </div>
         <div class="cuerpo">
             <div class="titulos">
-                <h4>AGENTES</h4>
+                <h4>USUARIOS</h4>
                 <h4 class="acciones">ACCIONES</h4>
             </div>
             @foreach ($agentes as $agente)
@@ -224,21 +179,20 @@
                             <p class="ti">Estadisticas</p>
                         </a>
                     </div>
-                    <div class="accion" id="accione" data-toggle="modal" data-target="#modalEditarAgente"> 
-                       
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16" id="logotipo">
-                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                    </svg>
-                    <p class="ti">Editar</p>
-                    <p class="ti">Agente</p>
-                </div>
-                    <div class="accion" id="acciond" data-target="#miModal{{ $agente->id }}">
+                    <div class="accion" id="accione" data-target="#modal-demo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16" id="logotipo">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        </svg>
+                        <p class="ti">Editar</p>
+                        <p class="ti">Usuario</p>
+                    </div>
+                    <div class="accion" id="acciond" data-target="#modal-demo">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16" id="logotipo">
                             <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                         </svg>
                         <p class="ti">Eliminar</p>
-                        <p class="ti">Agente</p>
+                        <p class="ti">Usuario</p>
                     </div>
                 </div>
             </div>
@@ -273,10 +227,23 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="modal-demo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Eliminar o editar</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></button>
+                    </div>
+                    <div class="modal-body">
+                        <h8 style="color: red; font-width: bolder;">No puedes eliminar ni editar usuarios en esta demo</h8>
+                    </div>            
+                </div>
+            </div>
+        </div>
     @endforeach
  <!-- Sección de usuarios con permisos full -->
             <div class="titulos">
-                <h4>USUARIO STAFF</h4>
+                <h4>USUARIOS STAFF</h4>
                 <h4 class="acciones">ACCIONES</h4>
             </div>
             @foreach ($usuariosStaff as $usuarioStaff)
@@ -311,7 +278,7 @@
                     </div>
                 </div>
                 <div class="accioness">
-                    <div class="accion accionST" id="accioneST" data-toggle="modal" data-target="#editarUsuarioModal"
+                    <div class="accion accionST" id="accioneST" data-target="#modal-demo"
                         data-usuario-id="{{ $usuarioStaff->id }}"
                         data-usuario-nombre="{{ $usuarioStaff->nombre }}"
                         data-usuario-celular="{{ $usuarioStaff->celular }}"
@@ -326,7 +293,7 @@
                             <p class="ti">Editar</p>
                             <p class="ti">Staff</p>
                     </div>
-                    <div class="accion" id="acciond">
+                    <div class="accion" id="acciond" data-target="#modal-demo">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16" id="logotipo">
                             <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                         </svg>
@@ -430,72 +397,31 @@
 </script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var botonesEditarAgente = document.querySelectorAll('.accion#accione');
+    $(document).ready(function () {
 
-        botonesEditarAgente.forEach(function (boton) {
-            boton.addEventListener('click', function () {
-                var user = JSON.parse(boton.closest('.editar-agente').getAttribute('data-agente'));
+    var modalesID = document.querySelectorAll("#accione");
 
-                // Llenar los campos en el formulario con los datos del agente
-                document.getElementById('edit_agente_id').value = user.id;
-                document.getElementById('edit_nombre').value = user.nombre;
-                document.getElementById('edit_correo').value = user.correo_institucional;
-                document.getElementById('edit_celular').value = user.celular;
-                document.getElementById('edit_sir').value = user.sir;
-                document.getElementById('edit_url_imagen').value = user.nombre_archivo_foto;
-
-                // Seleccionar el permiso correcto en el formulario
-                document.getElementById('edit_permisos_id').value = user.permisos_id;
-
-                  document.getElementById('edit_password').value = ''; 
-                  // Limpiar el campo de contraseña por razones de seguridad
-
-                    // Campo de confirmación de contraseña
-                    document.getElementById('edit_password_confirmation').value = ''; // Limpiar el campo de confirmación
-               
-
-                // Actualizar la acción del formulario con el ID del user
-                document.getElementById('formEditarAgente').action = '{{ url('inicioadmin') }}/' + user.id;
-
-                // Abrir el modal de edición
-                var modalEditarAgente = new bootstrap.Modal(document.getElementById('modalEditarAgente'));
-                modalEditarAgente.show();
+    modalesID.forEach(function(modales){
+        $(modales).on('click', function () {
+            var modalId = modales.getAttribute("data-target");
+    
+            // Abre el modal correspondiente
+            $(modalId).modal('show');
             });
         });
     });
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var botonesEditarStaff = document.querySelectorAll('.accionST');
+    $(document).ready(function () {
 
-        botonesEditarStaff.forEach(function (boton) {
-            boton.addEventListener('click', function () {
-                var usuarioId = boton.getAttribute('data-usuario-id');
+    var modalesID = document.querySelectorAll("#accioneST");
 
-                // Llenar los campos en el formulario con los datos del usuario Staff
-                document.getElementById('usuarioId').value = usuarioId;
-                document.getElementById('nombre').value = boton.getAttribute('data-usuario-nombre');
-                document.getElementById('nombre_archivo_foto').value = boton.getAttribute('data-usuario-foto');
-                document.getElementById('correo_institucional').value = boton.getAttribute('data-usuario-correo');
-                document.getElementById('celular').value = boton.getAttribute('data-usuario-celular');
-                document.getElementById('sir').value = boton.getAttribute('data-usuario-sir');
-
-
-                // Establecer el permiso seleccionado en el campo de selección
-                var permisoId = boton.getAttribute('data-usuario-permiso');
-                var selectPermiso = document.getElementById('permisos_id');
-                selectPermiso.value = permisoId;
-
-                // Limpiar los campos de contraseña al abrir el modal
-                document.getElementById('password').value = '';
-                document.getElementById('password_confirmation').value = '';
-                // Actualizar la acción del formulario con el ID del usuario Staff
-                document.getElementById('editarUsuarioForm').action = '{{ url('inicioadmin') }}/' + usuarioId;
-
-                // Abrir el modal de edición
-                var modalEditarUsuario = new bootstrap.Modal(document.getElementById('editarUsuarioModal'));
-                modalEditarUsuario.show();
+    modalesID.forEach(function(modales){
+        $(modales).on('click', function () {
+            var modalId = modales.getAttribute("data-target");
+    
+            // Abre el modal correspondiente
+            $(modalId).modal('show');
             });
         });
     });

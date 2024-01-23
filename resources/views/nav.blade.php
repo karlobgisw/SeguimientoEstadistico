@@ -1,6 +1,6 @@
 <nav class="navbar custom navbar-expand-lg">
     <div class="container-fluid">
-        <img src="https://cdn.discordapp.com/attachments/721077787842052136/1151364999751684127/logo_1.png" alt="" height="50">
+      <img src="../images/estta.png" alt="" height="50">
       <button class="navbar-toggler color" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="btn_nav_menu">
         <img src="{{ asset('images\menu.svg') }}" alt="Menu" class="menu">
       </button>
@@ -12,9 +12,6 @@
           </li>
           <li class="nav-item">
             <a class="nav-link letras" id="nav-item" aria-current="page" href="{{ route('inicioadmin') }}">Agentes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link letras" id="nav-item" href="{{ route('verstatsglobales') }}">Estadisticas-Globales</a>
           </li>
           @endif
           @if($permiso == 'limited')

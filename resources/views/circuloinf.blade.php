@@ -120,7 +120,10 @@ $fuentes_contacto = FuenteContacto::all();
 
                         <div class="mb-3">
                             <label for="clave_sir" class="form-label">CLAVE SIR:</label>
-                            <input type="text" class="form-control" name="clave_sir" placeholder="" nullable>
+                            <select class="form-select" name="clave_sir" nullable>
+                                <option value="1">Verdadero</option>
+                                <option value="0">Falso</option>
+                            </select>
                         </div>
 
                         <div class="mb-3">
@@ -392,7 +395,10 @@ $fuentes_contacto = FuenteContacto::all();
                     
                     <div class="mb-3">
                         <label for="edit_clave_sir" class="form-label">CLAVE SIR:</label>
-                        <input type="text" class="form-control" id="edit_clave_sir" name="clave_sir">
+                        <select class="form-select" name="clave_sir" id="edit_clave_sir">
+                                <option value="1">Verdadero</option>
+                                <option value="0">Falso</option>
+                        </select>
                     </div>
 
                     <div class="mb-3">
